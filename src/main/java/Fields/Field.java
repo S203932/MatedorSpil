@@ -1,19 +1,22 @@
 package Fields;
-// Class is written by Kristian Urban 163301 and Zainab Hameed s204747
+import SupportClasses.Player;
+
 import java.awt.*;
 
-public class Field {
-    private int position;
+public abstract class Field {
     private String name;
-
+    private int position;
     private Color color;
+    private int type;
 
     public Field(){
         setName("Noname");
         setPosition(-1);
         setColor(Color.black);
+        setType(-1);
     }
 
+    public void setType(int type) {this.type=type;}
     public void setName(String name) {
         this.name = name;
     }
@@ -37,6 +40,8 @@ public class Field {
     public int getPosition() {
         return this.position;
     }
+
+    public void rent(Player player){};
 
     @Override
     public String toString(){
