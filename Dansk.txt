@@ -1,27 +1,41 @@
 Felter:
 Start
-Burgerbaren
-Pizzeriaet
-Chance
-Slikbutikken
-Iskiosken
-På besøg
-Museet
-Biblioteket
-Chance
-Skaterparken
-Swimmingpoolen
+Rødovrevej
+Prøv lykken
+Hvidovrevej
+Indkomstskat
+Helsingør - Helsingborg
+Roskildevej
+Prøv lykken
+Valby Langgade
+Allégade
+I fængsel/På besøg
+Frederiksberg Allé
+Tuborg Squash
+Bülowsvej
+Gl. Kongevej
+Mols-Linien
+Bernstorffsvej
+Prøv lykken
+Hellerupvej
+Strandvejen
 Parkering
-Spillehallen
-Biografen
-Chance
-Legetøjsbutikken
-Dyrehandlen
-Gå i fængsel
-Bowlinghallen
-Zoologisk have
-Chance
-Vandlandet
-Strandpromenaden
-
-
+Trianglen
+Prøv lykken
+Øserbrogade
+Grønningen
+Gedser - Rostock
+Bredgade
+Kgs. Nytorv
+Coca Cola
+Østergade
+Fængsel
+Amagertorv
+Vimmelskaftet
+Prøv lykken
+Nygade
+Rødby - Puttgarden
+Prøv lykken
+Frederiksberggade
+Ekstraordinær statsskat
+Rådhuspladsen
