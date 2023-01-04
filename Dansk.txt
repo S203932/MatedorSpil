@@ -1,0 +1,27 @@
+Felter:
+Start
+Burgerbaren
+Pizzeriaet
+Chance
+Slikbutikken
+Iskiosken
+På besøg
+Museet
+Biblioteket
+Chance
+Skaterparken
+Swimmingpoolen
+Parkering
+Spillehallen
+Biografen
+Chance
+Legetøjsbutikken
+Dyrehandlen
+Gå i fængsel
+Bowlinghallen
+Zoologisk have
+Chance
+Vandlandet
+Strandpromenaden
+
+
