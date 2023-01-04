@@ -182,10 +182,6 @@ public class GUIController {
             }else if(fieldList.getFieldIndex(player.getPosition()).getClass().equals(NeutralFields.class)){
                 gui.showMessage("Nothing worth mentioning happens on this field, press the button " +
                         "to pass the turn.");
-            }else if(fieldList.getFieldIndex(player.getPosition()).getClass().equals(StartField.class)){
-                gui.showMessage("You've landed on start, congrats you get 2. Press the button" +
-                        "to accept.");
-                gui_player.getCar().setPosition(fields[0]);
             }else if(fieldList.getFieldIndex(player.getPosition()).getClass().equals(GoJail.class)){
                 gui.showMessage("Sucks to be you. Press the button to move to jail.");
                 GoJail goJail = new GoJail();

@@ -21,9 +21,9 @@ public class FieldList {
     public void setupField(String filename){
         ReadFile readFile = new ReadFile();
         ArrayList<String> stringArrayList = readFile.ReadFile(filename);
-        fieldList[0] = new StartField();
-        ((StartField)fieldList[0]).setName(stringArrayList.get(1));
-        ((StartField)fieldList[0]).setColor(Color.WHITE);
+        fieldList[0] = new NeutralFields();
+        ((NeutralFields)fieldList[0]).setName(stringArrayList.get(1));
+        ((NeutralFields)fieldList[0]).setColor(Color.WHITE);
 
         fieldList[1] = new Property();
         ((Property)fieldList[1]).setName(stringArrayList.get(2));
