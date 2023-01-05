@@ -6,11 +6,11 @@ public class GoJail extends Field{
     private int position;
     private String name;
     private int moveTo;
-
+    //Position for active fields for moving player to jail
     public GoJail() {
-        setPosition(18);
-        setName("Gå i fængsel");
-        setMoveTo(6);
+        setPosition(31);
+        setName("De Fængsles");
+        setMoveTo(11);
     }
 
     public int getPosition() {
@@ -37,15 +37,17 @@ public class GoJail extends Field{
         this.moveTo = moveTo;
     }
 
+    // Function for having the player in jail
     public void GoToJail(Player player){
-        player.setPosition(6);
+        player.setPosition(11);
         if(player.getJail()==0){
             player.setJail(1);
         }else{
             player.setJail(0);
         }
 
-        player.getAccount().subtractionAccount(2);
+        //Deduction from players account for getting out
+        player.getAccount().subtractionAccount(1000);
 
     }
 }
