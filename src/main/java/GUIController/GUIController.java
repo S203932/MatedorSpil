@@ -232,7 +232,6 @@ public class GUIController {
 
         gui.getFields()[2].setTitle(stringArrayList.get(3));
         gui.getFields()[2].setSubText("Prøv Lykken");
-        gui.getFields()[2].setBackGroundColor(new Color(0, 0, 0));
 
         gui.getFields()[3].setTitle(stringArrayList.get(4));
         gui.getFields()[3].setSubText("Pris: 1200 kr.");
@@ -245,7 +244,6 @@ public class GUIController {
 
         gui.getFields()[5].setTitle(stringArrayList.get(6));
         gui.getFields()[5].setSubText("Scanlines");
-        gui.getFields()[5].setBackGroundColor(new Color(0, 0, 155));
 
         gui.getFields()[6].setSubText(stringArrayList.get(7));
         gui.getFields()[6].setSubText("Pris: 2000 kr.");
@@ -253,7 +251,6 @@ public class GUIController {
 
         gui.getFields()[7].setTitle(stringArrayList.get(8));
         gui.getFields()[7].setSubText("Prøv Lykken");
-        gui.getFields()[7].setBackGroundColor(new Color(0, 0, 0));
 
 
         gui.getFields()[8].setTitle(stringArrayList.get(9));
@@ -266,7 +263,6 @@ public class GUIController {
 
         gui.getFields()[10].setTitle(stringArrayList.get(11));
         gui.getFields()[10].setSubText("På besøg");
-        gui.getFields()[10].setBackGroundColor(new Color(0, 0, 0));
 
 
         gui.getFields()[11].setTitle(stringArrayList.get(12));
@@ -275,7 +271,6 @@ public class GUIController {
 
         gui.getFields()[12].setTitle(stringArrayList.get(13));
         gui.getFields()[12].setSubText("Pris: 3000 kr.");
-        gui.getFields()[12].setBackGroundColor(new Color(153, 0, 0));
 
         gui.getFields()[13].setTitle(stringArrayList.get(14));
         gui.getFields()[13].setSubText("Pris: 2800 kr.");
@@ -287,7 +282,6 @@ public class GUIController {
 
         gui.getFields()[15].setTitle(stringArrayList.get(16));
         gui.getFields()[15].setSubText("Pris: 4000 kr.");
-        gui.getFields()[15].setBackGroundColor(new Color(0, 0, 153));
 
         gui.getFields()[16].setTitle(stringArrayList.get(17));
         gui.getFields()[16].setSubText("Pris: 3600 kr.");
@@ -295,7 +289,6 @@ public class GUIController {
 
         gui.getFields()[17].setTitle(stringArrayList.get(18));
         gui.getFields()[17].setSubText("Prøv Lykken");
-        gui.getFields()[17].setBackGroundColor(new Color(0, 0, 0));
 
         gui.getFields()[18].setTitle(stringArrayList.get(19));
         gui.getFields()[18].setSubText("Pris: 3600 kr.");
@@ -315,7 +308,6 @@ public class GUIController {
 
         gui.getFields()[22].setTitle(stringArrayList.get(23));
         gui.getFields()[22].setSubText("Prøv Lykken");
-        gui.getFields()[22].setBackGroundColor(new Color(0, 0, 0));
 
         gui.getFields()[23].setTitle(stringArrayList.get(24));
         gui.getFields()[23].setSubText("Pris: 4400 kr.");
@@ -327,7 +319,6 @@ public class GUIController {
 
         gui.getFields()[25].setTitle(stringArrayList.get(26));
         gui.getFields()[25].setSubText("Pris: 4000 kr.");
-        gui.getFields()[25].setBackGroundColor(new Color(0, 0, 153));
 
         gui.getFields()[26].setTitle(stringArrayList.get(27));
         gui.getFields()[26].setSubText("Pris: 5200 kr.");
@@ -339,7 +330,6 @@ public class GUIController {
 
         gui.getFields()[28].setTitle(stringArrayList.get(29));
         gui.getFields()[28].setSubText("Pris: 3000 kr.");
-        gui.getFields()[28].setBackGroundColor(new Color(153, 0, 0));
 
         gui.getFields()[29].setTitle(stringArrayList.get(30));
         gui.getFields()[29].setSubText("Pris: 5600 kr.");
@@ -347,7 +337,6 @@ public class GUIController {
 
         gui.getFields()[30].setTitle(stringArrayList.get(31));
         gui.getFields()[30].setSubText("De fængsles");
-        gui.getFields()[30].setBackGroundColor(new Color(0, 0, 0));
 
         gui.getFields()[31].setTitle(stringArrayList.get(32));
         gui.getFields()[31].setSubText("Pris: 6000 kr.");
@@ -359,7 +348,6 @@ public class GUIController {
 
         gui.getFields()[33].setTitle(stringArrayList.get(34));
         gui.getFields()[33].setSubText("Prøv Lykken");
-        gui.getFields()[33].setBackGroundColor(new Color(0, 0, 0));
 
         gui.getFields()[34].setTitle(stringArrayList.get(35));
         gui.getFields()[34].setSubText("Pris: 6400 kr.");
@@ -367,11 +355,9 @@ public class GUIController {
 
         gui.getFields()[35].setTitle(stringArrayList.get(36));
         gui.getFields()[35].setSubText("Pris: 4000 kr.");
-        gui.getFields()[35].setBackGroundColor(new Color(0, 0, 153));
 
         gui.getFields()[36].setTitle(stringArrayList.get(37));
         gui.getFields()[36].setSubText("Prøv Lykken");
-        gui.getFields()[36].setBackGroundColor(new Color(0, 0, 0));
 
         gui.getFields()[37].setTitle(stringArrayList.get(38));
         gui.getFields()[37].setSubText("Pris: 7000 kr.");
