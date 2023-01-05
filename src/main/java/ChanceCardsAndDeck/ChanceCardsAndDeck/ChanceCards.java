@@ -95,7 +95,7 @@ public class ChanceCards {
     public int getTransaction(){
         return this.transaction;
     }
-
+/*
     public void cardAction(Player player, GUI gui, Field[] fieldList, GUI_Field[] fields, GUI_Player gui_player){
         switch (type){
             case 2:
@@ -202,7 +202,7 @@ public class ChanceCards {
             default: break;
         }
     }
-
+*/
     public String toString(){
         return "This card has the following type: "+this.type+"\nThe following description: "+this.description+
                 "\nThe following MoveTo: "+this.moveTo+"\nThe following MoveUpTo: "+this.moveUpTo+"\n And the " +

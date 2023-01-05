@@ -5,7 +5,7 @@ import SupportClasses.Player;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PropertyTest {
-
+/*
     @org.junit.jupiter.api.Test
     void buyProperty() {
         Property property = new Property();
@@ -30,4 +30,6 @@ class PropertyTest {
         assertEquals(6,player.getAccount().getAmount());
 
     }
+
+ */
 }

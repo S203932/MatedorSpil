@@ -165,6 +165,8 @@ public class GUIController {
             gui_player.getCar().setPosition(field);
             if(fieldList.getFieldIndex(player.getPosition()).getClass().equals(Property.class)){
                 System.out.println("Field is a property");
+
+                /*
                 if(((Property)fieldList.getFieldIndex(player.getPosition())).getAvailability()){
                     System.out.println("property is not owned");
                     gui.showMessage("The field is an unowned property, press the button to buy it.");
@@ -177,6 +179,8 @@ public class GUIController {
                     System.out.println("Property is owned");
                     gui.showMessage("The property is owned, press the button to pay rent.");
                 }
+
+
             }else if(fieldList.getFieldIndex(player.getPosition()).getClass().equals(Chance.class)){
                 //cardDeck.initilalizeCard();
                 //cardDeck.cards();
@@ -187,6 +191,9 @@ public class GUIController {
                 ChanceCards chanceCard = cardDeck.getCard(randomNumber);
                 System.out.println(chanceCard.getDescription());
                 chanceCard.cardAction(player,gui, fieldList.getFieldList(), fields, gui_player);
+
+
+                 */
             }else if(fieldList.getFieldIndex(player.getPosition()).getClass().equals(Neutral.class)){
                 gui.showMessage("Nothing worth mentioning happens on this field, press the button " +
                         "to pass the turn.");
