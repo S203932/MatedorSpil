@@ -19,7 +19,7 @@ public class Game {
 
         System.out.println(language);
         guiController.GUIController(language);
-        int amountPlayers = guiController.getGui().getUserInteger("Insert amount of players", 3, 6);
+        int amountPlayers = guiController.getGui().getUserInteger("Indsat antal spiller", 3, 6);
         Player[] players = new Player[amountPlayers];
         GUI_Player[] gui_players = guiController.setupPlayers(players);
         FieldList fieldList = new FieldList();

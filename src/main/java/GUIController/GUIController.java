@@ -35,94 +35,27 @@ public class GUIController {
     private GUI_Car car=new GUI_Car();
     private Player[] player;
 
-//The following initializePlayers method won't work since it is a void method, so'
-    // the players are only existing in that specific method and are "recreated"
-    // everytime you call that method
-    public void initialzePlayers() {
-       int amountPlayers = gui.getUserInteger("Enter amount of players", 2, 4);
-        Player[] player =new Player[amountPlayers];
-        GUI_Player[] GUI_player=new GUI_Player[amountPlayers];
-        if (amountPlayers==2){
-            for (int i = 0; i < player.length; i++ ){
-                player[i]=new Player();
-                player[i].setPlayerName(gui.getUserString("Enter name"));
-                player[i].getAccount().setAccount(20);
-                GUI_player[i]=new GUI_Player(player[i].getPlayerName(),20);
-                gui.addPlayer(GUI_player[i]);
-            }
-        } else if(amountPlayers==3){
-            for (int i = 0; i < player.length; i++ ){
-                player[i]=new Player();
-                player[i].setPlayerName(gui.getUserString("Enter name"));
-                player[i].getAccount().setAccount(18);
-                GUI_player[i]=new GUI_Player(player[i].getPlayerName(),18);
-                gui.addPlayer(GUI_player[i]);
-            }
-        } else if(amountPlayers==4){
-            for (int i = 0; i < player.length; i++ ){
-                player[i]=new Player();
-                player[i].setPlayerName(gui.getUserString("Enter name"));
-                player[i].getAccount().setAccount(16);
-                GUI_player[i]=new GUI_Player(player[i].getPlayerName(),16);
-                gui.addPlayer(GUI_player[i]);
-            }
-        }
-        int turn=0;
-        for(int i=0; i<amountPlayers; i++){
-            Player playerNow=player[turn];
-            gui.showMessage(playerNow.getPlayerName()+"'s  turn");
-            dice.rollDice();
-            int roll=dice.result();
-            gui.setDie(dice.result());
-            playerNow.setPosition((playerNow.getPosition()+roll)% fields.length);
-            GUI_player[turn].getCar().setPosition(gui.getFields()[(playerNow.getPosition()+roll)% fields.length]);
-            turn=((turn+1)%amountPlayers);
-        }
 
-    }
-
-    //much of it, if not most, of the method below is from the former initialize players.
+    //
     public GUI_Player[] setupPlayers(Player[] player) {
         GUI_Player[] GUI_player = new GUI_Player[player.length];
-        if ((player.length) == 2) {
-            String[] nameArray = new String[2];
-            for (int i = 0; i < player.length; i++) {
-                System.out.println("i : "+i);
-                player[i] = new Player();
-                String playerName = gui.getUserString("Enter a new name");
-                int repeat = 0;
-                for(int j=0; j<nameArray.length;j++){
-                    if(playerName.equalsIgnoreCase(nameArray[j])){
-                        repeat = 1;
-                        System.out.println("Name has already been entered.");
-                    }
-                }
-                nameArray[i] = playerName;
-                player[i].setPlayerName(playerName);
-                player[i].getAccount().setAccount(20);
-                GUI_player[i] = new GUI_Player(player[i].getPlayerName(), 20);
-                gui.addPlayer(GUI_player[i]);
-                if(repeat == 1) {
-                    i = i - 1;
-                }
-            }
-        } else if ((player.length) == 3) {
+        if ((player.length) == 3) {
             String[] nameArray = new String[3];
             for (int i = 0; i < player.length; i++) {
                 System.out.println("i : "+i);
                 player[i] = new Player();
-                String playerName = gui.getUserString("Enter a new name");
+                String playerName = gui.getUserString("Indtast navn");
                 int repeat = 0;
                 for(int j=0; j<nameArray.length;j++){
                     if(playerName.equalsIgnoreCase(nameArray[j])){
                         repeat = 1;
-                        System.out.println("Name has already been entered.");
+                        System.out.println("Navnet er optaget. Indtast nyt navn");
                     }
                 }
                 nameArray[i] = playerName;
                 player[i].setPlayerName(playerName);
-                player[i].getAccount().setAccount(18);
-                GUI_player[i] = new GUI_Player(player[i].getPlayerName(), 18);
+                player[i].getAccount().setAccount(30000);
+                GUI_player[i] = new GUI_Player(player[i].getPlayerName(), 30000);
                 gui.addPlayer(GUI_player[i]);
                 if(repeat == 1) {
                     i = i - 1;
@@ -133,21 +66,65 @@ public class GUIController {
             for (int i = 0; i < player.length; i++) {
                 System.out.println("i : "+i);
                 player[i] = new Player();
-                String playerName = gui.getUserString("Enter a new name");
+                String playerName = gui.getUserString("Indtast navn");
                 int repeat = 0;
                 for(int j=0; j<nameArray.length;j++){
                     if(playerName.equalsIgnoreCase(nameArray[j])){
                         repeat = 1;
-                        System.out.println("Name has already been entered.");
+                        System.out.println("Navnet er optaget. Indtast nyt navn");
                     }
                 }
                 nameArray[i] = playerName;
                 player[i].setPlayerName(playerName);
-                player[i].getAccount().setAccount(16);
-                GUI_player[i] = new GUI_Player(player[i].getPlayerName(), 16);
+                player[i].getAccount().setAccount(30000);
+                GUI_player[i] = new GUI_Player(player[i].getPlayerName(), 30000);
+                gui.addPlayer(GUI_player[i]);
+                if(repeat == 1) {
+                    i = i - 1;
+                }
+            }
+        } else if ((player.length) == 5) {
+            String[] nameArray = new String[5];
+            for (int i = 0; i < player.length; i++) {
+                System.out.println("i : "+i);
+                player[i] = new Player();
+                String playerName = gui.getUserString("Indtast navn");
+                int repeat = 0;
+                for(int j=0; j<nameArray.length;j++){
+                    if(playerName.equalsIgnoreCase(nameArray[j])){
+                        repeat = 1;
+                        System.out.println("Navnet er optaget. Indtast nyt navn");
+                    }
+                }
+                nameArray[i] = playerName;
+                player[i].setPlayerName(playerName);
+                player[i].getAccount().setAccount(30000);
+                GUI_player[i] = new GUI_Player(player[i].getPlayerName(), 30000);
                 gui.addPlayer(GUI_player[i]);
                 if(repeat == 1){
                     i = i -1;
+                }
+            }
+        } else if ((player.length) == 6) {
+            String[] nameArray = new String[6];
+            for (int i = 0; i < player.length; i++) {
+                System.out.println("i : " + i);
+                player[i] = new Player();
+                String playerName = gui.getUserString("Indtast navn");
+                int repeat = 0;
+                for (int j = 0; j < nameArray.length; j++) {
+                    if (playerName.equalsIgnoreCase(nameArray[j])) {
+                        repeat = 1;
+                        System.out.println("Navnet er optaget. Indtast nyt navn");
+                    }
+                }
+                nameArray[i] = playerName;
+                player[i].setPlayerName(playerName);
+                player[i].getAccount().setAccount(30000);
+                GUI_player[i] = new GUI_Player(player[i].getPlayerName(), 30000);
+                gui.addPlayer(GUI_player[i]);
+                if (repeat == 1) {
+                    i = i - 1;
                 }
             }
         }
