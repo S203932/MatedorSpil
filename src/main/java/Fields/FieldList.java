@@ -24,197 +24,196 @@ public class FieldList {
 
         fieldList[0] = new Neutral();
         ((Neutral)fieldList[0]).setName(stringArrayList.get(1));
-        ((Neutral)fieldList[0]).setColor(Color.WHITE);
+        ((Neutral)fieldList[0]).setColor(Color.LIGHT_GRAY);
 
         fieldList[1] = new RealEstate();
-        ((Property)fieldList[1]).setName(stringArrayList.get(2));
-        ((Property)fieldList[1]).setPrice(1200);
-        ((Property)fieldList[1]).setColor(Color.ORANGE);
+        ((RealEstate)fieldList[1]).setName(stringArrayList.get(2));
+        ((RealEstate)fieldList[1]).setPrice(1200);
+        ((RealEstate)fieldList[1]).setColor(Color.BLUE);
 
         fieldList[2] = new Chance();
-        ((Property)fieldList[2]).setName(stringArrayList.get(3));
-        ((Property)fieldList[2]).setColor(Color.ORANGE);
+        ((RealEstate)fieldList[2]).setName(stringArrayList.get(3));
+        ((RealEstate)fieldList[2]).setColor(Color.BLACK);
 
         fieldList[3] = new RealEstate();
-        ((Chance)fieldList[3]).setName(stringArrayList.get(4));
-        ((Property)fieldList[3]).setPrice(1200);
-        ((Chance)fieldList[3]).setColor(Color.LIGHT_GRAY);
+        ((RealEstate)fieldList[3]).setName(stringArrayList.get(4));
+        ((RealEstate)fieldList[3]).setPrice(1200);
+        ((RealEstate)fieldList[3]).setColor(Color.BLUE);
 
         //tax
-        fieldList[4] = new Chance();
-        ((Property)fieldList[4]).setName(stringArrayList.get(5));
-        ((Property)fieldList[4]).setColor(Color.CYAN);
+        fieldList[4] = new Tax();
+        ((Tax)fieldList[4]).setName(stringArrayList.get(5));
+        //((Tax)fieldList[4]).setColor(Color.CYAN);
 
         fieldList[5] = new Ferry();
-        ((Property)fieldList[5]).setName(stringArrayList.get(6));
-        ((Property)fieldList[5]).setPrice(4000);
-        ((Property)fieldList[5]).setColor(Color.CYAN);
+        ((Ferry)fieldList[5]).setName(stringArrayList.get(6));
+        ((Ferry)fieldList[5]).setPrice(4000);
+        ((Ferry)fieldList[5]).setColor(Color.CYAN);
 
         fieldList[6] = new RealEstate();
-        ((Neutral)fieldList[6]).setName(stringArrayList.get(7));
-        ((Property)fieldList[6]).setPrice(2000);
-        ((Neutral)fieldList[6]).setColor(Color.GRAY);
+        ((RealEstate)fieldList[6]).setName(stringArrayList.get(7));
+        ((RealEstate)fieldList[6]).setPrice(2000);
+        ((RealEstate)fieldList[6]).setColor(Color.ORANGE);
 
         fieldList[7] = new Chance();
-        ((Property)fieldList[7]).setName(stringArrayList.get(8));
-        ((Property)fieldList[7]).setColor(Color.MAGENTA);
+        ((Chance)fieldList[7]).setName(stringArrayList.get(8));
+        ((Chance)fieldList[7]).setColor(Color.BLACK);
 
         fieldList[8] = new RealEstate();
-        ((Property)fieldList[8]).setName(stringArrayList.get(9));
-        ((Property)fieldList[8]).setPrice(2000);
-        ((Property)fieldList[8]).setColor(Color.MAGENTA);
+        ((RealEstate)fieldList[8]).setName(stringArrayList.get(9));
+        ((RealEstate)fieldList[8]).setPrice(2000);
+        ((RealEstate)fieldList[8]).setColor(Color.ORANGE);
 
         fieldList[9] = new RealEstate();
-        ((Chance)fieldList[9]).setName(stringArrayList.get(10));
-        ((Property)fieldList[9]).setPrice(2400);
-        ((Chance)fieldList[9]).setColor(Color.LIGHT_GRAY);
+        ((RealEstate)fieldList[9]).setName(stringArrayList.get(10));
+        ((RealEstate)fieldList[9]).setPrice(2400);
+        ((RealEstate)fieldList[9]).setColor(Color.ORANGE);
 
         fieldList[10] = new Neutral();
-        ((Property)fieldList[10]).setName(stringArrayList.get(11));
-        ((Property)fieldList[10]).setColor(Color.PINK);
+        ((Neutral)fieldList[10]).setName(stringArrayList.get(11));
+        ((Neutral)fieldList[10]).setColor(Color.LIGHT_GRAY);
 
         fieldList[11] = new RealEstate();
-        ((Property)fieldList[11]).setName(stringArrayList.get(12));
-        ((Property)fieldList[11]).setPrice(2800);
-        ((Property)fieldList[11]).setColor(Color.PINK);
+        ((RealEstate)fieldList[11]).setName(stringArrayList.get(12));
+        ((RealEstate)fieldList[11]).setPrice(2800);
+        ((RealEstate)fieldList[11]).setColor(Color.GREEN);
 
         fieldList[12] = new Brewery();
-        ((Neutral)fieldList[12]).setName(stringArrayList.get(13));
-        ((Property)fieldList[12]).setPrice(3000);
-        ((Neutral)fieldList[12]).setColor(Color.BLACK);
+        ((Brewery)fieldList[12]).setName(stringArrayList.get(13));
+        ((Brewery)fieldList[12]).setPrice(3000);
+        ((Brewery)fieldList[12]).setColor(Color.PINK);
 
         fieldList[13] = new RealEstate();
         ((Property)fieldList[13]).setName(stringArrayList.get(14));
         ((Property)fieldList[13]).setPrice(2800);
-        ((Property)fieldList[13]).setColor(Color.RED);
+        ((Property)fieldList[13]).setColor(Color.GREEN);
 
         fieldList[14] = new RealEstate();
         ((Property)fieldList[14]).setName(stringArrayList.get(15));
         ((Property)fieldList[14]).setPrice(3200);
-        ((Property)fieldList[14]).setColor(Color.RED);
+        ((Property)fieldList[14]).setColor(Color.GREEN);
 
         fieldList[15] = new Ferry();
-        ((Chance)fieldList[15]).setName(stringArrayList.get(16));
-        ((Property)fieldList[15]).setPrice(4000);
-        ((Chance)fieldList[15]).setColor(Color.LIGHT_GRAY);
+        ((Ferry)fieldList[15]).setName(stringArrayList.get(16));
+        ((Ferry)fieldList[15]).setPrice(4000);
+        ((Ferry)fieldList[15]).setColor(Color.CYAN);
 
         fieldList[16] = new RealEstate();
-        ((Property)fieldList[16]).setName(stringArrayList.get(17));
-        ((Property)fieldList[16]).setPrice(3600);
-        ((Property)fieldList[16]).setColor(Color.YELLOW);
+        ((RealEstate)fieldList[16]).setName(stringArrayList.get(17));
+        ((RealEstate)fieldList[16]).setPrice(3600);
+        ((RealEstate)fieldList[16]).setColor(Color.GRAY);
 
         fieldList[17] = new Chance();
-        ((Property)fieldList[17]).setName(stringArrayList.get(18));
-        ((Property)fieldList[17]).setColor(Color.YELLOW);
+        ((Chance)fieldList[17]).setName(stringArrayList.get(18));
+        ((Chance)fieldList[17]).setColor(Color.BLACK);
 
         fieldList[18] = new RealEstate();
-        ((GoJail)fieldList[18]).setName(stringArrayList.get(19));
-        ((Property)fieldList[18]).setPrice(3600);
-        ((GoJail)fieldList[18]).setColor(Color.DARK_GRAY);
+        ((RealEstate)fieldList[18]).setName(stringArrayList.get(19));
+        ((RealEstate)fieldList[18]).setPrice(3600);
+        ((RealEstate)fieldList[18]).setColor(Color.GRAY);
 
         fieldList[19] = new RealEstate();
-        ((Property)fieldList[19]).setName(stringArrayList.get(20));
-        ((Property)fieldList[19]).setPrice(4000);
-        ((Property)fieldList[19]).setColor(Color.GREEN);
+        ((RealEstate)fieldList[19]).setName(stringArrayList.get(20));
+        ((RealEstate)fieldList[19]).setPrice(4000);
+        ((RealEstate)fieldList[19]).setColor(Color.GRAY);
 
         fieldList[20] = new Neutral();
-        ((Property)fieldList[20]).setName(stringArrayList.get(21));
-        ((Property)fieldList[20]).setColor(Color.GREEN);
+        ((Neutral)fieldList[20]).setName(stringArrayList.get(21));
+        ((Neutral)fieldList[20]).setColor(Color.LIGHT_GRAY);
 
         fieldList[21] = new RealEstate();
-        ((Chance)fieldList[21]).setName(stringArrayList.get(22));
-        ((Property)fieldList[21]).setPrice(4400);
-        ((Chance)fieldList[21]).setColor(Color.LIGHT_GRAY);
+        ((RealEstate)fieldList[21]).setName(stringArrayList.get(22));
+        ((RealEstate)fieldList[21]).setPrice(4400);
+        ((RealEstate)fieldList[21]).setColor(Color.RED);
 
         fieldList[22] = new Chance();
-        ((Property)fieldList[22]).setName(stringArrayList.get(23));
-        ((Property)fieldList[22]).setColor(Color.BLUE);
+        ((Chance)fieldList[22]).setName(stringArrayList.get(23));
+        ((Chance)fieldList[22]).setColor(Color.BLACK);
 
         fieldList[23] = new RealEstate();
-        ((Property)fieldList[23]).setName(stringArrayList.get(24));
-        ((Property)fieldList[23]).setPrice(4400);
-        ((Property)fieldList[23]).setColor(Color.BLUE);
+        ((RealEstate)fieldList[23]).setName(stringArrayList.get(24));
+        ((RealEstate)fieldList[23]).setPrice(4400);
+        ((RealEstate)fieldList[23]).setColor(Color.RED);
 
 
         fieldList[24] = new RealEstate();
-        ((Property)fieldList[24]).setName(stringArrayList.get(25));
-        ((Property)fieldList[24]).setPrice(4800);
-        ((Property)fieldList[24]).setColor(Color.BLUE);
+        ((RealEstate)fieldList[24]).setName(stringArrayList.get(25));
+        ((RealEstate)fieldList[24]).setPrice(4800);
+        ((RealEstate)fieldList[24]).setColor(Color.RED);
 
         fieldList[25] = new Ferry();
-        ((Property)fieldList[25]).setName(stringArrayList.get(26));
-        ((Property)fieldList[25]).setPrice(4000);
-        ((Property)fieldList[25]).setColor(Color.BLUE);
+        ((Ferry)fieldList[25]).setName(stringArrayList.get(26));
+        ((Ferry)fieldList[25]).setPrice(4000);
+        ((Ferry)fieldList[25]).setColor(Color.CYAN);
 
         fieldList[26] = new RealEstate();
-        ((Property)fieldList[26]).setName(stringArrayList.get(27));
-        ((Property)fieldList[26]).setPrice(5200);
-        ((Property)fieldList[26]).setColor(Color.BLUE);
+        ((RealEstate)fieldList[26]).setName(stringArrayList.get(27));
+        ((RealEstate)fieldList[26]).setPrice(5200);
+        ((RealEstate)fieldList[26]).setColor(Color.WHITE);
 
         fieldList[27] = new RealEstate();
-        ((Property)fieldList[27]).setName(stringArrayList.get(28));
-        ((Property)fieldList[27]).setPrice(5200);
-        ((Property)fieldList[27]).setColor(Color.BLUE);
+        ((RealEstate)fieldList[27]).setName(stringArrayList.get(28));
+        ((RealEstate)fieldList[27]).setPrice(5200);
+        ((RealEstate)fieldList[27]).setColor(Color.WHITE);
 
         fieldList[28] = new Brewery();
-        ((Property)fieldList[28]).setName(stringArrayList.get(29));
-        ((Property)fieldList[28]).setPrice(3000);
-        ((Property)fieldList[28]).setColor(Color.BLUE);
+        ((Brewery)fieldList[28]).setName(stringArrayList.get(29));
+        ((Brewery)fieldList[28]).setPrice(3000);
+        ((Brewery)fieldList[28]).setColor(Color.PINK);
 
         fieldList[29] = new RealEstate();
-        ((Property)fieldList[29]).setName(stringArrayList.get(30));
-        ((Property)fieldList[29]).setPrice(5600);
-        ((Property)fieldList[29]).setColor(Color.BLUE);
+        ((RealEstate)fieldList[29]).setName(stringArrayList.get(30));
+        ((RealEstate)fieldList[29]).setPrice(5600);
+        ((RealEstate)fieldList[29]).setColor(Color.white);
 
         fieldList[30] = new GoJail();
-        ((Property)fieldList[30]).setName(stringArrayList.get(31));
-        ((Property)fieldList[30]).setColor(Color.BLUE);
+        ((GoJail)fieldList[30]).setName(stringArrayList.get(31));
+        ((GoJail)fieldList[30]).setColor(Color.DARK_GRAY);
 
         fieldList[31] = new RealEstate();
-        ((Property)fieldList[31]).setName(stringArrayList.get(32));
-        ((Property)fieldList[31]).setPrice(6000);
-        ((Property)fieldList[31]).setColor(Color.BLUE);
+        ((RealEstate)fieldList[31]).setName(stringArrayList.get(32));
+        ((RealEstate)fieldList[31]).setPrice(6000);
+        ((RealEstate)fieldList[31]).setColor(Color.YELLOW);
 
         fieldList[32] = new RealEstate();
-        ((Property)fieldList[32]).setName(stringArrayList.get(33));
-        ((Property)fieldList[32]).setPrice(6000);
-        ((Property)fieldList[32]).setColor(Color.BLUE);
+        ((RealEstate)fieldList[32]).setName(stringArrayList.get(33));
+        ((RealEstate)fieldList[32]).setPrice(6000);
+        ((RealEstate)fieldList[32]).setColor(Color.yellow);
 
         fieldList[33] = new Chance();
-        ((Property)fieldList[33]).setName(stringArrayList.get(34));
-        ((Property)fieldList[33]).setColor(Color.BLUE);
+        ((Chance)fieldList[33]).setName(stringArrayList.get(34));
+        ((Chance)fieldList[33]).setColor(Color.BLACK);
 
         fieldList[34] = new RealEstate();
-        ((Property)fieldList[34]).setName(stringArrayList.get(35));
-        ((Property)fieldList[34]).setPrice(6400);
-        ((Property)fieldList[34]).setColor(Color.BLUE);
+        ((RealEstate)fieldList[34]).setName(stringArrayList.get(35));
+        ((RealEstate)fieldList[34]).setPrice(6400);
+        ((RealEstate)fieldList[34]).setColor(Color.yellow);
 
         fieldList[35] = new Ferry();
-        ((Property)fieldList[35]).setName(stringArrayList.get(36));
-        ((Property)fieldList[35]).setPrice(4000);
-        ((Property)fieldList[35]).setColor(Color.BLUE);
+        ((Ferry)fieldList[35]).setName(stringArrayList.get(36));
+        ((Ferry)fieldList[35]).setPrice(4000);
+        ((Ferry)fieldList[35]).setColor(Color.CYAN);
 
         fieldList[36] = new Chance();
-        ((Property)fieldList[36]).setName(stringArrayList.get(37));
-        ((Property)fieldList[36]).setColor(Color.BLUE);
+        ((Chance)fieldList[36]).setName(stringArrayList.get(37));
+        ((Chance)fieldList[36]).setColor(Color.BLACK);
 
 
         fieldList[37] = new RealEstate();
-        ((Property)fieldList[37]).setName(stringArrayList.get(38));
-        ((Property)fieldList[37]).setPrice(7000);
-        ((Property)fieldList[37]).setColor(Color.BLUE);
+        ((RealEstate)fieldList[37]).setName(stringArrayList.get(38));
+        ((RealEstate)fieldList[37]).setPrice(7000);
+        ((RealEstate)fieldList[37]).setColor(Color.MAGENTA);
 
 
         // tax
-        fieldList[38] = new Chance();
-        ((Property)fieldList[38]).setName(stringArrayList.get(39));
-        //((Property)fieldList[38]).setPrice(4400);
-        ((Property)fieldList[38]).setColor(Color.BLUE);
+        fieldList[38] = new Tax();
+        ((Tax)fieldList[38]).setName(stringArrayList.get(39));
+       // ((Tax)fieldList[38]).setColor(Color.);
 
         fieldList[39] = new RealEstate();
-        ((Property)fieldList[39]).setName(stringArrayList.get(40));
-        ((Property)fieldList[39]).setPrice(8000);
-        ((Property)fieldList[39]).setColor(Color.BLUE);
+        ((RealEstate)fieldList[39]).setName(stringArrayList.get(40));
+        ((RealEstate)fieldList[39]).setPrice(8000);
+        ((RealEstate)fieldList[39]).setColor(Color.MAGENTA);
 
 
     }
