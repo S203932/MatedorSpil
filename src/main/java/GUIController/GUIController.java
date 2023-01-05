@@ -136,7 +136,7 @@ public class GUIController {
                 "Press to roll the die.","Press to forefit and give in.");
         if(rollDie.equalsIgnoreCase("Press to roll the die.")){
             dice.rollDice();
-            gui.setDie(dice.result());
+            gui.setDice(dice.getIndexDie(0),dice.getIndexDie(1));
             player.diceRollPosition(dice.result());
             GUI_Field field = gui.getFields()[player.getPosition()];
             gui_player.getCar().setPosition(field);
