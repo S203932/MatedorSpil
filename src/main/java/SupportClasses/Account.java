@@ -28,7 +28,7 @@ public class Account {
 
     }
 
-    public void additionKonto(int additionValue) {
+    public void additionAccount(int additionValue) {
         this.amount = amount + additionValue;
         if(this.amount <0) {
             this.amount = 0;
@@ -48,7 +48,7 @@ public class Account {
     }
 
     public String toString() {
-        String value = "pengeBeholdning: "+ amount;
+        String value = "pengebeholdning: "+ amount;
         return value;
     }
 

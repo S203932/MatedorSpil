@@ -2,8 +2,6 @@ package Fields;
 
 import SupportClasses.Player;
 
-import java.awt.*;
-
 import static java.lang.Math.round;
 
 
@@ -62,7 +60,7 @@ public class Property extends Field {
     // Method for mortgage players property
     public boolean mortgageEstimation(Player player, int mortgagePrice){
         mortgagePrice=round(getPrice()/2);
-        player.getAccount().additionKonto(mortgagePrice);
+        player.getAccount().additionAccount(mortgagePrice);
         this.player = player;
         return this.mortgage=true;
 
