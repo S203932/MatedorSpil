@@ -140,25 +140,26 @@ public class GUIController {
             player.diceRollPosition(dice.result());
             GUI_Field field = gui.getFields()[player.getPosition()];
             gui_player.getCar().setPosition(field);
-            if(fieldList.getFieldIndex(player.getPosition()).getClass().equals(Property.class)){
+            if(fieldList.getFieldIndex(player.getPosition()).getClass().equals(RealEstate.class)){
                 System.out.println("Field is a property");
 
-                /*
-                if(((Property)fieldList.getFieldIndex(player.getPosition())).getAvailability()){
+
+                if(((RealEstate)fieldList.getFieldIndex(player.getPosition())).getAvailability()){
                     System.out.println("property is not owned");
                     gui.showMessage("The field is an unowned property, press the button to buy it.");
-                    ((Property)fieldList.getFieldIndex(player.getPosition())).buyProperty(player);
+                    ((RealEstate)fieldList.getFieldIndex(player.getPosition())).buyProperty(player);
                     fields[player.getPosition()].setDescription("Is owned by: "+player.getPlayerName());
                     gui_player.setBalance(player.getAccount().getAmount());
 
                 }else{
-                    ((Property)fieldList.getFieldIndex(player.getPosition())).PayRentProperty(player);
+                    ((RealEstate)fieldList.getFieldIndex(player.getPosition())).rent(player);
                     System.out.println("Property is owned");
                     gui.showMessage("The property is owned, press the button to pay rent.");
                 }
 
 
-            }else if(fieldList.getFieldIndex(player.getPosition()).getClass().equals(Chance.class)){
+
+            /* } else if(fieldList.getFieldIndex(player.getPosition()).getClass().equals(Chance.class)){
                 //cardDeck.initilalizeCard();
                 //cardDeck.cards();
                 Chance chance = new Chance();
