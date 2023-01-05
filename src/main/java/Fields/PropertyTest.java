@@ -13,7 +13,7 @@ class PropertyTest {
         Player player = new Player();
         player.getAccount().setAccount(3);
         property.buyProperty(player);
-        assertEquals(0, player.getAccount().getPengebeholdning());
+        assertEquals(0, player.getAccount().getAmount());
     }
 
     @org.junit.jupiter.api.Test
@@ -26,8 +26,8 @@ class PropertyTest {
         Player player2 = new Player();
         player2.getAccount().setAccount(3);
         property.PayRentProperty(player2);
-        assertEquals(0,player2.getAccount().getPengebeholdning());
-        assertEquals(6,player.getAccount().getPengebeholdning());
+        assertEquals(0,player2.getAccount().getAmount());
+        assertEquals(6,player.getAccount().getAmount());
 
     }
 }

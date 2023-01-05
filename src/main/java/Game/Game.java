@@ -27,7 +27,7 @@ public class Game {
         int end = 0;
         while (end!=1){
             for(int j = 0; j<players.length;j++){
-                gui_players[j].setBalance(players[j].getAccount().getPengebeholdning());
+                gui_players[j].setBalance(players[j].getAccount().getAmount());
             }
             for(int i = 0;i<players.length;i++){
                 if(players[i].getForfeit()==0){
@@ -35,14 +35,14 @@ public class Game {
                     System.out.println(players[i].getPlayerName()+"'s properties: "+players[i].getProperty()[i]);
                     System.out.println(players[i].getPlayerName()+"'s position: "+players[i].getPosition());
                     System.out.println(players[i].getPlayerName()+"'s name: "+players[i].getPlayerName());
-                    System.out.println(players[i].getPlayerName()+"'s money balance: "+players[i].getAccount().getPengebeholdning());
+                    System.out.println(players[i].getPlayerName()+"'s money balance: "+players[i].getAccount().getAmount());
                     for(int j = 0; j<players.length;j++){
-                        gui_players[j].setBalance(players[j].getAccount().getPengebeholdning());
+                        gui_players[j].setBalance(players[j].getAccount().getAmount());
                     }
                 }
 
 
-                if(players[i].getAccount().getPengebeholdning() <= 0){
+                if(players[i].getAccount().getAmount() <= 0){
                     end = 1;
                     break;
                 }
