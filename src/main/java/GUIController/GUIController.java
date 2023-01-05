@@ -23,7 +23,7 @@ public class GUIController {
             new GUI_Jail(), new GUI_Street(), new GUI_Street(), new GUI_Chance(), new GUI_Street(), new GUI_Street(),
     };
     private GUI gui = new GUI(fields);
-    private DiceCup dice = new DiceCup(1);
+    private DiceCup dice = new DiceCup(2);
     private GUI_Car car=new GUI_Car();
     private Player[] player;
 
@@ -208,96 +208,167 @@ public class GUIController {
         ReadFile readFile = new ReadFile();
         ArrayList<String> stringArrayList = readFile.ReadFile(filename);
         gui.getFields()[0].setTitle(stringArrayList.get(1));
-        gui.getFields()[0].setSubText("Modtager 2$, når du passerer");
-        gui.getFields()[0].setBackGroundColor(new Color(255, 255, 255));
+        gui.getFields()[0].setSubText("Modtag 2000 kr. når de passerer start");
+        gui.getFields()[0].setBackGroundColor(new Color(204, 0, 0));
 
         gui.getFields()[1].setTitle(stringArrayList.get(2));
-        gui.getFields()[1].setSubText("Pris: 1$");
-        gui.getFields()[1].setBackGroundColor(new Color(245, 174, 68));
+        gui.getFields()[1].setSubText("Pris: 1200 kr.");
+        gui.getFields()[1].setBackGroundColor(new Color(0, 0, 255));
 
         gui.getFields()[2].setTitle(stringArrayList.get(3));
-        gui.getFields()[2].setSubText("Pris:  1$");
-        gui.getFields()[2].setBackGroundColor(new Color(245, 174, 68));
+        gui.getFields()[2].setSubText("Prøv Lykken");
+        gui.getFields()[2].setBackGroundColor(new Color(0, 0, 0));
 
         gui.getFields()[3].setTitle(stringArrayList.get(4));
-        gui.getFields()[3].setBackGroundColor(new Color(204, 204, 204));
+        gui.getFields()[3].setSubText("Pris: 1200 kr.");
+        gui.getFields()[3].setBackGroundColor(new Color(0, 0, 255));
 
         gui.getFields()[4].setTitle(stringArrayList.get(5));
-        gui.getFields()[4].setSubText("Pris:  1");
-        gui.getFields()[4].setBackGroundColor(new Color(120, 244, 255));
+        gui.getFields()[4].setSubText("Betal indkomstskat: 10% eller 4000 kr.");
+        gui.getFields()[4].setBackGroundColor(new Color(255, 255, 204));
 
 
         gui.getFields()[5].setTitle(stringArrayList.get(6));
-        gui.getFields()[5].setSubText("Pris:  1");
-        gui.getFields()[5].setBackGroundColor(new Color(120, 244, 255));
+        gui.getFields()[5].setSubText("Scanlines");
+        gui.getFields()[5].setBackGroundColor(new Color(0, 0, 155));
 
         gui.getFields()[6].setSubText(stringArrayList.get(7));
-        gui.getFields()[6].setBackGroundColor(new Color(125, 125, 125));
+        gui.getFields()[6].setSubText("Pris: 2000 kr.");
+        gui.getFields()[6].setBackGroundColor(new Color(255, 102, 0));
 
         gui.getFields()[7].setTitle(stringArrayList.get(8));
-        gui.getFields()[7].setSubText("Pris:  2");
-        gui.getFields()[7].setBackGroundColor(new Color(167, 0, 204));
+        gui.getFields()[7].setSubText("Prøv Lykken");
+        gui.getFields()[7].setBackGroundColor(new Color(0, 0, 0));
 
 
         gui.getFields()[8].setTitle(stringArrayList.get(9));
-        gui.getFields()[8].setSubText("Pris:  2");
-        gui.getFields()[8].setBackGroundColor(new Color(167, 0, 204));
+        gui.getFields()[8].setSubText("Pris: 2000 kr.");
+        gui.getFields()[8].setBackGroundColor(new Color(255, 102, 0));
 
         gui.getFields()[9].setTitle(stringArrayList.get(10));
-        gui.getFields()[9].setBackGroundColor(new Color(204, 204, 204));
+        gui.getFields()[9].setSubText("Pris: 2400 kr.");
+        gui.getFields()[9].setBackGroundColor(new Color(255, 102, 0));
 
         gui.getFields()[10].setTitle(stringArrayList.get(11));
-        gui.getFields()[10].setSubText("Pris:  2");
-        gui.getFields()[10].setBackGroundColor(new Color(142, 169, 41));
+        gui.getFields()[10].setSubText("På besøg");
+        gui.getFields()[10].setBackGroundColor(new Color(0, 0, 0));
 
 
         gui.getFields()[11].setTitle(stringArrayList.get(12));
-        gui.getFields()[11].setSubText("Pris:  2");
-        gui.getFields()[11].setBackGroundColor(new Color(142, 169, 41));
+        gui.getFields()[11].setSubText("Pris: 2800 kr.");
+        gui.getFields()[11].setBackGroundColor(new Color(102, 255, 102));
 
         gui.getFields()[12].setTitle(stringArrayList.get(13));
-        gui.getFields()[12].setBackGroundColor(new Color(204, 204, 204));
+        gui.getFields()[12].setSubText("Pris: 3000 kr.");
+        gui.getFields()[12].setBackGroundColor(new Color(153, 0, 0));
 
         gui.getFields()[13].setTitle(stringArrayList.get(14));
-        gui.getFields()[13].setSubText("Pris:  3");
-        gui.getFields()[13].setBackGroundColor(new Color(232, 9, 9));
+        gui.getFields()[13].setSubText("Pris: 2800 kr.");
+        gui.getFields()[13].setBackGroundColor(new Color(102, 255, 102));
 
         gui.getFields()[14].setTitle(stringArrayList.get(15));
-        gui.getFields()[14].setSubText("Pris:  3");
-        gui.getFields()[14].setBackGroundColor(new Color(232, 9, 9));
+        gui.getFields()[14].setSubText("Pris: 3200 kr.");
+        gui.getFields()[14].setBackGroundColor(new Color(102, 255, 102));
 
         gui.getFields()[15].setTitle(stringArrayList.get(16));
-        gui.getFields()[15].setBackGroundColor(new Color(204, 204, 204));
+        gui.getFields()[15].setSubText("Pris: 4000 kr.");
+        gui.getFields()[15].setBackGroundColor(new Color(0, 0, 153));
 
         gui.getFields()[16].setTitle(stringArrayList.get(17));
-        gui.getFields()[16].setSubText("Pris:  3");
-        gui.getFields()[16].setBackGroundColor(new Color(255, 255, 50));
+        gui.getFields()[16].setSubText("Pris: 3600 kr.");
+        gui.getFields()[16].setBackGroundColor(new Color(153, 153, 153));
 
         gui.getFields()[17].setTitle(stringArrayList.get(18));
-        gui.getFields()[17].setSubText("Pris:  3");
-        gui.getFields()[17].setBackGroundColor(new Color(255, 255, 50));
+        gui.getFields()[17].setSubText("Prøv Lykken");
+        gui.getFields()[17].setBackGroundColor(new Color(0, 0, 0));
 
         gui.getFields()[18].setTitle(stringArrayList.get(19));
-        gui.getFields()[18].setBackGroundColor(new Color(125, 125, 125));
+        gui.getFields()[18].setSubText("Pris: 3600 kr.");
+        gui.getFields()[18].setBackGroundColor(new Color(153, 153, 153));
 
         gui.getFields()[19].setTitle(stringArrayList.get(20));
-        gui.getFields()[19].setSubText("Pris:  4");
-        gui.getFields()[19].setBackGroundColor(new Color(7, 89, 8));
+        gui.getFields()[19].setSubText("Pris: 4000 kr.");
+        gui.getFields()[19].setBackGroundColor(new Color(153, 153, 153));
 
         gui.getFields()[20].setTitle(stringArrayList.get(21));
-        gui.getFields()[20].setSubText("Pris:  4");
-        gui.getFields()[20].setBackGroundColor(new Color(7, 89, 8));
+        gui.getFields()[20].setSubText("Gratis Parkering");
+        gui.getFields()[20].setBackGroundColor(new Color(255, 255, 204));
 
         gui.getFields()[21].setTitle(stringArrayList.get(22));
-        gui.getFields()[21].setBackGroundColor(new Color(204, 204, 204));
+        gui.getFields()[21].setSubText("Pris 4400 kr.");
+        gui.getFields()[21].setBackGroundColor(new Color(255, 0, 0));
 
         gui.getFields()[22].setTitle(stringArrayList.get(23));
-        gui.getFields()[22].setSubText("Pris:  5");
-        gui.getFields()[22].setBackGroundColor(new Color(12, 33, 148));
+        gui.getFields()[22].setSubText("Prøv Lykken");
+        gui.getFields()[22].setBackGroundColor(new Color(0, 0, 0));
 
         gui.getFields()[23].setTitle(stringArrayList.get(24));
-        gui.getFields()[23].setSubText("Pris:  5");
-        gui.getFields()[23].setBackGroundColor(new Color(12, 33, 148));
+        gui.getFields()[23].setSubText("Pris: 4400 kr.");
+        gui.getFields()[23].setBackGroundColor(new Color(255, 0, 0));
+
+        gui.getFields()[24].setTitle(stringArrayList.get(25));
+        gui.getFields()[24].setSubText("Pris: 4800 kr.");
+        gui.getFields()[24].setBackGroundColor(new Color(255, 0, 0));
+
+        gui.getFields()[25].setTitle(stringArrayList.get(26));
+        gui.getFields()[25].setSubText("Pris: 4000 kr.");
+        gui.getFields()[25].setBackGroundColor(new Color(0, 0, 153));
+
+        gui.getFields()[26].setTitle(stringArrayList.get(27));
+        gui.getFields()[26].setSubText("Pris: 5200 kr.");
+        gui.getFields()[26].setBackGroundColor(new Color(255, 255, 255));
+
+        gui.getFields()[27].setTitle(stringArrayList.get(28));
+        gui.getFields()[27].setSubText("Pris: 5200 kr.");
+        gui.getFields()[27].setBackGroundColor(new Color(255, 255, 255));
+
+        gui.getFields()[28].setTitle(stringArrayList.get(29));
+        gui.getFields()[28].setSubText("Pris: 3000 kr.");
+        gui.getFields()[28].setBackGroundColor(new Color(153, 0, 0));
+
+        gui.getFields()[29].setTitle(stringArrayList.get(30));
+        gui.getFields()[29].setSubText("Pris: 5600 kr.");
+        gui.getFields()[29].setBackGroundColor(new Color(255, 255, 255));
+
+        gui.getFields()[30].setTitle(stringArrayList.get(31));
+        gui.getFields()[30].setSubText("De fængsles");
+        gui.getFields()[30].setBackGroundColor(new Color(0, 0, 0));
+
+        gui.getFields()[31].setTitle(stringArrayList.get(32));
+        gui.getFields()[31].setSubText("Pris: 6000 kr.");
+        gui.getFields()[31].setBackGroundColor(new Color(255, 255, 0));
+
+        gui.getFields()[32].setTitle(stringArrayList.get(33));
+        gui.getFields()[32].setSubText("Pris: 6000 kr.");
+        gui.getFields()[32].setBackGroundColor(new Color(255, 255, 0));
+
+        gui.getFields()[33].setTitle(stringArrayList.get(34));
+        gui.getFields()[33].setSubText("Prøv Lykken");
+        gui.getFields()[33].setBackGroundColor(new Color(0, 0, 0));
+
+        gui.getFields()[34].setTitle(stringArrayList.get(35));
+        gui.getFields()[34].setSubText("Pris: 6400 kr.");
+        gui.getFields()[34].setBackGroundColor(new Color(255, 255, 0));
+
+        gui.getFields()[35].setTitle(stringArrayList.get(36));
+        gui.getFields()[35].setSubText("Pris: 4000 kr.");
+        gui.getFields()[35].setBackGroundColor(new Color(0, 0, 153));
+
+        gui.getFields()[36].setTitle(stringArrayList.get(37));
+        gui.getFields()[36].setSubText("Prøv Lykken");
+        gui.getFields()[36].setBackGroundColor(new Color(0, 0, 0));
+
+        gui.getFields()[37].setTitle(stringArrayList.get(38));
+        gui.getFields()[37].setSubText("Pris: 7000 kr.");
+        gui.getFields()[37].setBackGroundColor(new Color(102, 0, 153));
+
+        gui.getFields()[38].setTitle(stringArrayList.get(39));
+        gui.getFields()[38].setSubText("Ekstra ordinær statsskat: Betal 2000 kr.");
+        gui.getFields()[38].setBackGroundColor(new Color(255, 255, 204));
+
+        gui.getFields()[39].setTitle(stringArrayList.get(40));
+        gui.getFields()[39].setSubText("Pris: 8000 kr.");
+        gui.getFields()[39].setBackGroundColor(new Color(102, 0, 153));
 
 
     }
