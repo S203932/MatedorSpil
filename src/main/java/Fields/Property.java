@@ -1,68 +1,69 @@
 package Fields;
-// Class is written by Kristian Urban 163301 and Zainab Hameed s204747
 
 import SupportClasses.Player;
 
-import java.awt.*;
+import static java.lang.Math.round;
 
 
 public class Property extends Field {
-    //
 
-    private int value;
+    private int price;
+    private boolean mortgage;
     private boolean availability;
-    private int type;
-
     private Player player;
 
     public Property() {
-        setValue(0);
+        setPrice(0);
+        setMortgage(false);
         setAvailability(true);
-        setType(-1);
-        setColor(Color.black);
         setPlayer(player);
     }
 
-    public void setValue(int value) {
-        this.value = value;
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public void setMortgage(boolean mortgage){
+        this.mortgage=mortgage;
     }
 
     public void setAvailability(boolean availability) {
         this.availability = availability;
     }
 
-    public void setType(int type) {
-        this.type = type;
-    }
 
     public void setPlayer(Player player){
         this.player = player;
     }
 
-    public int getValue() {
-        return this.value;
+    public int getPrice() {
+        return this.price;
+    }
+    public boolean getMortgage(){
+        return this.mortgage;
     }
 
     public boolean getAvailability() {
         return this.availability;
     }
 
-    public int getType() {
-        return this.type;
-    }
-
     public Player getPlayer() {
         return this.player;
     }
 
+    // Method for buying af Property such as RealEstate, Brewery or Ferry
     public void buyProperty(Player player){
         this.availability = false;
-        player.getAccount().subtractionAccount(this.value);
+        player.getAccount().subtractionAccount(this.price);
         this.player = player;
     }
-    public void PayRentProperty(Player player){
-            player.getAccount().subtractionAccount(this.value);
-            this.player.getAccount().additionKonto(this.value);
+    // Method for mortgage players property
+    public boolean mortgageEstimation(Player player, int mortgagePrice){
+        mortgagePrice=round(getPrice()/2);
+        player.getAccount().additionAccount(mortgagePrice);
+        this.player = player;
+        return this.mortgage=true;
+
     }
 
     public String toString(){

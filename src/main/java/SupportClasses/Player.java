@@ -47,7 +47,7 @@ public class Player {
         int newPosition = oldPosition+diceRoll;
         if((newPosition)>=24){
             this.position = newPosition-24;
-            this.account.additionKonto(2);
+            this.account.additionAccount(2);
         }else{
             this.position = newPosition;
         }
@@ -56,7 +56,7 @@ public class Player {
     public void setPosition(int position) {
         int oldPosition = this.position;
         if(position<oldPosition){
-            this.account.additionKonto(2);
+            this.account.additionAccount(2);
         }
     }
 

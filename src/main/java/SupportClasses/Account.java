@@ -1,7 +1,8 @@
 package SupportClasses;
 // Class is written by Patrick Machalet s203932
+
 public class Account {
-    private int pengebeholdning;
+    private int amount;
 
     public Account() {
         initializeAccount();
@@ -9,45 +10,45 @@ public class Account {
     }
 
     public Boolean initializeAccount() {
-        this.pengebeholdning = 1000;
+        this.amount = 1000;
         return true;
     }
 
-    public Boolean setAccount(int pengebeholdning) {
-        this.pengebeholdning = pengebeholdning;
+    public Boolean setAccount(int amount) {
+        this.amount = amount;
         return true;
     }
 
 
     public void subtractionAccount(int subtractValue) {
-        this.pengebeholdning = pengebeholdning - subtractValue;
-        if(this.pengebeholdning<0) {
-            this.pengebeholdning = 0;
+        this.amount = amount - subtractValue;
+        if(this.amount <0) {
+            this.amount = 0;
         }
 
     }
 
-    public void additionKonto(int additionValue) {
-        this.pengebeholdning = pengebeholdning + additionValue;
-        if(this.pengebeholdning<0) {
-            this.pengebeholdning = 0;
+    public void additionAccount(int additionValue) {
+        this.amount = amount + additionValue;
+        if(this.amount <0) {
+            this.amount = 0;
         }
 
     }
 
     public void transactionAccount(int transactionValue) {
-        this.pengebeholdning = pengebeholdning + transactionValue;
-        if(this.pengebeholdning<0) {
-            this.pengebeholdning = 0;
+        this.amount = amount + transactionValue;
+        if(this.amount <0) {
+            this.amount = 0;
         }
     }
 
-    public int getPengebeholdning() {
-        return pengebeholdning;
+    public int getAmount() {
+        return amount;
     }
 
     public String toString() {
-        String value = "pengeBeholdning: "+pengebeholdning;
+        String value = "pengebeholdning: "+ amount;
         return value;
     }
 

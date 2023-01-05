@@ -136,7 +136,7 @@ public class ChanceCards {
 
             case 3:
                 gui.showMessage(description);
-                player.getAccount().additionKonto(transaction);
+                player.getAccount().additionAccount(transaction);
                 break;
 
             case 4:
