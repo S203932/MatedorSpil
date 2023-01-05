@@ -32,8 +32,8 @@ public class FieldList {
         ((RealEstate)fieldList[1]).setColor(Color.BLUE);
 
         fieldList[2] = new Chance();
-        ((RealEstate)fieldList[2]).setName(stringArrayList.get(3));
-        ((RealEstate)fieldList[2]).setColor(Color.BLACK);
+        ((Chance)fieldList[2]).setName(stringArrayList.get(3));
+        ((Chance)fieldList[2]).setColor(Color.BLACK);
 
         fieldList[3] = new RealEstate();
         ((RealEstate)fieldList[3]).setName(stringArrayList.get(4));
@@ -84,14 +84,14 @@ public class FieldList {
         ((Brewery)fieldList[12]).setColor(Color.PINK);
 
         fieldList[13] = new RealEstate();
-        ((Property)fieldList[13]).setName(stringArrayList.get(14));
-        ((Property)fieldList[13]).setPrice(2800);
-        ((Property)fieldList[13]).setColor(Color.GREEN);
+        ((RealEstate)fieldList[13]).setName(stringArrayList.get(14));
+        ((RealEstate)fieldList[13]).setPrice(2800);
+        ((RealEstate)fieldList[13]).setColor(Color.GREEN);
 
         fieldList[14] = new RealEstate();
-        ((Property)fieldList[14]).setName(stringArrayList.get(15));
-        ((Property)fieldList[14]).setPrice(3200);
-        ((Property)fieldList[14]).setColor(Color.GREEN);
+        ((RealEstate)fieldList[14]).setName(stringArrayList.get(15));
+        ((RealEstate)fieldList[14]).setPrice(3200);
+        ((RealEstate)fieldList[14]).setColor(Color.GREEN);
 
         fieldList[15] = new Ferry();
         ((Ferry)fieldList[15]).setName(stringArrayList.get(16));
