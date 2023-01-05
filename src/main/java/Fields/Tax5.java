@@ -3,7 +3,7 @@ import SupportClasses.Player;
 import java.util.Scanner;
 
 public class Tax5 extends Tax {
-
+    //Creating options for tax pay on tax field 5.
     public void rent(Player player, int optionTax) {
         if (optionTax==2){
             player.getAccount().subtractionAccount(4000);
