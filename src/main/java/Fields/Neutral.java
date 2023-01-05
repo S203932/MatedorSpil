@@ -1,10 +1,11 @@
 package Fields;
 // Class is written by Nataliia Khaiko s224295 and Patrick Machalet s203932
-public class NeutralFields extends Field{
+// Changes made by
+public class Neutral extends Field{
     private int position;
     private String name;
 
-    public NeutralFields(){
+    public Neutral(){
         initializePosition();
         initializeName();
     }

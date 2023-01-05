@@ -179,7 +179,7 @@ public class GUIController {
                 ChanceCards chanceCard = cardDeck.getCard(randomNumber);
                 System.out.println(chanceCard.getDescription());
                 chanceCard.cardAction(player,gui, fieldList.getFieldList(), fields, gui_player);
-            }else if(fieldList.getFieldIndex(player.getPosition()).getClass().equals(NeutralFields.class)){
+            }else if(fieldList.getFieldIndex(player.getPosition()).getClass().equals(Neutral.class)){
                 gui.showMessage("Nothing worth mentioning happens on this field, press the button " +
                         "to pass the turn.");
             }else if(fieldList.getFieldIndex(player.getPosition()).getClass().equals(GoJail.class)){

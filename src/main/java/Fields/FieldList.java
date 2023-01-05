@@ -21,9 +21,9 @@ public class FieldList {
     public void setupField(String filename){
         ReadFile readFile = new ReadFile();
         ArrayList<String> stringArrayList = readFile.ReadFile(filename);
-        fieldList[0] = new NeutralFields();
-        ((NeutralFields)fieldList[0]).setName(stringArrayList.get(1));
-        ((NeutralFields)fieldList[0]).setColor(Color.WHITE);
+        fieldList[0] = new Neutral();
+        ((Neutral)fieldList[0]).setName(stringArrayList.get(1));
+        ((Neutral)fieldList[0]).setColor(Color.WHITE);
 
         fieldList[1] = new Property();
         ((Property)fieldList[1]).setName(stringArrayList.get(2));
@@ -49,9 +49,9 @@ public class FieldList {
         ((Property)fieldList[5]).setValue(1);
         ((Property)fieldList[5]).setColor(Color.CYAN);
 
-        fieldList[6] = new NeutralFields();
-        ((NeutralFields)fieldList[6]).setName(stringArrayList.get(7));
-        ((NeutralFields)fieldList[6]).setColor(Color.GRAY);
+        fieldList[6] = new Neutral();
+        ((Neutral)fieldList[6]).setName(stringArrayList.get(7));
+        ((Neutral)fieldList[6]).setColor(Color.GRAY);
 
         fieldList[7] = new Property();
         ((Property)fieldList[7]).setName(stringArrayList.get(8));
@@ -77,9 +77,9 @@ public class FieldList {
         ((Property)fieldList[11]).setValue(2);
         ((Property)fieldList[11]).setColor(Color.PINK);
 
-        fieldList[12] = new NeutralFields();
-        ((NeutralFields)fieldList[12]).setName(stringArrayList.get(13));
-        ((NeutralFields)fieldList[12]).setColor(Color.BLACK);
+        fieldList[12] = new Neutral();
+        ((Neutral)fieldList[12]).setName(stringArrayList.get(13));
+        ((Neutral)fieldList[12]).setColor(Color.BLACK);
 
         fieldList[13] = new Property();
         ((Property)fieldList[13]).setName(stringArrayList.get(14));
