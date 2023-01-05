@@ -45,10 +45,12 @@ public class Player {
     public void diceRollPosition(int diceRoll){
         int oldPosition = this.position;
         int newPosition = oldPosition+diceRoll;
-        if((newPosition)>=24){
-            this.position = newPosition-24;
-            this.account.additionAccount(2);
-        }else{
+        if((newPosition)>=40){
+            this.position = newPosition-40;
+            this.account.additionAccount(4000);
+        } else if (newPosition == 0 && oldPosition != -1) {
+            this.account.additionAccount(4000);
+        } else{
             this.position = newPosition;
         }
     }
@@ -56,7 +58,7 @@ public class Player {
     public void setPosition(int position) {
         int oldPosition = this.position;
         if(position<oldPosition){
-            this.account.additionAccount(2);
+            this.account.additionAccount(4000);
         }
     }
 
@@ -90,7 +92,7 @@ public class Player {
     }
 
     public void instantiateProperty(){
-        this.property = new Property[24];
+        this.property = new Property[40];
 
     }
 }
