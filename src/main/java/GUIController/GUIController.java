@@ -223,7 +223,6 @@ public class GUIController {
         ReadFile readFile = new ReadFile();
         ArrayList<String> stringArrayList = readFile.ReadFile(filename);
         gui.getFields()[0].setTitle(stringArrayList.get(1));
-        gui.getFields()[0].setSubText("Modtag 4000 kr. når de passerer start");
         gui.getFields()[0].setBackGroundColor(new Color(204, 0, 0));
 
         gui.getFields()[1].setTitle(stringArrayList.get(2));
