@@ -24,6 +24,12 @@ public class RealEstate extends Property{
     public int getUpgradeValue() {
         return this.upgradeValue;
     }
+    public void buyProperty(Player player){
+        super.buyProperty(player);
+    }
+    public void mortgageEstimation(Player player, int mortgagePrice) {
+        super.mortgageEstimation(player, mortgagePrice);
+    }
 
     public void rent(Player player){}
 }
