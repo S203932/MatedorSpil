@@ -41,8 +41,6 @@ public abstract class Field {
         return this.position;
     }
 
-    public void rent(Player player){};
-
     @Override
     public String toString(){
         return "This field is a : " + this.getClass().getSimpleName();

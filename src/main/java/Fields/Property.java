@@ -5,7 +5,7 @@ import SupportClasses.Player;
 import static java.lang.Math.round;
 
 
-public class Property extends Field {
+public abstract class Property extends Field {
 
     private int price;
     private boolean mortgage;
@@ -65,6 +65,9 @@ public class Property extends Field {
         return this.mortgage=true;
 
     }
+    public abstract void rent(Player player);
+
+
 
     public String toString(){
         return "Position: "+getPosition();
