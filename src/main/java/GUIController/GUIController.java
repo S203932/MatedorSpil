@@ -32,7 +32,7 @@ public class GUIController {
     };
     private GUI gui = new GUI(fields);
     private DiceCup dice = new DiceCup(2);
-    private GUI_Car car=new GUI_Car();
+    private GUI_Car car = new GUI_Car();
     private Player[] player;
 
 
@@ -42,12 +42,12 @@ public class GUIController {
         if ((player.length) == 3) {
             String[] nameArray = new String[3];
             for (int i = 0; i < player.length; i++) {
-                System.out.println("i : "+i);
+                System.out.println("i : " + i);
                 player[i] = new Player();
                 String playerName = gui.getUserString("Indtast navn");
                 int repeat = 0;
-                for(int j=0; j<nameArray.length;j++){
-                    if(playerName.equalsIgnoreCase(nameArray[j])){
+                for (int j = 0; j < nameArray.length; j++) {
+                    if (playerName.equalsIgnoreCase(nameArray[j])) {
                         repeat = 1;
                         System.out.println("Navnet er optaget. Indtast nyt navn");
                     }
@@ -57,19 +57,19 @@ public class GUIController {
                 player[i].getAccount().setAccount(30000);
                 GUI_player[i] = new GUI_Player(player[i].getPlayerName(), 30000);
                 gui.addPlayer(GUI_player[i]);
-                if(repeat == 1) {
+                if (repeat == 1) {
                     i = i - 1;
                 }
             }
         } else if ((player.length) == 4) {
             String[] nameArray = new String[4];
             for (int i = 0; i < player.length; i++) {
-                System.out.println("i : "+i);
+                System.out.println("i : " + i);
                 player[i] = new Player();
                 String playerName = gui.getUserString("Indtast navn");
                 int repeat = 0;
-                for(int j=0; j<nameArray.length;j++){
-                    if(playerName.equalsIgnoreCase(nameArray[j])){
+                for (int j = 0; j < nameArray.length; j++) {
+                    if (playerName.equalsIgnoreCase(nameArray[j])) {
                         repeat = 1;
                         System.out.println("Navnet er optaget. Indtast nyt navn");
                     }
@@ -79,19 +79,19 @@ public class GUIController {
                 player[i].getAccount().setAccount(30000);
                 GUI_player[i] = new GUI_Player(player[i].getPlayerName(), 30000);
                 gui.addPlayer(GUI_player[i]);
-                if(repeat == 1) {
+                if (repeat == 1) {
                     i = i - 1;
                 }
             }
         } else if ((player.length) == 5) {
             String[] nameArray = new String[5];
             for (int i = 0; i < player.length; i++) {
-                System.out.println("i : "+i);
+                System.out.println("i : " + i);
                 player[i] = new Player();
                 String playerName = gui.getUserString("Indtast navn");
                 int repeat = 0;
-                for(int j=0; j<nameArray.length;j++){
-                    if(playerName.equalsIgnoreCase(nameArray[j])){
+                for (int j = 0; j < nameArray.length; j++) {
+                    if (playerName.equalsIgnoreCase(nameArray[j])) {
                         repeat = 1;
                         System.out.println("Navnet er optaget. Indtast nyt navn");
                     }
@@ -101,8 +101,8 @@ public class GUIController {
                 player[i].getAccount().setAccount(30000);
                 GUI_player[i] = new GUI_Player(player[i].getPlayerName(), 30000);
                 gui.addPlayer(GUI_player[i]);
-                if(repeat == 1){
-                    i = i -1;
+                if (repeat == 1) {
+                    i = i - 1;
                 }
             }
         } else if ((player.length) == 6) {
@@ -131,31 +131,47 @@ public class GUIController {
         return GUI_player;
     }
 
-    public void takeTurn(Player player, GUI gui, GUI_Player gui_player, FieldList fieldList,GUI_Field[] fields){
-        String rollDie = gui.getUserButtonPressed(player.getPlayerName()+"'s turn. Choose an option:",
-                "Press to roll the die.","Press to forefit and give in.");
-        if(rollDie.equalsIgnoreCase("Press to roll the die.")){
+    public void takeTurn(Player player, GUI gui, GUI_Player gui_player, FieldList fieldList, GUI_Field[] fields) {
+        String rollDie = gui.getUserButtonPressed(player.getPlayerName() + "'s turn. Choose an option:",
+                "Press to roll the die.", "Press to forefit and give in.");
+        if (rollDie.equalsIgnoreCase("Press to roll the die.")) {
             dice.rollDice();
-            gui.setDice(dice.getIndexDie(0),dice.getIndexDie(1));
+            gui.setDice(dice.getIndexDie(0), dice.getIndexDie(1));
             player.diceRollPosition(dice.result());
             GUI_Field field = gui.getFields()[player.getPosition()];
             gui_player.getCar().setPosition(field);
-            if(fieldList.getFieldIndex(player.getPosition()).getClass().equals(RealEstate.class)){
+
+            // Check availability and buying free Property such as RealEstate, Ferry and Brewery
+            if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(RealEstate.class) ||
+                    fieldList.getFieldIndex(player.getPosition()).getClass().equals(Ferry.class) ||
+                    fieldList.getFieldIndex(player.getPosition()).getClass().equals(Brewery.class)) {
                 System.out.println("Field is a property");
-
-
-                if(((RealEstate)fieldList.getFieldIndex(player.getPosition())).getAvailability()){
+                if (((Property) fieldList.getFieldIndex(player.getPosition())).getAvailability()) {
                     System.out.println("property is not owned");
                     gui.showMessage("The field is an unowned property, press the button to buy it.");
-                    ((RealEstate)fieldList.getFieldIndex(player.getPosition())).buyProperty(player);
-                    fields[player.getPosition()].setDescription("Is owned by: "+player.getPlayerName());
+                    ((Property) fieldList.getFieldIndex(player.getPosition())).buyProperty(player);
+                    fields[player.getPosition()].setDescription("Is owned by: " + player.getPlayerName());
                     gui_player.setBalance(player.getAccount().getAmount());
 
-                }else{
-                    ((RealEstate)fieldList.getFieldIndex(player.getPosition())).rent(player);
+                // Pay rent for owned RealEstate
+                } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(RealEstate.class)) {
                     System.out.println("Property is owned");
-                    gui.showMessage("The property is owned, press the button to pay rent.");
-                }
+                    gui.showMessage("The RealEstate is owned, press the button to pay rent.");
+                    ((RealEstate) fieldList.getFieldIndex(player.getPosition())).rent(player);
+
+                // Pay rent for owned Ferry
+                } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Ferry.class)) {
+                    System.out.println("Property is owned");
+                    gui.showMessage("The Ferry is owned, press the button to pay rent.");
+                    ((Ferry) fieldList.getFieldIndex(player.getPosition())).rent(player);
+
+                // Pay rent for ownew Brewery
+                } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Brewery.class)) {
+                    System.out.println("Property is owned");
+                    gui.showMessage("The Brewery is owned, press the button to pay rent.");
+                        ((Brewery) fieldList.getFieldIndex(player.getPosition())).rent(player);
+                    }
+            }
 
 
 
@@ -169,29 +185,31 @@ public class GUIController {
                 ChanceCards chanceCard = cardDeck.getCard(randomNumber);
                 System.out.println(chanceCard.getDescription());
                 chanceCard.cardAction(player,gui, fieldList.getFieldList(), fields, gui_player);
-
-
                  */
-            }else if(fieldList.getFieldIndex(player.getPosition()).getClass().equals(Neutral.class)){
-                gui.showMessage("Nothing worth mentioning happens on this field, press the button " +
-                        "to pass the turn.");
-            }else if(fieldList.getFieldIndex(player.getPosition()).getClass().equals(GoJail.class)){
-                gui.showMessage("Sucks to be you. Press the button to move to jail.");
-                GoJail goJail = new GoJail();
-                goJail.GoToJail(player);
-                if(player.getJail()==1){
-                    player.getAccount().additionAccount(-1);
-                }
-                player.setPosition(6);
-                gui_player.getCar().setPosition(fields[6]);
+
+
+          } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Neutral.class)) {
+            gui.showMessage("Nothing worth mentioning happens on this field, press the button " +
+                    "to pass the turn.");
+        } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(GoJail.class)) {
+            gui.showMessage("Sucks to be you. Press the button to move to jail.");
+            GoJail goJail = new GoJail();
+            goJail.GoToJail(player);
+            if (player.getJail() == 1) {
+                player.getAccount().additionAccount(-1);
             }
-
-        }else{
-            player.setForfeit(1);
-            gui.showMessage("You have now forfeited. Your properties will remain bought, but can " +
-                    "no longer take turns.");
-
+            player.setPosition(6);
+            gui_player.getCar().setPosition(fields[6]);
         }
+
+     else
+
+    {
+        player.setForfeit(1);
+        gui.showMessage("You have now forfeited. Your properties will remain bought, but can " +
+                "no longer take turns.");
+
+    }
 
     }
 

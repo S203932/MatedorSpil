@@ -9,6 +9,8 @@ public class Ferry extends Property{
         super.mortgageProperty(player, mortgagePrice);
     }
     public void rent(Player player){
+        player.getAccount().subtractionAccount(5000);
+        super.getPlayer().getAccount().additionAccount(5000);
 
     }
 }

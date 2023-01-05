@@ -31,5 +31,9 @@ public class RealEstate extends Property{
         super.mortgageProperty(player, mortgagePrice);
     }
 
-    public void rent(Player player){}
+    public void rent(Player player){
+        player.getAccount().subtractionAccount(1);
+        super.getPlayer().getAccount().additionAccount(1);
+
+    }
 }

@@ -12,6 +12,8 @@ public class Brewery extends Property {
         super.mortgageProperty(player, mortgagePrice);
     }
     public void rent(Player player){
+        player.getAccount().subtractionAccount(7000);
+        super.getPlayer().getAccount().additionAccount(7000);
     }
 
 }
