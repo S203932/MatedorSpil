@@ -135,6 +135,7 @@ public class GUIController {
         String rollDie = gui.getUserButtonPressed(player.getPlayerName() + "'s turn. Choose an option:",
                 "Press to roll the die.", "Press to forefit and give in.");
         if (rollDie.equalsIgnoreCase("Press to roll the die.")) {
+            System.out.println("Dice has been rolled");
             dice.rollDice();
             gui.setDice(dice.getIndexDie(0), dice.getIndexDie(1));
             player.diceRollPosition(dice.result());
@@ -153,65 +154,80 @@ public class GUIController {
                     fields[player.getPosition()].setDescription("Is owned by: " + player.getPlayerName());
                     gui_player.setBalance(player.getAccount().getAmount());
 
-                // Pay rent for owned RealEstate
+                    // Pay rent for owned RealEstate
                 } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(RealEstate.class)) {
-                    System.out.println("Property is owned");
+                    System.out.println("RealEstate is owned");
                     gui.showMessage("The RealEstate is owned, press the button to pay rent.");
                     ((RealEstate) fieldList.getFieldIndex(player.getPosition())).rent(player);
 
-                // Pay rent for owned Ferry
+                    // Pay rent for owned Ferry
                 } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Ferry.class)) {
-                    System.out.println("Property is owned");
+                    System.out.println("Ferry is owned");
                     gui.showMessage("The Ferry is owned, press the button to pay rent.");
                     ((Ferry) fieldList.getFieldIndex(player.getPosition())).rent(player);
 
-                // Pay rent for ownew Brewery
+                    // Pay rent for owned Brewery
                 } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Brewery.class)) {
-                    System.out.println("Property is owned");
+                    System.out.println("Brewery is owned");
                     gui.showMessage("The Brewery is owned, press the button to pay rent.");
-                        ((Brewery) fieldList.getFieldIndex(player.getPosition())).rent(player);
-                    }
-            }
+                    ((Brewery) fieldList.getFieldIndex(player.getPosition())).rent(player);
+                }
+            } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Chance.class)) {
 
 
-
-             } else if(fieldList.getFieldIndex(player.getPosition()).getClass().equals(Chance.class)){
                 //cardDeck.initilalizeCard();
                 //cardDeck.cards();
+                System.out.println("Field is a chance field");
                 Chance chance = new Chance();
                 CardDeck cardDeck = chance.getCardDeck();
-                int randomNumber = (int)(Math.random() * 7) + 0;
+                int randomNumber = (int) (Math.random() * 7) + 0;
                 cardDeck.setCards();
                 ChanceCards chanceCard = cardDeck.getCard(randomNumber);
                 System.out.println(chanceCard.getDescription());
-                chanceCard.cardAction(player,gui, fieldList.getFieldList(), fields, gui_player);
+                chanceCard.cardAction(player, gui, fieldList.getFieldList(), fields, gui_player);
 
 
+            } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Neutral.class)) {
+                System.out.println("Field is of type Neutral");
+                gui.showMessage("Nothing worth mentioning happens on this field, press the button " +
+                        "to pass the turn.");
 
-          } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Neutral.class)) {
-            gui.showMessage("Nothing worth mentioning happens on this field, press the button " +
-                    "to pass the turn.");
-        } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(GoJail.class)) {
-            gui.showMessage("Sucks to be you. Press the button to move to jail.");
-            GoJail goJail = new GoJail();
-            goJail.GoToJail(player);
-            if (player.getJail() == 1) {
-                player.getAccount().additionAccount(-1);
+            } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Tax.class)) {
+                System.out.println("Field is of type Tax");
+
+                if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Tax5.class)) {
+                    System.out.println("Field is of type TAX5");
+                    String choice = gui.getUserButtonPressed("Vælg om de ønsker at betale 10% af deres nuværende" +
+                            " pengebeholdning eller om de ønsker at betale 4000 kr.", "Betal 10%", "Betal 4000 kr.");
+                    if (choice.equalsIgnoreCase("Betal 10%")) {
+                        ((Tax5) fieldList.getFieldIndex(player.getPosition())).rent(player, 1);
+                    } else {
+                        ((Tax5) fieldList.getFieldIndex(player.getPosition())).rent(player, 2);
+                    }
+                } else {
+                    System.out.println("Field is of type TAX39");
+                    ((Tax39) fieldList.getFieldIndex(player.getPosition())).rent(player);
+                }
+
+            } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(GoJail.class)) {
+                System.out.println("Field is of type GoJail");
+                gui.showMessage("Sucks to be you. Press the button to move to jail.");
+                GoJail goJail = new GoJail();
+                goJail.GoToJail(player);
+                if (player.getJail() == 1) {
+                    player.getAccount().additionAccount(-1);
+                }
+                player.setPosition(6);
+                gui_player.getCar().setPosition(fields[6]);
+            } else {
+                player.setForfeit(1);
+                gui.showMessage("You have now forfeited. Your properties will remain bought, but can " +
+                        "no longer take turns.");
             }
-            player.setPosition(6);
-            gui_player.getCar().setPosition(fields[6]);
         }
-
-     else
-
-    {
-        player.setForfeit(1);
-        gui.showMessage("You have now forfeited. Your properties will remain bought, but can " +
-                "no longer take turns.");
-
     }
 
-    }
+
 
 
 
