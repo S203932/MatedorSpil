@@ -29,16 +29,14 @@ public class CardDeck {
     }
 
       public void setCards (){
-     /* type 1 - free property Orange property
+     /* type 1 - Transaction
         type 2 - move to
-        type 3 - transaction
-        type 4 - free property light blue property
-        type 5 - free property red property
        */
-
           ReadFile readFile = new ReadFile();
           ArrayList<String> stringArrayList = readFile.ReadFile("chancecard.txt");
           this.card=new ChanceCards[length];
+
+        /*
         card[0] = new ChanceCards();
         card[0].setType(2);// move to Start
         card[0].setMoveTo(0);
@@ -70,7 +68,7 @@ public class CardDeck {
         card[6].setTransaction(2);
         card[6].setDescription("Your psychologist deemed that they couldn't fix you " +
                 "and gave you a full refund, press the button to receive 2.");
-
+        */
 
         // Postive transactions from the Bank to the player
         card[0] = new ChanceCardsAndDeck.ChanceCards();

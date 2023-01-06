@@ -99,7 +99,7 @@ public class ChanceCards {
     public void cardAction(Player player, GUI gui, Field[] fieldList, GUI_Field[] fields, GUI_Player gui_player){
 
         switch (type){
-            case 1:
+            case 2:
                 gui.showMessage(description);
                 player.setPosition(moveTo);
                 gui_player.getCar().setPosition(fields[moveTo]);
@@ -135,7 +135,7 @@ public class ChanceCards {
                 // position.setPosition(card.getMoveTo());
                 break;
             */
-            case 2:
+            case 1:
                 gui.showMessage(description);
                 player.getAccount().additionAccount(transaction);
                 break;
