@@ -1,6 +1,10 @@
 package ChanceCardsAndDeck;
 // Class is written by Patrick Machalet s203932 and Nataliia Khaiko s224295
 
+import CreateAndWriteToAndFromTXT.ReadFile;
+
+import java.util.ArrayList;
+
 public class CardDeck {
     private ChanceCards[] card;
     private int length=7;
@@ -31,6 +35,9 @@ public class CardDeck {
         type 4 - free property light blue property
         type 5 - free property red property
        */
+
+          ReadFile readFile = new ReadFile();
+          ArrayList<String> stringArrayList = readFile.ReadFile("chancecard.txt");
           this.card=new ChanceCards[length];
         card[0] = new ChanceCards();
         card[0].setType(2);// move to Start
@@ -63,6 +70,80 @@ public class CardDeck {
         card[6].setTransaction(2);
         card[6].setDescription("Your psychologist deemed that they couldn't fix you " +
                 "and gave you a full refund, press the button to receive 2.");
+
+
+        // Postive transactions from the Bank to the player
+        card[] = new ChanceCardsAndDeck.ChanceCardsAndDeck.ChanceCards();
+        card[].setType(3); // Receive 200 kr
+        card[].setTransaction(+200);
+        card[].setDescription(stringArrayList.get(0));
+
+        card[] = new ChanceCardsAndDeck.ChanceCardsAndDeck.ChanceCards();
+        card[].setType(3); // Receive 500 kr
+        card[].setTransaction(+500);
+        card[].setDescription(stringArrayList.get(1));
+
+        card[] = new ChanceCardsAndDeck.ChanceCardsAndDeck.ChanceCards();
+        card[].setType(3); // Receive 500 kr
+        card[].setTransaction(+500);
+        card[].setDescription(stringArrayList.get(2));
+
+        card[] = new ChanceCardsAndDeck.ChanceCardsAndDeck.ChanceCards();
+        card[].setType(3); // Receive 1000 kr
+        card[].setTransaction(+1000);
+        card[].setDescription(stringArrayList.get(3));
+
+        card[] = new ChanceCardsAndDeck.ChanceCardsAndDeck.ChanceCards();
+        card[].setType(3); // Receive 1000 kr
+        card[].setTransaction(+1000);
+        card[].setDescription(stringArrayList.get(4));
+
+        card[] = new ChanceCardsAndDeck.ChanceCardsAndDeck.ChanceCards();
+        card[].setType(3); // Receive 1000 kr
+        card[].setTransaction(+1000);
+        card[].setDescription(stringArrayList.get(5));
+
+        card[] = new ChanceCardsAndDeck.ChanceCardsAndDeck.ChanceCards();
+        card[].setType(3); // Receive 1000 kr
+        card[].setTransaction(+1000);
+        card[].setDescription(stringArrayList.get(6));
+
+        card[] = new ChanceCardsAndDeck.ChanceCardsAndDeck.ChanceCards();
+        card[].setType(3); // Receive 1000 kr
+        card[].setTransaction(+1000);
+        card[].setDescription(7);
+
+        card[] = new ChanceCardsAndDeck.ChanceCardsAndDeck.ChanceCards();
+        card[].setType(3); // Receive 1000 kr
+        card[].setTransaction(+1000);
+        card[].setDescription(stringArrayList.get(8));
+
+        card[] = new ChanceCardsAndDeck.ChanceCardsAndDeck.ChanceCards();
+        card[].setType(3); // Receive 1000 kr
+        card[].setTransaction(+1000);
+        card[].setDescription(stringArrayList.get(9));
+
+        card[] = new ChanceCardsAndDeck.ChanceCardsAndDeck.ChanceCards();
+        card[].setType(3); // Receive 1000 kr
+        card[].setTransaction(+1000);
+        card[].setDescription(stringArrayList.get(10));
+
+        card[] = new ChanceCardsAndDeck.ChanceCardsAndDeck.ChanceCards();
+        card[].setType(3); // Receive 3000 kr
+        card[].setTransaction(+3000);
+        card[].setDescription(stringArrayList.get(11));
+
+
+        // Negative transactions from the Bank to the player
+        card[] = new ChanceCardsAndDeck.ChanceCardsAndDeck.ChanceCards();
+        card[].setType(3); // Pay 200 kr
+        card[].setTransaction(-200);
+        card[].setDescription(stringArrayList.get(12));
+
+        card[] = new ChanceCardsAndDeck.ChanceCardsAndDeck.ChanceCards();
+        card[].setType(3); // Pay 200 kr
+        card[].setTransaction(-200);
+        card[].setDescription(stringArrayList.get(12));
 
 
     }
