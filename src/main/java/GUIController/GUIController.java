@@ -175,7 +175,7 @@ public class GUIController {
 
 
 
-            /* } else if(fieldList.getFieldIndex(player.getPosition()).getClass().equals(Chance.class)){
+             } else if(fieldList.getFieldIndex(player.getPosition()).getClass().equals(Chance.class)){
                 //cardDeck.initilalizeCard();
                 //cardDeck.cards();
                 Chance chance = new Chance();
@@ -185,7 +185,7 @@ public class GUIController {
                 ChanceCards chanceCard = cardDeck.getCard(randomNumber);
                 System.out.println(chanceCard.getDescription());
                 chanceCard.cardAction(player,gui, fieldList.getFieldList(), fields, gui_player);
-                 */
+
 
 
           } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Neutral.class)) {
