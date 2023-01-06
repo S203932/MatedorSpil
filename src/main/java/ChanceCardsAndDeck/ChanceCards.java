@@ -95,15 +95,16 @@ public class ChanceCards {
     public int getTransaction(){
         return this.transaction;
     }
-/*
+
     public void cardAction(Player player, GUI gui, Field[] fieldList, GUI_Field[] fields, GUI_Player gui_player){
+
         switch (type){
             case 2:
                 gui.showMessage(description);
                 player.setPosition(moveTo);
                 gui_player.getCar().setPosition(fields[moveTo]);
                 break;
-
+            /*
             case 1:
                 String chosenButton = gui.getUserButtonPressed(
                         "Choose what field you want to move to:",
@@ -133,12 +134,12 @@ public class ChanceCards {
                 }
                 // position.setPosition(card.getMoveTo());
                 break;
-
-            case 3:
+            */
+            case 1:
                 gui.showMessage(description);
                 player.getAccount().additionAccount(transaction);
                 break;
-
+            /*
             case 4:
                 String chosenButton2 = gui.getUserButtonPressed(
                         "Choose what field you want to move to:",
@@ -168,7 +169,9 @@ public class ChanceCards {
                 }
                 break;
 
+             */
 
+            /*
             case 5:
                 String chosenButton3 = gui.getUserButtonPressed(
                         "Choose what field you want to move to:",
@@ -197,12 +200,17 @@ public class ChanceCards {
                     }
                 }
 
+
                 // position.setPosition(card.getMoveTo());
                 break;
+
+             */
             default: break;
         }
+
+
     }
-*/
+
     public String toString(){
         return "This card has the following type: "+this.type+"\nThe following description: "+this.description+
                 "\nThe following MoveTo: "+this.moveTo+"\nThe following MoveUpTo: "+this.moveUpTo+"\n And the " +
