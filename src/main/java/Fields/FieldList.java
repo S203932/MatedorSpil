@@ -55,7 +55,7 @@ public class FieldList {
         ((RealEstate)fieldList[3]).setRent5(6000);
 
         //tax
-        fieldList[4] = new Tax();
+        fieldList[4] = new Tax5();
         ((Tax)fieldList[4]).setName(stringArrayList.get(5));
         //((Tax)fieldList[4]).setColor(Color.CYAN);
 
@@ -353,7 +353,7 @@ public class FieldList {
 
 
         // tax
-        fieldList[38] = new Tax();
+        fieldList[38] = new Tax39();
         ((Tax)fieldList[38]).setName(stringArrayList.get(39));
        // ((Tax)fieldList[38]).setColor(Color.);
 
