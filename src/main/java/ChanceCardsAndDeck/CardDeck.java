@@ -70,7 +70,7 @@ public class CardDeck {
                 "and gave you a full refund, press the button to receive 2.");
         */
 
-        // Postive transactions from the Bank to the player
+        // Positive transactions from the Bank to the player
         card[0] = new ChanceCardsAndDeck.ChanceCards();
         card[0].setType(1); // Receive 200 kr
         card[0].setTransaction(+200);
@@ -183,18 +183,20 @@ public class CardDeck {
         card[21].setTransaction(-3000);
         card[21].setDescription(stringArrayList.get(21));
 
+
+        // Special transaction cases
         card[22] = new ChanceCardsAndDeck.ChanceCards();
-        card[22].setType(1); // Receive 200 kr from each player
+        card[22].setType(3); // Receive 200 kr from each player
         card[22].setTransaction(+200);
         card[22].setDescription(stringArrayList.get(22));
 
         card[23] = new ChanceCardsAndDeck.ChanceCards();
-        card[23].setType(1); // Receive 500 kr from each player
+        card[23].setType(3); // Receive 500 kr from each player
         card[23].setTransaction(+500);
         card[23].setDescription(stringArrayList.get(23));
 
         card[24] = new ChanceCardsAndDeck.ChanceCards();
-        card[24].setType(1); // Receive 500 kr from each player
+        card[24].setType(3); // Receive 500 kr from each player
         card[24].setTransaction(+500);
         card[24].setDescription(stringArrayList.get(24));
 
@@ -213,10 +215,12 @@ public class CardDeck {
         card[27].setTransaction(+40000);
         card[27].setDescription(stringArrayList.get(27));
 
-        card[28] = new ChanceCardsAndDeck.ChanceCards();
-        card[28].setType(1); // Pay 500 kr for each house and 2000 kr for each hotel
-        card[28].setTransaction(-2500);
-        card[28].setDescription(stringArrayList.get(25));
+
+        // Move to locations
+        card[28] = new ChanceCards();
+        card[28].setType(2); // move to start
+        card[28].setMoveTo(0);
+        card[28].setDescription(stringArrayList.get(28));
 
         card[29] = new ChanceCards();
         card[29].setType(2); // move to start
@@ -224,47 +228,49 @@ public class CardDeck {
         card[29].setDescription(stringArrayList.get(29));
 
         card[30] = new ChanceCards();
-        card[30].setType(2); // move to start
-        card[30].setMoveTo(0);
+        card[30].setType(2); // move to Rådhuspladsen
+        card[30].setMoveTo(39);
         card[30].setDescription(stringArrayList.get(30));
 
         card[31] = new ChanceCards();
-        card[31].setType(2); // move to Rådhuspladsen
-        card[31].setMoveTo(39);
+        card[31].setType(2); // move to Vimmelskaftet
+        card[31].setMoveTo(32);
         card[31].setDescription(stringArrayList.get(31));
 
         card[32] = new ChanceCards();
-        card[32].setType(2); // move to Vimmelskaftet
-        card[32].setMoveTo(32);
+        card[32].setType(2); // move to Grønningen
+        card[32].setMoveTo(24);
         card[32].setDescription(stringArrayList.get(32));
 
         card[33] = new ChanceCards();
-        card[33].setType(2); // move to Grønningen
-        card[33].setMoveTo(24);
+        card[33].setType(2); // move to Frederiksberg Allé
+        card[33].setMoveTo(11);
         card[33].setDescription(stringArrayList.get(33));
 
         card[34] = new ChanceCards();
-        card[34].setType(2); // move to Frederiksberg Allé
-        card[34].setMoveTo(11);
+        card[34].setType(2); // move to Strandvejen
+        card[34].setMoveTo(19);
         card[34].setDescription(stringArrayList.get(34));
 
         card[35] = new ChanceCards();
-        card[35].setType(2); // move to Strandvejen
-        card[35].setMoveTo(19);
+        card[35].setType(2); // move to Mols-ferry
+        card[35].setMoveTo(15);
         card[35].setDescription(stringArrayList.get(35));
 
         card[36] = new ChanceCards();
-        card[36].setType(2); // move to Mols-ferry
+        card[36].setType(2); // move to nearest ferry
         card[36].setMoveTo(15);
         card[36].setDescription(stringArrayList.get(36));
 
+
+        // Move Special cases
         card[37] = new ChanceCards();
-        card[37].setType(2); // move to nearest ferry
+        card[37].setType(2); // move +3
         card[37].setMoveTo(15);
         card[37].setDescription(stringArrayList.get(37));
 
         card[38] = new ChanceCards();
-        card[38].setType(2); // move +3
+        card[38].setType(2); // move -3
         card[38].setMoveTo(15);
         card[38].setDescription(stringArrayList.get(38));
 
@@ -274,8 +280,8 @@ public class CardDeck {
         card[39].setDescription(stringArrayList.get(39));
 
         card[40] = new ChanceCards();
-        card[40].setType(2); // move -3
-        card[40].setMoveTo(15);
+        card[40].setType(2); // move to jail
+        card[40].setMoveTo(30);
         card[40].setDescription(stringArrayList.get(40));
 
         card[41] = new ChanceCards();
@@ -284,8 +290,8 @@ public class CardDeck {
         card[41].setDescription(stringArrayList.get(41));
 
         card[42] = new ChanceCards();
-        card[42].setType(2); // move to jail
-        card[42].setMoveTo(30);
+        card[42].setType(2); // move to Breweries
+        card[42].setMoveTo(12);
         card[42].setDescription(stringArrayList.get(42));
 
         card[43] = new ChanceCards();
@@ -293,16 +299,8 @@ public class CardDeck {
         card[43].setMoveTo(12);
         card[43].setDescription(stringArrayList.get(43));
 
-        card[44] = new ChanceCards();
-        card[44].setType(2); // move to Breweries
-        card[44].setMoveTo(12);
-        card[44].setDescription(stringArrayList.get(44));
 
-        card[43] = new ChanceCards();
-        card[43].setType(2); // move to Breweries
-        card[43].setMoveTo(12);
-        card[43].setDescription(stringArrayList.get(43));
-
+        // Get out of jail free
         card[44] = new ChanceCards();
         card[44].setType(2); // Get out of jail free
         card[44].setMoveTo(10);
