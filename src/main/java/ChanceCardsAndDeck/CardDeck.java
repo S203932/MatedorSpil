@@ -183,6 +183,8 @@ public class CardDeck {
         card[21].setTransaction(-3000);
         card[21].setDescription(stringArrayList.get(21));
 
+
+        // Special transaction cases
         card[22] = new ChanceCardsAndDeck.ChanceCards();
         card[22].setType(3); // Receive 200 kr from each player
         card[22].setTransaction(+200);
@@ -213,6 +215,8 @@ public class CardDeck {
         card[27].setTransaction(+40000);
         card[27].setDescription(stringArrayList.get(27));
 
+
+        // Move to locations
         card[28] = new ChanceCards();
         card[28].setType(2); // move to start
         card[28].setMoveTo(0);
@@ -258,6 +262,8 @@ public class CardDeck {
         card[36].setMoveTo(15);
         card[36].setDescription(stringArrayList.get(36));
 
+
+        // Move Special cases
         card[37] = new ChanceCards();
         card[37].setType(2); // move +3
         card[37].setMoveTo(15);
@@ -293,20 +299,17 @@ public class CardDeck {
         card[43].setMoveTo(12);
         card[43].setDescription(stringArrayList.get(43));
 
+
+        // Get out of jail free
         card[44] = new ChanceCards();
-        card[44].setType(2); // move to Breweries
-        card[44].setMoveTo(12);
+        card[44].setType(2); // Get out of jail free
+        card[44].setMoveTo(10);
         card[44].setDescription(stringArrayList.get(44));
 
         card[45] = new ChanceCards();
         card[45].setType(2); // Get out of jail free
         card[45].setMoveTo(10);
         card[45].setDescription(stringArrayList.get(45));
-
-        card[46] = new ChanceCards();
-        card[46].setType(2); // Get out of jail free
-        card[46].setMoveTo(10);
-        card[46].setDescription(stringArrayList.get(46));
 
 
 
