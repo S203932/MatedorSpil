@@ -96,14 +96,29 @@ public class ChanceCards {
         return this.transaction;
     }
 
-    public void cardAction(Player player, GUI gui, Field[] fieldList, GUI_Field[] fields, GUI_Player gui_player){
+    public void cardAction(Player player, GUI gui, Field[] fieldList, GUI_Field[] fields, GUI_Player gui_player, Player[] Participants){
 
         switch (type){
+
+            case 1:
+                gui.showMessage(description);
+                player.getAccount().additionAccount(transaction);
+                break;
+
             case 2:
                 gui.showMessage(description);
                 player.setPosition(moveTo);
                 gui_player.getCar().setPosition(fields[moveTo]);
                 break;
+
+            case 3:
+                gui.showMessage(description);
+                player.getAccount().additionAccount(Participants.length*transaction);
+                for (int i = 0; i < Participants.length; i++) {
+                    Participants[i].getAccount().subtractionAccount(transaction);
+                }
+                break;
+
             /*
             case 1:
                 String chosenButton = gui.getUserButtonPressed(
@@ -135,10 +150,7 @@ public class ChanceCards {
                 // position.setPosition(card.getMoveTo());
                 break;
             */
-            case 1:
-                gui.showMessage(description);
-                player.getAccount().additionAccount(transaction);
-                break;
+
             /*
             case 4:
                 String chosenButton2 = gui.getUserButtonPressed(
