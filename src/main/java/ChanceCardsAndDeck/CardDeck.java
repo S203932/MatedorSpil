@@ -290,13 +290,13 @@ public class CardDeck {
         card[41].setDescription(stringArrayList.get(41));
 
         card[42] = new ChanceCards();
-        card[42].setType(2); // move to Breweries
+        card[42].setType(2); // move to nearest Ferry
         card[42].setMoveTo(12);
         card[42].setDescription(stringArrayList.get(42));
 
         card[43] = new ChanceCards();
-        card[43].setType(2); // move to Breweries
-        card[43].setMoveTo(12);
+        card[43].setType(2); // move to nearest Ferry
+        card[43].setTransaction();
         card[43].setDescription(stringArrayList.get(43));
 
 

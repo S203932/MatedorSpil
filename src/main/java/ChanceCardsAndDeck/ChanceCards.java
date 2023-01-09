@@ -1,12 +1,15 @@
 package ChanceCardsAndDeck;
 // Class is written by Patrick Machalet s203932 and Nataliia Khaiko s224295
+import Fields.Ferry;
 import Fields.Field;
+import Fields.FieldList;
 import Fields.Property;
 import SupportClasses.Player;
 import gui_fields.GUI_Field;
 import gui_fields.GUI_Player;
 import gui_main.GUI;
 
+import javax.swing.text.Position;
 import java.awt.*;
 
 
@@ -103,7 +106,7 @@ public class ChanceCards {
         return this.transaction;
     }
 
-    public void cardAction(Player player, GUI gui, Field[] fieldList, GUI_Field[] fields, GUI_Player gui_player, Player[] Participants){
+    public void cardAction(Player player, GUI gui, FieldList fieldList, GUI_Field[] fields, GUI_Player gui_player, Player[] Participants){
 
         switch (type){
 
@@ -129,6 +132,52 @@ public class ChanceCards {
             case 4:
                 gui.showMessage(description);
                 player.setPosition(player.getPosition()+Offset);
+                gui_player.getCar().setPosition(fields[moveTo]);
+                break;
+
+            case 5:
+                gui.showMessage(description);
+                if (player.getPosition() == 17 || player.getPosition() == 22)
+                {
+                    player.setPosition(25);
+                }
+                else if (player.getPosition() == 33)
+                {
+                    player.setPosition(35);
+                }
+                else if (player.getPosition() == 36 || player.getPosition() == 2)
+                {
+                    player.setPosition(5);
+                }
+                else if (player.getPosition() == 7)
+                {
+                    player.setPosition(16);
+                }
+                gui_player.getCar().setPosition(fields[moveTo]);
+                break;
+
+            case 6:
+                gui.showMessage(description);
+                if (player.getPosition() == 17 || player.getPosition() == 22)
+                {
+                    player.setPosition(25);
+                }
+                else if (player.getPosition() == 33)
+                {
+                    player.setPosition(35);
+                }
+                else if (player.getPosition() == 36 || player.getPosition() == 2)
+                {
+                    player.setPosition(5);
+                }
+                else if (player.getPosition() == 7)
+                {
+                    player.setPosition(15);
+                }
+
+                if (!((Property) fieldList.getFieldIndex(player.getPosition())).getAvailability()) {
+                   // (((Ferry) fieldList.getFieldIndex(player.getPosition())).rent(player, fieldList));
+                }
                 gui_player.getCar().setPosition(fields[moveTo]);
                 break;
             /*
