@@ -27,7 +27,7 @@ public class Brewery extends Property {
         System.out.println("Player name" + player.getPlayerName());
         if (!((Brewery) fieldList.getFieldIndex(12)).getAvailability() &&
                 ((Brewery) fieldList.getFieldIndex(12)).getPlayer().getPlayerName() == super.getPlayer().getPlayerName()) {
-            System.out.println("Brewery 5 owned by" + ((Ferry) fieldList.getFieldIndex(12)).getPlayer().getPlayerName());
+            System.out.println("Brewery 5 owned by" + ((Brewery) fieldList.getFieldIndex(12)).getPlayer().getPlayerName());
             f++;
         } else {
             System.out.println("Brewery 12 is unowned or owned someone else");
@@ -35,7 +35,7 @@ public class Brewery extends Property {
 
         if (!((Brewery) fieldList.getFieldIndex(28)).getAvailability() &&
                 ((Brewery) fieldList.getFieldIndex(28)).getPlayer().getPlayerName() == super.getPlayer().getPlayerName()) {
-            System.out.println("Brewery 15 owned by" + ((Ferry) fieldList.getFieldIndex(28)).getPlayer().getPlayerName());
+            System.out.println("Brewery 15 owned by" + ((Brewery) fieldList.getFieldIndex(28)).getPlayer().getPlayerName());
             f++;
         } else {
             System.out.println("Brewery 15 is unowned or owned someone else");
