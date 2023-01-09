@@ -180,7 +180,7 @@ public class GUIController {
                 System.out.println("Field is a chance field");
                 Chance chance = new Chance();
                 CardDeck cardDeck = chance.getCardDeck();
-                int randomNumber = (int) (Math.random() * 7) + 0;
+                int randomNumber = (int) (Math.random() * 19) + 0;
                 cardDeck.setCards();
                 ChanceCards chanceCard = cardDeck.getCard(randomNumber);
                 System.out.println(chanceCard.getDescription());

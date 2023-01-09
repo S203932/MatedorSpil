@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class CardDeck {
     private ChanceCards[] card;
-    private int length=7;
+    private int length=19;
 
 
     public CardDeck() {
@@ -33,7 +33,7 @@ public class CardDeck {
         type 2 - move to
        */
           ReadFile readFile = new ReadFile();
-          ArrayList<String> stringArrayList = readFile.ReadFile("chancecard.txt");
+          ArrayList<String> stringArrayList = readFile.ReadFile("chancecards.txt");
           this.card=new ChanceCards[length];
 
         /*
