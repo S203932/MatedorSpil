@@ -12,13 +12,14 @@ public class Brewery extends Property {
     }
 
         public int[] dieTotal(DiceCup dice){
-        int[] dieValues = int[2];
+        int[] dieValues = new int[2];
         dieValues[0] = dice.getIndexDie(0);
         dieValues[1] = dice.getIndexDie(1);
         return dieValues;
         }
-        public void rent(Player player, Brewery){
-        int breweryCounter = 0;
+     public void rent(Player player) {
+     }
+       /* int breweryCounter = 0;
         for(int i = 0; i < super.getPlayer().getProperty().length; i++) {
             if (super.getPlayer().getProperty()[i].getClass().equals(Brewery.class)) {
             breweryCounter++;
@@ -33,5 +34,5 @@ public class Brewery extends Property {
                 System.out.println("An error has occured. There is no brewery registered to this player.");
             }
         }
-    }
+    } */
 }

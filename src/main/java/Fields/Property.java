@@ -64,7 +64,7 @@ public abstract class Property extends Field {
         this.player = player;
         this.mortgage=true;
     }
-    public abstract void rent(Player player);
+ //   public abstract void rent(Player player,);
 
 
 

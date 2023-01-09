@@ -164,7 +164,7 @@ public class GUIController {
                 } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Ferry.class)) {
                     System.out.println("Ferry is owned");
                     gui.showMessage("The Ferry is owned, press the button to pay rent.");
-                    ((Ferry) fieldList.getFieldIndex(player.getPosition())).rent(player);
+                    ((Ferry) fieldList.getFieldIndex(player.getPosition())).rent(player,fieldList);
 
                     // Pay rent for owned Brewery
                 } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Brewery.class)) {
