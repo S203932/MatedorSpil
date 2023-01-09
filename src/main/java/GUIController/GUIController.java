@@ -170,7 +170,7 @@ public class GUIController {
                 } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Brewery.class)) {
                     System.out.println("Brewery is owned");
                     gui.showMessage("The Brewery is owned, press the button to pay rent.");
-                    ((Brewery) fieldList.getFieldIndex(player.getPosition())).rent(player);
+                    ((Brewery) fieldList.getFieldIndex(player.getPosition())).rent(player,fieldList,dice);
                 }
             } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Chance.class)) {
 
@@ -184,7 +184,7 @@ public class GUIController {
                 cardDeck.setCards();
                 ChanceCards chanceCard = cardDeck.getCard(randomNumber);
                 System.out.println(chanceCard.getDescription());
-                chanceCard.cardAction(player, gui, fieldList.getFieldList(), fields, gui_player);
+               // chanceCard.cardAction(player, gui, fieldList.getFieldList(), fields, gui_player);
 
 
             } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Neutral.class)) {
