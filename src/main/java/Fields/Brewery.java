@@ -50,23 +50,33 @@ public class Brewery extends Property {
             player.getAccount().subtractionAccount(dice.result() * 200);
             super.getPlayer().getAccount().additionAccount(dice.result() * 200);
         }
-    /* public void rent(Player player) {
-     }
+    /* public int dieTotal(DiceCup dice){
+        int[] dieValues = new int[2];
+        dieValues[0] = dice.getIndexDie(0);
+        dieValues[1] = dice.getIndexDie(1);
+        int totalValue = dice.getIndexDie(0) + dice.getIndexDie(1);
+        return totalValue;
+        }
+
+        public void rent(Player player, DiceCup dice){
         int breweryCounter = 0;
         for(int i = 0; i < super.getPlayer().getProperty().length; i++) {
             if (super.getPlayer().getProperty()[i].getClass().equals(Brewery.class)) {
             breweryCounter++;
         }
             if(breweryCounter == 1){
-                int breweryRent = player.getAccount().getAmount() + dieTotal() * 100;
-                player.getAccount().setAccount(breweryRent);
+                player.getAccount().subtractionAccount(dieTotal(dice)*100);
+                super.getPlayer().getAccount().additionAccount(dieTotal(dice)*100);
             } else if(breweryCounter == 2) {
-                int breweryRent = player.getAccount().getAmount() + dieTotal() * 200;
-                player.getAccount().setAccount(breweryRent);
+                player.getAccount().subtractionAccount(dieTotal(dice)*200);
+                super.getPlayer().getAccount().additionAccount(dieTotal(dice)*200);
             } else {
                 System.out.println("An error has occured. There is no brewery registered to this player.");
-            }
-        }
-    } */
+             }
+         }
+     }
+             public void rent(Player player){
+}
+ }*/
     }
 }
