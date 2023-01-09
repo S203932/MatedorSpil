@@ -18,7 +18,7 @@ class RealEstateTest {
 
     }
 
-    /*@Test
+    @Test
     void mortgageEstimation() {
 
         RealEstate realEstate = new RealEstate();
@@ -30,7 +30,7 @@ class RealEstateTest {
         assertEquals(4750, player.getAccount().getAmount());
 
 
-    }*/
+    }
     @Test
     void rent() {
         RealEstate realEstate = new RealEstate();
