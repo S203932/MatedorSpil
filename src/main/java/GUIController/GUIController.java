@@ -131,7 +131,7 @@ public class GUIController {
         return GUI_player;
     }
 
-    public void takeTurn(Player player, GUI gui, GUI_Player gui_player, FieldList fieldList, GUI_Field[] fields) {
+    public void takeTurn(Player player, GUI gui, GUI_Player gui_player, FieldList fieldList, GUI_Field[] fields, Player[] players) {
         String rollDie = gui.getUserButtonPressed(player.getPlayerName() + "'s turn. Choose an option:",
                 "Press to roll the die.", "Press to forefit and give in.");
         if (rollDie.equalsIgnoreCase("Press to roll the die.")) {
@@ -184,7 +184,7 @@ public class GUIController {
                 cardDeck.setCards();
                 ChanceCards chanceCard = cardDeck.getCard(randomNumber);
                 System.out.println(chanceCard.getDescription());
-               // chanceCard.cardAction(player, gui, fieldList.getFieldList(), fields, gui_player);
+               chanceCard.cardAction(player, gui, fieldList.getFieldList(), fields, gui_player, players);
 
 
             } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Neutral.class)) {
