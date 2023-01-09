@@ -29,7 +29,7 @@ public class Brewery extends Property {
             } else if(breweryCounter == 2) {
                 int breweryRent = player.getAccount().getAmount() + dieTotal() * 200;
                 player.getAccount().setAccount(breweryRent);
-            } else(breweryCounter == 0) {
+            } else {
                 System.out.println("An error has occured. There is no brewery registered to this player.");
             }
         }
