@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class CardDeck {
     private ChanceCards[] card;
-    private int length=19;
+    private int length=46;
 
 
     public CardDeck() {
