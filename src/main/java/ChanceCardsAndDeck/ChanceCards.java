@@ -18,6 +18,7 @@ public class ChanceCards {
     private int transaction;
 
     private Color color;
+    private int Offset;
 
     public ChanceCards(){
         initilalizeType();
@@ -56,6 +57,8 @@ public class ChanceCards {
         this.transaction = 0;
     }
 
+    public void initializeOffset() {this.Offset = 3;}
+
     public void setType(int type){
         this.type = type;
     }
@@ -74,6 +77,10 @@ public class ChanceCards {
 
     public void setTransaction(int transaction){
         this.transaction = transaction;
+    }
+
+    public void setOffset(int offset) {
+        Offset = offset;
     }
 
     public int getType(){
@@ -119,6 +126,11 @@ public class ChanceCards {
                 }
                 break;
 
+            case 4:
+                gui.showMessage(description);
+                player.setPosition(player.getPosition()+Offset);
+                gui_player.getCar().setPosition(fields[moveTo]);
+                break;
             /*
             case 1:
                 String chosenButton = gui.getUserButtonPressed(
