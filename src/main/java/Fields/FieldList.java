@@ -9,7 +9,7 @@ public class FieldList {
 
     private Field[] fieldList;
 
-    // constructor der indeholder array
+    // A constructor that holds the array
     public FieldList() {
         InitializeFieldList();
     }
@@ -18,6 +18,7 @@ public class FieldList {
         this.fieldList = new Field[40];
     }
 
+    // Filling array with information such as name, price and so forth
     public void setupField(String filename){
         ReadFile readFile = new ReadFile();
         ArrayList<String> stringArrayList = readFile.ReadFile(filename);
@@ -57,7 +58,6 @@ public class FieldList {
         //tax
         fieldList[4] = new Tax5();
         ((Tax)fieldList[4]).setName(stringArrayList.get(5));
-        //((Tax)fieldList[4]).setColor(Color.CYAN);
 
         fieldList[5] = new Ferry();
         ((Ferry)fieldList[5]).setName(stringArrayList.get(6));
@@ -355,7 +355,6 @@ public class FieldList {
         // tax
         fieldList[38] = new Tax39();
         ((Tax)fieldList[38]).setName(stringArrayList.get(39));
-       // ((Tax)fieldList[38]).setColor(Color.);
 
         fieldList[39] = new RealEstate();
         ((RealEstate)fieldList[39]).setUpgrade(0);

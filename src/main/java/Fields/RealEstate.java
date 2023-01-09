@@ -23,10 +23,12 @@ public class RealEstate extends Property {
         setRent5(-1);
     }
 
+    // Upgrade is the amount of houses you have
     public void setUpgrade(int upgrade) {
         this.upgrade = upgrade;
     }
 
+    // How much it costs to buy house or hotel
     public void setUpgradeValue(int upgradeValue) {
         this.upgradeValue = upgradeValue;
     }
@@ -40,6 +42,7 @@ public class RealEstate extends Property {
     }
 
 
+
     public void buyProperty(Player player) {
         super.buyProperty(player);
     }
@@ -48,6 +51,7 @@ public class RealEstate extends Property {
         super.mortgageProperty(player, mortgagePrice);
     }
 
+    // Getters and setters for rent
     public int getRent0() {
         return rent0;
     }
@@ -96,7 +100,7 @@ public class RealEstate extends Property {
         this.rent5 = rent5;
     }
 
-
+    //Paying and receiving rent depending on different circumstances
     public void rent(Player player) {
         if (upgrade == 0){
             player.getAccount().subtractionAccount(rent0);
@@ -117,11 +121,8 @@ public class RealEstate extends Property {
             player.getAccount().subtractionAccount(rent5);
             super.getPlayer().getAccount().additionAccount(rent5);
         }
-
-        }
-
-
     }
+}
 
 
 
