@@ -70,7 +70,7 @@ public class CardDeck {
                 "and gave you a full refund, press the button to receive 2.");
         */
 
-        // Postive transactions from the Bank to the player
+        // Positive transactions from the Bank to the player
         card[0] = new ChanceCardsAndDeck.ChanceCards();
         card[0].setType(1); // Receive 200 kr
         card[0].setTransaction(+200);
