@@ -41,7 +41,7 @@ public class FieldList {
         ((RealEstate)fieldList[1]).setRent4(4000);
         ((RealEstate)fieldList[1]).setRent5(6000);
 
-        fieldList[2] = new Chance();
+        fieldList[2] = new Fields.Chance();
         ((Chance)fieldList[2]).setPosition(3);
         ((Chance)fieldList[2]).setName(stringArrayList.get(3));
         ((Chance)fieldList[2]).setColor(Color.BLACK);
