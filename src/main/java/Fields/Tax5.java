@@ -8,8 +8,7 @@ public class Tax5 extends Tax {
         if (optionTax==2){
             player.getAccount().subtractionAccount(4000);
         } else if (optionTax == 1) {
-            int percentageTax = player.getAccount().getAmount() - player.getAccount().getAmount() / 10;
-            player.getAccount().setAccount(percentageTax);
+            player.getAccount().subtractionAccount(player.getAccount().getAmount() / 10);
         }
     }
 }
