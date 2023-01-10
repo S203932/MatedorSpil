@@ -109,19 +109,21 @@ public class Player {
     }
 
     public String getNamesOfProperties(){
-        String string = "List of properties player own:\n";
+        String string = "";
+        int counter = 0;
         if(property[0] == null){
             string = string + name + " has no properties";
         }else{
-            for(int i = 0; i > property.length;i++){
-                string = string + name + " has the property \" "+property[i].getName() + "\"" +
-                        " which is at postion: " + property[i].getPosition() + "on the board \n";
+            while(property[counter] != null){
+                string = string + property[counter].getName() +"\n";
+                counter++;
             }
         }
         return string;
     }
 
     public String toString(){
+        int counter = 0;
         String string = "Player's name: " + name + "\n";
         string = string + name + "'s position: " + position + "\n";
         string = string + name + "'s balance: " + account.getAmount() + "\n";
@@ -130,9 +132,10 @@ public class Player {
         if(property[0] == null){
             string = string + name + " has no properties";
         }else{
-            for(int i = 0; i > property.length;i++){
-                string = string + name + " has the property \" "+property[i].getName() + "\"" +
-                        " which is at postion: " + property[i].getPosition() + "on the board \n";
+            while(property[counter] != null){
+                string = string + name + " has the property \" "+property[counter].getName() + "\"" +
+                        " which is at postion: " + property[counter].getPosition() + " on the board \n";
+                counter++;
             }
         }
         return string;

@@ -32,10 +32,10 @@ public class Game {
             for(int i = 0;i<players.length;i++){
                 if(players[i].getForfeit()==0){
                     guiController.takeTurn(players[i],guiController.getGui(),gui_players[i],fieldList, guiController.getGUI_Fields(), players);
-                    System.out.println(players[i].getPlayerName()+"'s properties: "+players[i].getProperty()[i]);
-                    System.out.println(players[i].getPlayerName()+"'s position: "+players[i].getPosition());
-                    System.out.println(players[i].getPlayerName()+"'s name: "+players[i].getPlayerName());
-                    System.out.println(players[i].getPlayerName()+"'s money balance: "+players[i].getAccount().getAmount());
+                    System.out.println(players[i].toString());
+                    System.out.println();
+                    System.out.println(players[i].getNamesOfProperties());
+
                     for(int j = 0; j<players.length;j++){
                         gui_players[j].setBalance(players[j].getAccount().getAmount());
                     }
