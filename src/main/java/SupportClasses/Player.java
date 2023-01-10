@@ -115,11 +115,17 @@ public class Player {
             string = string + name + " has no properties";
         }else{
             while(property[counter] != null){
-                string = string + property[counter].getName() +"\n";
+                int i=1;
+                string = string + property[counter].getName() + " - position " + property[counter].getPosition() + " på brættet" +"\n";
                 counter++;
             }
         }
         return string;
+    }
+
+    public String getPropertyName(int i){
+        String PropertyName=property[i].getName();
+        return PropertyName;
     }
 
     public String toString(){
