@@ -11,6 +11,8 @@ public class Player {
     private int position;
     private int jail;
 
+    private int Freejail;
+
     private int forfeit;
 
     public Player() {
@@ -19,6 +21,7 @@ public class Player {
         setPosition(-1);
         instantiateProperty();
         setJail(0);
+        setFreejail(0);
         setForfeit(0);
 
     }
@@ -32,6 +35,10 @@ public class Player {
 
     public void setJail(int jail){
         this.jail = jail;
+    }
+
+    public void setFreejail(int freejail) {
+        Freejail = freejail;
     }
 
     public int getJail(){
