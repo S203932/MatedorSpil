@@ -11,11 +11,8 @@ public class Game {
 
 
         GUIController guiController= new GUIController();
-        String language = guiController.getGui().getUserSelection(
-                "Language",
-                "Dansk", "English","Arabisk"
-        );
-        language=language+".txt";
+
+        String language="Dansk.txt";
 
         System.out.println(language);
         guiController.GUIController(language);
