@@ -151,6 +151,7 @@ public class GUIController {
                     System.out.println("property is not owned");
                     gui.showMessage("The field is an unowned property, press the button to buy it.");
                     ((Property) fieldList.getFieldIndex(player.getPosition())).buyProperty(player);
+                    player.setProperty(((Property) fieldList.getFieldIndex(player.getPosition())));
                     fields[player.getPosition()].setDescription("Is owned by: " + player.getPlayerName());
                     gui_player.setBalance(player.getAccount().getAmount());
 
