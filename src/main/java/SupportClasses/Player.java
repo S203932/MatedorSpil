@@ -108,6 +108,19 @@ public class Player {
 
     }
 
+    public String getNamesOfProperties(){
+        String string = "List of properties player own:\n";
+        if(property[0] == null){
+            string = string + name + " has no properties";
+        }else{
+            for(int i = 0; i > property.length;i++){
+                string = string + name + " has the property \" "+property[i].getName() + "\"" +
+                        " which is at postion: " + property[i].getPosition() + "on the board \n";
+            }
+        }
+        return string;
+    }
+
     public String toString(){
         String string = "Player's name: " + name + "\n";
         string = string + name + "'s position: " + position + "\n";
