@@ -165,13 +165,13 @@ public class GUIController {
                 } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Ferry.class)) {
                     System.out.println("Ferry is owned");
                     gui.showMessage("The Ferry is owned, press the button to pay rent.");
-                    ((Ferry) fieldList.getFieldIndex(player.getPosition())).rent(player,fieldList);
+                    ((Ferry) fieldList.getFieldIndex(player.getPosition())).rent(player, fieldList);
 
                     // Pay rent for owned Brewery
                 } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Brewery.class)) {
                     System.out.println("Brewery is owned");
                     gui.showMessage("The Brewery is owned, press the button to pay rent.");
-                    ((Brewery) fieldList.getFieldIndex(player.getPosition())).rent(player,fieldList,dice);
+                    ((Brewery) fieldList.getFieldIndex(player.getPosition())).rent(player, fieldList, dice);
                 }
             } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Chance.class)) {
 
@@ -185,7 +185,7 @@ public class GUIController {
                 cardDeck.setCards();
                 ChanceCards chanceCard = cardDeck.getCard(randomNumber);
                 System.out.println(chanceCard.getDescription());
-               chanceCard.cardAction(player, gui, fieldList, fields, gui_player, players);
+                chanceCard.cardAction(player, gui, fieldList, fields, gui_player, players);
 
 
             } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Neutral.class)) {
@@ -193,7 +193,8 @@ public class GUIController {
                 gui.showMessage("Nothing worth mentioning happens on this field, press the button " +
                         "to pass the turn.");
 
-            } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Tax.class)) {
+            } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Tax5.class) ||
+                    fieldList.getFieldIndex(player.getPosition()).getClass().equals(Tax39.class)) {
                 System.out.println("Field is of type Tax");
 
                 if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Tax5.class)) {
@@ -220,13 +221,14 @@ public class GUIController {
                 }
                 player.setPosition(6);
                 gui_player.getCar().setPosition(fields[6]);
-            } else {
-                player.setForfeit(1);
-                gui.showMessage("You have now forfeited. Your properties will remain bought, but can " +
-                        "no longer take turns.");
+            }
+        }else {
+            player.setForfeit(1);
+            gui.showMessage("You have now forfeited. Your properties will remain bought, but can " +
+                    "no longer take turns.");
             }
         }
-    }
+
 
 
 
