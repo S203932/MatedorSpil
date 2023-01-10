@@ -57,6 +57,7 @@ public class Player {
 
     public void setPosition(int position) {
         int oldPosition = this.position;
+        this.position = position;
         if(position<oldPosition){
             this.account.additionAccount(4000);
         }
