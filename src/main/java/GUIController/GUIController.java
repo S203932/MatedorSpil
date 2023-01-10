@@ -184,7 +184,7 @@ public class GUIController {
                 cardDeck.setCards();
                 ChanceCards chanceCard = cardDeck.getCard(randomNumber);
                 System.out.println(chanceCard.getDescription());
-               chanceCard.cardAction(player, gui, fieldList.getFieldList(), fields, gui_player, players);
+               chanceCard.cardAction(player, gui, fieldList, fields, gui_player, players);
 
 
             } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Neutral.class)) {
