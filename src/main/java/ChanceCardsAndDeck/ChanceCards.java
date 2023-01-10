@@ -176,7 +176,8 @@ public class ChanceCards {
                 }
 
                 if (!((Property) fieldList.getFieldIndex(player.getPosition())).getAvailability()) {
-                   // (((Ferry) fieldList.getFieldIndex(player.getPosition())).rent(player, fieldList));
+                    ((Ferry) fieldList.getFieldIndex(player.getPosition())).rent(player, fieldList);
+                    ((Ferry) fieldList.getFieldIndex(player.getPosition())).rent(player, fieldList);
                 }
                 gui_player.getCar().setPosition(fields[moveTo]);
                 break;

@@ -258,7 +258,7 @@ public class CardDeck {
         card[35].setDescription(stringArrayList.get(35));
 
         card[36] = new ChanceCards();
-        card[36].setType(2); // move to nearest ferry
+        card[36].setType(5); // move to nearest ferry
         card[36].setMoveTo(15);
         card[36].setDescription(stringArrayList.get(36));
 
@@ -290,13 +290,11 @@ public class CardDeck {
         card[41].setDescription(stringArrayList.get(41));
 
         card[42] = new ChanceCards();
-        card[42].setType(2); // move to nearest Ferry
-        card[42].setMoveTo(12);
+        card[42].setType(6); // move to nearest Ferry
         card[42].setDescription(stringArrayList.get(42));
 
         card[43] = new ChanceCards();
-        card[43].setType(2); // move to nearest Ferry
-        card[43].setTransaction();
+        card[43].setType(6); // move to nearest Ferry
         card[43].setDescription(stringArrayList.get(43));
 
 
