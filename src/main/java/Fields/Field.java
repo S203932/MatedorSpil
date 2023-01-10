@@ -5,7 +5,7 @@ import java.awt.*;
 
 public abstract class Field {
     private String name;
-    private int position;
+    private int position; //This is the position on the board not the index
     private Color color;
     private int type;
 
