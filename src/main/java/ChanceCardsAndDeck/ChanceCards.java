@@ -1,9 +1,6 @@
 package ChanceCardsAndDeck;
 // Class is written by Patrick Machalet s203932 and Nataliia Khaiko s224295
-import Fields.Ferry;
-import Fields.Field;
-import Fields.FieldList;
-import Fields.Property;
+import Fields.*;
 import SupportClasses.Player;
 import gui_fields.GUI_Field;
 import gui_fields.GUI_Player;
@@ -20,6 +17,9 @@ public class ChanceCards {
     private int moveUpTo;
     private int transaction;
 
+    private int houserate;
+
+    private int hotelrate;
     private Color color;
     private int Offset;
 
@@ -106,6 +106,22 @@ public class ChanceCards {
         return this.transaction;
     }
 
+    public int getHouserate() {
+        return houserate;
+    }
+
+    public void setHouserate(int houserate) {
+        this.houserate = houserate;
+    }
+    public void setHotelrate(int hotelrate) {
+        this.hotelrate = hotelrate;
+    }
+
+    public int getHotelrate() {
+        return hotelrate;
+    }
+
+
     public void cardAction(Player player, GUI gui, FieldList fieldList, GUI_Field[] fields, GUI_Player gui_player, Player[] Participants){
 
         switch (type){
@@ -181,6 +197,27 @@ public class ChanceCards {
                 }
                 gui_player.getCar().setPosition(fields[moveTo]);
                 break;
+
+            case 7:
+                gui.showMessage(description);
+                player.setFreejail(1);
+
+            case 8:
+                gui.showMessage(description);
+                int house = 0;
+                int hotel = 0;
+                int temp = 0;
+                for (int i = 0; i < player.getProperty().length; i++) {
+                    if (player.getProperty()[i].getClass().equals(RealEstate.class)){
+                        temp = ((RealEstate)player.getProperty()[i]).getUpgrade();
+                            if (temp == 5) {
+                                hotel++;
+                            } else {
+                                house += temp;
+                            }
+                    }
+                }
+                player.getAccount().subtractionAccount(houserate*house+hotelrate*hotel);
             /*
             case 1:
                 String chosenButton = gui.getUserButtonPressed(
