@@ -21,6 +21,10 @@ public abstract class Field {
         this.name = name;
     }
 
+    public String getName(){
+        return name;
+    }
+
     public void setPosition(int position) {
         this.position = position;
     }

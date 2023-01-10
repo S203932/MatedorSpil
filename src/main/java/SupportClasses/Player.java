@@ -107,5 +107,22 @@ public class Player {
         this.property = new Property[40];
 
     }
+
+    public String toString(){
+        String string = "Player's name: " + name + "\n";
+        string = string + name + "'s position: " + position + "\n";
+        string = string + name + "'s balance: " + account.getAmount() + "\n";
+        string = string + name + "'s jail value: " + jail + "\n";
+        string = string + name + "'s forfeit value: " + forfeit + "\n";
+        if(property[0] == null){
+            string = string + name + " has no properties";
+        }else{
+            for(int i = 0; i > property.length;i++){
+                string = string + name + " has the property \" "+property[i].getName() + "\"" +
+                        " which is at postion: " + property[i].getPosition() + "on the board \n";
+            }
+        }
+        return string;
+    }
 }
 
