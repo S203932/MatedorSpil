@@ -2,7 +2,7 @@ package Fields;
 // Class is written by Daniel Stensen s211449 and Fayyad Mahmoud S224266
 import SupportClasses.Player;
 
-public class GoJail extends Field{
+public class GoJail extends Field {
     private int position;
     private String name;
     private int moveTo;
@@ -39,16 +39,21 @@ public class GoJail extends Field{
     }
 
     // Function for having the player in jail
-    public void GoToJail(Player player){
-        player.setPosition(11);
-        if(player.getJail()==0){
-            player.setJail(1);
-        }else{
-            player.setJail(0);
+    public void GoToJail(Player player) {
+        //Checks if player has a "Get out of jail free" - card.
+        if (player.getFreejail() == 1) {
+            player.setFreejail(0);
+        } else {
+            player.setPosition(10);
+            if (player.getJail() == 0) {
+                player.setJail(1);
+            } else {
+                player.setJail(0);
+            }
+
+            //Transfers amount from player account for exiting jail
+            player.getAccount().subtractionAccount(1000);
+
         }
-
-        //Transfers amount from player account for exiting jail
-        player.getAccount().subtractionAccount(1000);
-
     }
 }

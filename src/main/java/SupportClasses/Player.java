@@ -37,8 +37,12 @@ public class Player {
         this.jail = jail;
     }
 
+    public int getFreejail() {
+        return Freejail;
+    }
+
     public void setFreejail(int freejail) {
-        Freejail = freejail;
+        this.Freejail = freejail;
     }
 
     public int getJail(){
