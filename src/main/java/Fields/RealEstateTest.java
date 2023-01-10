@@ -22,12 +22,11 @@ class RealEstateTest {
     void mortgageEstimation() {
 
         RealEstate realEstate = new RealEstate();
-        realEstate.setUpgrade(500);
+        realEstate.setPrice(500);
         Player player = new Player();
-        //mortgagePrice = new mortgagePrice();
         player.getAccount().setAccount(5000);
-        //realEstate.mortgageEstimation(player, mortgagePrice);
-        assertEquals(4750, player.getAccount().getAmount());
+        realEstate.mortgageEstimation(player, 500);
+        assertEquals(5250, player.getAccount().getAmount());
 
 
     }
