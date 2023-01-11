@@ -39,6 +39,13 @@ public class GUIController {
     //
     public GUI_Player[] setupPlayers(Player[] player) {
         GUI_Player[] GUI_player = new GUI_Player[player.length];
+        GUI_Car tractor = new GUI_Car(Color.black, Color.white, GUI_Car.Type.TRACTOR, GUI_Car.Pattern.CHECKERED);
+        GUI_Car racecar = new GUI_Car(Color.red, Color.black, GUI_Car.Type.RACECAR, GUI_Car.Pattern.HORIZONTAL_GRADIANT);
+        GUI_Car ufo = new GUI_Car(Color.WHITE, Color.gray, GUI_Car.Type.UFO, GUI_Car.Pattern.DIAGONAL_DUAL_COLOR);
+        GUI_Car car = new GUI_Car(Color.MAGENTA, Color.yellow, GUI_Car.Type.CAR, GUI_Car.Pattern.FILL);
+        GUI_Car tractor1 = new GUI_Car(Color.ORANGE, Color.BLUE, GUI_Car.Type.TRACTOR, GUI_Car.Pattern.DIAGONAL_DUAL_COLOR);
+        GUI_Car ufo1 = new GUI_Car(Color.GREEN, Color.RED, GUI_Car.Type.UFO, GUI_Car.Pattern.DOTTED);
+        GUI_Car[] vehicles = new GUI_Car[]{tractor, racecar,ufo,car,tractor1,ufo1};
         if ((player.length) == 3) {
             String[] nameArray = new String[3];
             for (int i = 0; i < player.length; i++) {
@@ -55,9 +62,8 @@ public class GUIController {
                 nameArray[i] = playerName;
                 player[i].setPlayerName(playerName);
                 player[i].getAccount().setAccount(30000);
-                GUI_player[i] = new GUI_Player(player[i].getPlayerName(), 30000);
+                GUI_player[i] = new GUI_Player(player[i].getPlayerName(), 30000,vehicles[i]);
                 gui.addPlayer(GUI_player[i]);
-                // GUI_player[i].getCar().
                 if (repeat == 1) {
                     i = i - 1;
                 }
@@ -78,7 +84,7 @@ public class GUIController {
                 nameArray[i] = playerName;
                 player[i].setPlayerName(playerName);
                 player[i].getAccount().setAccount(30000);
-                GUI_player[i] = new GUI_Player(player[i].getPlayerName(), 30000);
+                GUI_player[i] = new GUI_Player(player[i].getPlayerName(), 30000, vehicles[i]);
                 gui.addPlayer(GUI_player[i]);
                 if (repeat == 1) {
                     i = i - 1;
@@ -100,7 +106,7 @@ public class GUIController {
                 nameArray[i] = playerName;
                 player[i].setPlayerName(playerName);
                 player[i].getAccount().setAccount(30000);
-                GUI_player[i] = new GUI_Player(player[i].getPlayerName(), 30000);
+                GUI_player[i] = new GUI_Player(player[i].getPlayerName(), 30000, vehicles[i]);
                 gui.addPlayer(GUI_player[i]);
                 if (repeat == 1) {
                     i = i - 1;
@@ -122,7 +128,7 @@ public class GUIController {
                 nameArray[i] = playerName;
                 player[i].setPlayerName(playerName);
                 player[i].getAccount().setAccount(30000);
-                GUI_player[i] = new GUI_Player(player[i].getPlayerName(), 30000);
+                GUI_player[i] = new GUI_Player(player[i].getPlayerName(), 30000, vehicles[i]);
                 gui.addPlayer(GUI_player[i]);
                 if (repeat == 1) {
                     i = i - 1;
