@@ -9,9 +9,9 @@ public class GoJail extends Field {
 
     // Position for active field for sending player to jail
     public GoJail() {
-        setPosition(31);
+        setPosition(30);
         setName("De fængsles");
-        setMoveTo(11);
+        setMoveTo(10);
     }
 
     public int getPosition() {
