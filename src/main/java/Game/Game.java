@@ -30,8 +30,6 @@ public class Game {
                 if(players[i].getForfeit()==0){
                     guiController.takeTurn(players[i],guiController.getGui(),gui_players[i],fieldList, guiController.getGUI_Fields(), players);
                     System.out.println(players[i].toString());
-                    System.out.println();
-                    System.out.println(players[i].getNamesOfProperties());
 
                     for(int j = 0; j<players.length;j++){
                         gui_players[j].setBalance(players[j].getAccount().getAmount());

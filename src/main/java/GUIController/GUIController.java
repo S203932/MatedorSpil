@@ -57,6 +57,7 @@ public class GUIController {
                 player[i].getAccount().setAccount(30000);
                 GUI_player[i] = new GUI_Player(player[i].getPlayerName(), 30000);
                 gui.addPlayer(GUI_player[i]);
+                GUI_player[i].getCar().
                 if (repeat == 1) {
                     i = i - 1;
                 }
@@ -223,8 +224,8 @@ public class GUIController {
                 if (player.getJail() == 1) {
                     player.getAccount().additionAccount(-1);
                 }
-                player.setPosition(6);
-                gui_player.getCar().setPosition(fields[6]);
+                player.setPosition(10);
+                gui_player.getCar().setPosition(fields[10]);
             }
         } else {
             player.setForfeit(1);
