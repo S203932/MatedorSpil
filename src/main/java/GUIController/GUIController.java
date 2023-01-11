@@ -242,9 +242,16 @@ public class GUIController {
         String list = gui.getUserButtonPressed("Du ejer følgende Ejendomme:\n"
                 + player.getNamesOfProperties(), "Afslut tur", "Pansætte ejedom");
         if (list.equalsIgnoreCase("Pansætte ejedom")) {
-            int pawning = gui.getUserInteger("Vælg ejendommens position for at pansætte \\n"
-                    +player.getNamesOfProperties(), 1,40);
+            int pawning = gui.getUserInteger("Vælg ejendommens position for at pansætte \n"
+                    + player.getNamesOfProperties(), 1, 40);
+
+            if (!((Property) fieldList.getFieldIndex(pawning - 1)).getMortgage()) {
+                ((Property) fieldList.getFieldIndex(pawning - 1)).mortgageProperty(player);
+            } else {
+                gui.showMessage("Denne ejedom er pantsæt. Vælg en anden ejedom");
+            }
         }
+
     }
 
 

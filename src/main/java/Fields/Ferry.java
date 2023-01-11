@@ -7,8 +7,8 @@ public class Ferry extends Property {
         super.buyProperty(player);
     }
 
-    public void mortgageEstimation(Player player, int mortgagePrice) {
-        super.mortgageProperty(player, mortgagePrice);
+    public void mortgageEstimation(Player player) {
+        super.mortgageProperty(player);
     }
 
     public void rent(Player player, FieldList fieldList) {

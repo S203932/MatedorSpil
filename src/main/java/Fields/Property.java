@@ -58,9 +58,10 @@ public abstract class Property extends Field {
         this.player = player;
     }
     // Method for mortgage players property
-    public void mortgageProperty(Player player, int mortgagePrice){
-        mortgagePrice=round(getPrice()/2);
-        player.getAccount().additionAccount(mortgagePrice);
+    public void mortgageProperty(Player player){
+       int mortgagePrice=round(getPrice()/2);
+       if(player.getPlayerName()==this.player.getPlayerName()){
+        this.player.getAccount().additionAccount(mortgagePrice);}
         this.player = player;
         this.mortgage=true;
     }

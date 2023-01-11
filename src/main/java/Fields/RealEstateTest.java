@@ -25,7 +25,7 @@ class RealEstateTest {
         realEstate.setPrice(500);
         Player player = new Player();
         player.getAccount().setAccount(5000);
-        realEstate.mortgageEstimation(player, 500);
+        realEstate.mortgageEstimation(player);
         assertEquals(5250, player.getAccount().getAmount());
 
 
