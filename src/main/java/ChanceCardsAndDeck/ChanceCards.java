@@ -127,18 +127,18 @@ public class ChanceCards {
         switch (type){
 
             case 1:
-                gui.showMessage(description);
+                gui.displayChanceCard(description);
                 player.getAccount().additionAccount(transaction);
                 break;
 
             case 2:
-                gui.showMessage(description);
+                gui.displayChanceCard(description);
                 player.setPosition(moveTo);
                 gui_player.getCar().setPosition(fields[moveTo]);
                 break;
 
             case 3:
-                gui.showMessage(description);
+                gui.displayChanceCard(description);
                 player.getAccount().additionAccount(Participants.length*transaction);
                 for (int i = 0; i < Participants.length; i++) {
                     Participants[i].getAccount().subtractionAccount(transaction);
@@ -146,13 +146,13 @@ public class ChanceCards {
                 break;
 
             case 4:
-                gui.showMessage(description);
+                gui.displayChanceCard(description);
                 player.setPosition(player.getPosition()+Offset);
                 gui_player.getCar().setPosition(fields[moveTo]);
                 break;
 
             case 5:
-                gui.showMessage(description);
+                gui.displayChanceCard(description);
                 if (player.getPosition() == 17 || player.getPosition() == 22)
                 {
                     player.setPosition(25);
@@ -173,7 +173,7 @@ public class ChanceCards {
                 break;
 
             case 6:
-                gui.showMessage(description);
+                gui.displayChanceCard(description);
                 if (player.getPosition() == 17 || player.getPosition() == 22)
                 {
                     player.setPosition(25);
@@ -199,11 +199,11 @@ public class ChanceCards {
                 break;
 
             case 7:
-                gui.showMessage(description);
+                gui.displayChanceCard(description);
                 player.setFreejail(1);
 
             case 8:
-                gui.showMessage(description);
+                gui.displayChanceCard(description);
                 int house = 0;
                 int hotel = 0;
                 int temp = 0;
@@ -220,7 +220,7 @@ public class ChanceCards {
                 player.getAccount().subtractionAccount(houserate*house+hotelrate*hotel);
 
             case 9:
-                gui.showMessage(description);
+                gui.displayChanceCard(description);
 
                 int playertotal = 0;
                 int tomp = 0;

@@ -13,29 +13,32 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class GUIController {
-    GUI_Field[] fields = {
-            new GUI_Start(), new GUI_Street(), new GUI_Chance(), new GUI_Street(), new GUI_Tax(),
-
-            new GUI_Shipping(), new GUI_Street(), new GUI_Chance(), new GUI_Street(), new GUI_Street(),
-
-            new GUI_Jail(), new GUI_Street(), new GUI_Brewery(), new GUI_Street(), new GUI_Street(),
-
-            new GUI_Shipping(), new GUI_Street(), new GUI_Chance(), new GUI_Street(), new GUI_Street(),
-
-            new GUI_Refuge(), new GUI_Street(), new GUI_Chance(), new GUI_Street(), new GUI_Street(),
-
-            new GUI_Shipping(), new GUI_Street(), new GUI_Street(), new GUI_Brewery(), new GUI_Street(),
-
-            new GUI_Jail(), new GUI_Street(), new GUI_Street(), new GUI_Chance(), new GUI_Street(),
-
-            new GUI_Shipping(), new GUI_Chance(), new GUI_Street(), new GUI_Tax(), new GUI_Street()
-    };
+    GUI_Field[] fields = setupGUIFields();
     private GUI gui = new GUI(fields);
     private DiceCup dice = new DiceCup(2);
     private GUI_Car car = new GUI_Car();
     private Player[] player;
 
+    public GUI_Field[] setupGUIFields() {
+        GUI_Field[] field = {
+                new GUI_Start(), new GUI_Street(), new GUI_Chance(), new GUI_Street(), new GUI_Tax(),
 
+                new GUI_Shipping(), new GUI_Street(), new GUI_Chance(), new GUI_Street(), new GUI_Street(),
+
+                new GUI_Jail(), new GUI_Street(), new GUI_Brewery(), new GUI_Street(), new GUI_Street(),
+
+                new GUI_Shipping(), new GUI_Street(), new GUI_Chance(), new GUI_Street(), new GUI_Street(),
+
+                new GUI_Refuge(), new GUI_Street(), new GUI_Chance(), new GUI_Street(), new GUI_Street(),
+
+                new GUI_Shipping(), new GUI_Street(), new GUI_Street(), new GUI_Brewery(), new GUI_Street(),
+
+                new GUI_Jail(), new GUI_Street(), new GUI_Street(), new GUI_Chance(), new GUI_Street(),
+
+                new GUI_Shipping(), new GUI_Chance(), new GUI_Street(), new GUI_Tax(), new GUI_Street()
+        };
+        return field;
+    }
     //
     public GUI_Player[] setupPlayers(Player[] player) {
         GUI_Player[] GUI_player = new GUI_Player[player.length];
