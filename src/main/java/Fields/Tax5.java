@@ -8,7 +8,17 @@ public class Tax5 extends Tax {
         if (optionTax==2){
             player.getAccount().subtractionAccount(4000);
         } else if (optionTax == 1) {
-            player.getAccount().subtractionAccount(player.getAccount().getAmount() / 10);
+            int playertotal = 0;
+            int tomp = 0;
+            for (int i = 0; i < player.getProperty().length; i++) {
+                if (player.getProperty()[i].getClass().equals(RealEstate.class)){
+                    tomp = ((RealEstate)player.getProperty()[i]).getUpgrade();
+                    playertotal += tomp*((RealEstate) player.getProperty()[i]).getUpgradeValue();
+                    playertotal += player.getProperty()[i].getPrice();
+                }
+            }
+            playertotal += player.getAccount().getAmount();
+            player.getAccount().subtractionAccount(playertotal / 10);
         }
     }
 }
