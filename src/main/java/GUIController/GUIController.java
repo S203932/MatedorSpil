@@ -57,7 +57,7 @@ public class GUIController {
                 player[i].getAccount().setAccount(30000);
                 GUI_player[i] = new GUI_Player(player[i].getPlayerName(), 30000);
                 gui.addPlayer(GUI_player[i]);
-                GUI_player[i].getCar().
+                // GUI_player[i].getCar().
                 if (repeat == 1) {
                     i = i - 1;
                 }
@@ -270,7 +270,7 @@ public class GUIController {
         gui.getFields()[5].setTitle(stringArrayList.get(6));
         gui.getFields()[5].setSubText("Scanlines");
 
-        gui.getFields()[6].setSubText(stringArrayList.get(7));
+        gui.getFields()[6].setTitle(stringArrayList.get(7));
         gui.getFields()[6].setSubText("Pris: 2000 kr.");
         gui.getFields()[6].setBackGroundColor(new Color(255, 102, 0));
 
