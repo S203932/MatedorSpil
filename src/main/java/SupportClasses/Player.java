@@ -18,7 +18,7 @@ public class Player {
     public Player() {
         setPlayerName("Player one");
         startAccount();
-        setPosition(-1);
+        setPosition(0);
         instantiateProperty();
         setJail(0);
         setFreejail(0);
