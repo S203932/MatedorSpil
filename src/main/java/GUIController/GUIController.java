@@ -132,9 +132,9 @@ public class GUIController {
     }
 
     public void takeTurn(Player player, GUI gui, GUI_Player gui_player, FieldList fieldList, GUI_Field[] fields, Player[] players) {
-        String rollDie = gui.getUserButtonPressed(player.getPlayerName() + "'s turn. Choose an option:",
-                "Press to roll the die.", "Press to forefit and give in.");
-        if (rollDie.equalsIgnoreCase("Press to roll the die.")) {
+        String rollDie = gui.getUserButtonPressed("Det er " + player.getPlayerName() + "s tur.",
+                "Tryk for at kaste med tegninger", "Tryk for at give op");
+        if (rollDie.equalsIgnoreCase("Tryk for at kaste med tegninger")) {
             System.out.println("Dice has been rolled");
             dice.rollDice();
             gui.setDice(dice.getIndexDie(0), dice.getIndexDie(1));
@@ -149,28 +149,32 @@ public class GUIController {
                 System.out.println("Field is a property");
                 if (((Property) fieldList.getFieldIndex(player.getPosition())).getAvailability()) {
                     System.out.println("property is not owned");
-                    gui.showMessage("The field is an unowned property, press the button to buy it.");
-                    ((Property) fieldList.getFieldIndex(player.getPosition())).buyProperty(player);
-                    player.setProperty(((Property) fieldList.getFieldIndex(player.getPosition())));
-                    fields[player.getPosition()].setDescription("Is owned by: " + player.getPlayerName());
-                    gui_player.setBalance(player.getAccount().getAmount());
+                    String buy = gui.getUserButtonPressed("Grund " + fieldList.getFieldIndex(player.getPosition()).getName() +
+                            " er til salg", "Køb grund", "Nej Tak");
+                    //   gui.showMessage("The field is an unowned property, press the button to buy it.");
+                    if (buy.equalsIgnoreCase("Køb grund")) {
+                        ((Property) fieldList.getFieldIndex(player.getPosition())).buyProperty(player);
+                        player.setProperty(((Property) fieldList.getFieldIndex(player.getPosition())));
+                        fields[player.getPosition()].setDescription("Is owned by: " + player.getPlayerName());
+                        gui_player.setBalance(player.getAccount().getAmount());
+                    }
 
                     // Pay rent for owned RealEstate
                 } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(RealEstate.class)) {
                     System.out.println("RealEstate is owned");
-                    gui.showMessage("The RealEstate is owned, press the button to pay rent.");
+                    gui.showMessage("Denne ejendomme er ejet. Tryk på knappen for at betale leje.");
                     ((RealEstate) fieldList.getFieldIndex(player.getPosition())).rent(player);
 
                     // Pay rent for owned Ferry
                 } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Ferry.class)) {
                     System.out.println("Ferry is owned");
-                    gui.showMessage("The Ferry is owned, press the button to pay rent.");
+                    gui.showMessage("Færge er ejet. Tryk på knappen for at betale leje,");
                     ((Ferry) fieldList.getFieldIndex(player.getPosition())).rent(player, fieldList);
 
                     // Pay rent for owned Brewery
                 } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Brewery.class)) {
                     System.out.println("Brewery is owned");
-                    gui.showMessage("The Brewery is owned, press the button to pay rent.");
+                    gui.showMessage("Bryggeri er ejet. Tryk på knappen for at betale leje.");
                     ((Brewery) fieldList.getFieldIndex(player.getPosition())).rent(player, fieldList, dice);
                 }
             } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Chance.class)) {
@@ -190,8 +194,8 @@ public class GUIController {
 
             } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Neutral.class)) {
                 System.out.println("Field is of type Neutral");
-                gui.showMessage("Nothing worth mentioning happens on this field, press the button " +
-                        "to pass the turn.");
+                gui.showMessage("Tag' det roligt. Her sker ikke så meget \n" +
+                        "Tryk på knappen for at gå vidder.");
 
             } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Tax5.class) ||
                     fieldList.getFieldIndex(player.getPosition()).getClass().equals(Tax39.class)) {
@@ -213,7 +217,7 @@ public class GUIController {
 
             } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(GoJail.class)) {
                 System.out.println("Field is of type GoJail");
-                gui.showMessage("Sucks to be you. Press the button to move to jail.");
+                gui.showMessage("Beklager. De skal fængsel.");
                 GoJail goJail = new GoJail();
                 goJail.GoToJail(player);
                 if (player.getJail() == 1) {
@@ -222,13 +226,19 @@ public class GUIController {
                 player.setPosition(6);
                 gui_player.getCar().setPosition(fields[6]);
             }
-        }else {
+        } else {
             player.setForfeit(1);
-            gui.showMessage("You have now forfeited. Your properties will remain bought, but can " +
-                    "no longer take turns.");
-            }
+            gui.showMessage("De er fallit. Deres ejendomme forbliver købte,\n"
+                    + "men De kan ikke længere deltage i spillet.");
         }
-
+        //Graphics setup to show players properties and show ability of pawning property
+        String list = gui.getUserButtonPressed("Du ejer følgende Ejendomme:\n"
+                + player.getNamesOfProperties(), "Afslut tur", "Pansætte ejedom");
+        if (list.equalsIgnoreCase("Pansætte ejedom")) {
+            int pawning = gui.getUserInteger("Vælg ejendommens position for at pansætte \\n"
+                    +player.getNamesOfProperties(), 1,40);
+        }
+    }
 
 
 
