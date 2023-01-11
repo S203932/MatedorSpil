@@ -218,6 +218,28 @@ public class ChanceCards {
                     }
                 }
                 player.getAccount().subtractionAccount(houserate*house+hotelrate*hotel);
+
+            case 9:
+                gui.showMessage(description);
+
+                int playertotal = 0;
+                int tomp = 0;
+                for (int i = 0; i < player.getProperty().length; i++) {
+                    if (player.getProperty()[i].getClass().equals(RealEstate.class)){
+                        tomp = ((RealEstate)player.getProperty()[i]).getUpgrade();
+                        playertotal += tomp*((RealEstate) player.getProperty()[i]).getUpgradeValue();
+                        playertotal += player.getProperty()[i].getPrice();
+                    }
+                }
+                playertotal += player.getAccount().getAmount();
+                if (playertotal <= 15000) {
+                    player.getAccount().additionAccount(40000);
+                    gui.showMessage("De modtager Matador legattet grundet de har mindre 15 tusind kr. til deres navn.");
+                }
+                else {
+                    gui.showMessage("De modtager IKKE Matador legattet grundet de har mere end 15 tusind kr. til deres navn.");
+                }
+
             /*
             case 1:
                 String chosenButton = gui.getUserButtonPressed(
