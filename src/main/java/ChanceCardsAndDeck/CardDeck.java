@@ -201,13 +201,13 @@ public class CardDeck {
         card[24].setDescription(stringArrayList.get(24));
 
         card[25] = new ChanceCardsAndDeck.ChanceCards();
-        card[25].setType(7); // Pay 500 kr for each house and 2000 kr for each hotel
+        card[25].setType(8); // Pay 500 kr for each house and 2000 kr for each hotel
         card[25].setHouserate(500);
         card[25].setHotelrate(2000);
         card[25].setDescription(stringArrayList.get(25));
 
         card[26] = new ChanceCardsAndDeck.ChanceCards();
-        card[26].setType(7); // Pay 800 kr for each house and 2300 kr for each hotel
+        card[26].setType(8); // Pay 800 kr for each house and 2300 kr for each hotel
         card[26].setHouserate(800);
         card[26].setHotelrate(2300);
         card[26].setDescription(stringArrayList.get(26));
