@@ -125,18 +125,20 @@ public class ChanceCards {
     public void cardAction(Player player, GUI gui, FieldList fieldList, GUI_Field[] fields, GUI_Player gui_player, Player[] Participants){
 
         switch (type){
-
+            // Add amount to player account.
             case 1:
                 gui.displayChanceCard(description);
                 player.getAccount().additionAccount(transaction);
                 break;
 
+            // Moves the player on the board.
             case 2:
                 gui.displayChanceCard(description);
                 player.setPosition(moveTo);
                 gui_player.getCar().setPosition(fields[moveTo]);
                 break;
 
+            // Receive x * money from each player
             case 3:
                 gui.displayChanceCard(description);
                 player.getAccount().additionAccount(Participants.length*transaction);
@@ -145,12 +147,14 @@ public class ChanceCards {
                 }
                 break;
 
+            // Moves the player +- 3 places on the board.
             case 4:
                 gui.displayChanceCard(description);
                 player.setPosition(player.getPosition()+Offset);
                 gui_player.getCar().setPosition(fields[moveTo]);
                 break;
 
+            // Moves the player to the nearest ferry
             case 5:
                 gui.displayChanceCard(description);
                 if (player.getPosition() == 17 || player.getPosition() == 22)
@@ -172,6 +176,7 @@ public class ChanceCards {
                 gui_player.getCar().setPosition(fields[moveTo]);
                 break;
 
+            // Moves the player to the nearest ferry and pay double
             case 6:
                 gui.displayChanceCard(description);
                 if (player.getPosition() == 17 || player.getPosition() == 22)
@@ -198,10 +203,12 @@ public class ChanceCards {
                 gui_player.getCar().setPosition(fields[moveTo]);
                 break;
 
+            // Get out of jail free.
             case 7:
                 gui.displayChanceCard(description);
                 player.setFreejail(1);
 
+                // Pay X amount per house and hotel the player owns
             case 8:
                 gui.displayChanceCard(description);
                 int house = 0;
@@ -219,6 +226,7 @@ public class ChanceCards {
                 }
                 player.getAccount().subtractionAccount(houserate*house+hotelrate*hotel);
 
+                // Check if the player owns less than 15 K
             case 9:
                 gui.displayChanceCard(description);
 
