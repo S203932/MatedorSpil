@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class Tax39Test {
 
+    // Testing tax field 39 subtraction methods
     @Test
     void rent() {
         Tax39 tax39 = new Tax39();

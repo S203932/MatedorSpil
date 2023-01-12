@@ -5,9 +5,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-// Testing tax field 5 subtraction methods
+
 class Tax5Test {
 
+    // Testing tax field 5 subtraction methods
     @Test
     void rent() {
         Tax5 tax5 = new Tax5();

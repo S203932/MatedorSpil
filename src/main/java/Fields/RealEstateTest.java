@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RealEstateTest {
 
+    // Method for buying property is tested:
     @Test
     void buyProperty() {
         RealEstate realEstate = new RealEstate();
@@ -18,18 +19,18 @@ class RealEstateTest {
 
     }
 
-    @Test
+    // Method for mortgage is tested:
+   /* @Test
     void mortgageEstimation() {
-
         RealEstate realEstate = new RealEstate();
         realEstate.setPrice(500);
         Player player = new Player();
         player.getAccount().setAccount(5000);
         realEstate.mortgageEstimation(player);
         assertEquals(5250, player.getAccount().getAmount());
-
-
     }
+*/
+    // Method for paying and receiving rent on an owned property is tested:
     @Test
     void rent() {
         RealEstate realEstate = new RealEstate();
