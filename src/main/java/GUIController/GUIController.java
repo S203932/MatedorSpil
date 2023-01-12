@@ -81,7 +81,7 @@ public class GUIController {
                 for (int j = 0; j < nameArray.length; j++) {
                     if (playerName.equalsIgnoreCase(nameArray[j])) {
                         repeat = 1;
-                        System.out.println("Navnet er optaget. Indtast nyt navn");
+                        System.out.println("Navnet er  optaget. Indtast nyt navn");
                     }
                 }
                 nameArray[i] = playerName;
@@ -152,6 +152,7 @@ public class GUIController {
             GUI_Field field = gui.getFields()[player.getPosition()];
             gui_player.getCar().setPosition(field);
 
+            int position=player.getPosition();
             // Check availability and buying free Property such as RealEstate, Ferry and Brewery
             if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(RealEstate.class) ||
                     fieldList.getFieldIndex(player.getPosition()).getClass().equals(Ferry.class) ||
@@ -170,19 +171,22 @@ public class GUIController {
                     }
 
                     // Pay rent for owned RealEstate
-                } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(RealEstate.class)) {
+                } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(RealEstate.class)&&
+                        !((Property) fieldList.getFieldIndex(position)).getMortgage()) {           //Checking if property is pawned
                     System.out.println("RealEstate is owned");
                     gui.showMessage("Denne ejendomme er ejet. Tryk på knappen for at betale leje.");
                     ((RealEstate) fieldList.getFieldIndex(player.getPosition())).rent(player);
 
                     // Pay rent for owned Ferry
-                } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Ferry.class)) {
+                } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Ferry.class)&&
+                        !((Property) fieldList.getFieldIndex(position)).getMortgage()) {           //Checking if property is pawned
                     System.out.println("Ferry is owned");
                     gui.showMessage("Færge er ejet. Tryk på knappen for at betale leje,");
                     ((Ferry) fieldList.getFieldIndex(player.getPosition())).rent(player, fieldList);
 
                     // Pay rent for owned Brewery
-                } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Brewery.class)) {
+                } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Brewery.class)&&
+                        !((Property) fieldList.getFieldIndex(position)).getMortgage()) {        //Checking if property is pawned
                     System.out.println("Brewery is owned");
                     gui.showMessage("Bryggeri er ejet. Tryk på knappen for at betale leje.");
                     ((Brewery) fieldList.getFieldIndex(player.getPosition())).rent(player, fieldList, dice);
@@ -416,13 +420,6 @@ public class GUIController {
     }
 
 
-  /*  public int show() {
-        gui.showMessage("Vælger antale af spiller ");
-        int numberInput;
-        //Indlæser et tal mellem 2 og 4
-        numberInput = gui.getUserInteger("Indtast et tal mellem 2 og 4", 2, 4);
-        return numberInput;
-    }*/
 
     public GUI getGui(){
      return this.gui;
