@@ -15,12 +15,15 @@ public class Game {
         String language="Dansk.txt";
 
         System.out.println(language);
-        guiController.GUIController(language);
+
+        FieldList fieldList = new FieldList();
+        fieldList.setupField(language);
+
+        guiController.GUIController(language, fieldList);
         int amountPlayers = guiController.getGui().getUserInteger("Indsat antal spiller", 3, 6);
         Player[] players = new Player[amountPlayers];
         GUI_Player[] gui_players = guiController.setupPlayers(players);
-        FieldList fieldList = new FieldList();
-        fieldList.setupField(language);
+
         int end = 0;
         while (end!=1){
             for(int j = 0; j<players.length;j++){

@@ -277,171 +277,629 @@ public class GUIController {
 
 
 
-    public void GUIController(String filename) {
+    public void GUIController(String filename, FieldList fieldlist) {
         ReadFile readFile = new ReadFile();
         ArrayList<String> stringArrayList = readFile.ReadFile(filename);
-        gui.getFields()[0].setTitle(stringArrayList.get(1));
-        gui.getFields()[0].setBackGroundColor(new Color(204, 0, 0));
-        ((GUI_Start)gui.getFields()[0]).setSubText("This is subtext");
+        int counter = 0;
+        ((GUI_Start)gui.getFields()[counter]).setTitle(stringArrayList.get(counter+1));
+        ((GUI_Start)gui.getFields()[counter]).setBackGroundColor(new Color(204, 0, 0));
+        ((GUI_Start)gui.getFields()[counter]).setSubText("This is subtext");
+        counter++;
 
-        gui.getFields()[1].setTitle(stringArrayList.get(2));
-        gui.getFields()[1].setDescription("<!DOCTYPE html>\n" +
+        ((GUI_Street)gui.getFields()[counter]).setTitle(stringArrayList.get(counter+1));
+        ((GUI_Street)gui.getFields()[counter]).setSubText("Pris" +((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()+" kr.");
+        ((GUI_Street)gui.getFields()[counter]).setDescription("<!DOCTYPE html>\n" +
                 "<html>\n" +
                 "<head>\n" +
-                "<title>Page Title</title>\n" +
                 "</head>\n" +
                 "<body>\n" +
-                "\n" +
-                "<h1>This is a Heading</h1>\n" +
-                "<p>This is a paragraph.</p>\n" +
-                "\n" +
-                "</body>\n" +
+                "<p><font size=\"+1\"><strong>"+fieldlist.getFieldIndex(counter).getName()+"</strong></font><br>\n" +
+                "Leje af grund &emsp; &emsp;kr.   "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent0()+" <br>\n" +
+                "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent1()+"<br>\n" +
+                ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent2()+"<br>\n" +
+                ">> 3 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent3()+"<br>\n" +
+                ">> 4 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent4()+"<br>\n" +
+                ">> hotel &emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent5()+"<br>\n" +
+                "Opgraderingspris &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getUpgradeValue()+"<br>\n" +
+                "Pantværdi &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()/2+"</p> \n" +
+                "</body>\t\n" +
                 "</html>");
-        gui.getFields()[1].setSubText("Pris: 1200 kr.\r\n1\r\n2\r\n3\r\n4\r\n5\r\n6\r\n7\r\n8\r\n9\r\n10\r\n11\r\n12");
-        gui.getFields()[1].setBackGroundColor(new Color(0, 0, 255));
-        ((GUI_Street)gui.getFields()[1]).setHouses(3);
-        ((GUI_Street)gui.getFields()[1]).setHotel(true);
+        ((GUI_Street)gui.getFields()[counter]).setBackGroundColor(new Color(0, 0, 255));
+        //((GUI_Street)gui.getFields()[counter]).setHouses(3);
+        //((GUI_Street)gui.getFields()[counter]).setHotel(true);
+        counter++;
 
-        gui.getFields()[2].setTitle(stringArrayList.get(3));
-        gui.getFields()[2].setSubText("Prøv Lykken");
-
-        gui.getFields()[3].setTitle(stringArrayList.get(4));
-        gui.getFields()[3].setSubText("Pris: 1200 kr.");
-        gui.getFields()[3].setBackGroundColor(new Color(0, 0, 255));
-
-        gui.getFields()[4].setTitle(stringArrayList.get(5));
-        gui.getFields()[4].setSubText("Betal indkomstskat: 10% eller 4000 kr.");
-        gui.getFields()[4].setBackGroundColor(new Color(255, 255, 204));
+        ((GUI_Chance)gui.getFields()[counter]).setTitle(stringArrayList.get(counter+1));
+        ((GUI_Chance)gui.getFields()[counter]).setSubText("Prøv Lykken");
+        counter++;
 
 
-        gui.getFields()[5].setTitle(stringArrayList.get(6));
-        gui.getFields()[5].setSubText("Scanlines");
+        ((GUI_Street)gui.getFields()[counter]).setTitle(stringArrayList.get(counter+1));
+        ((GUI_Street)gui.getFields()[counter]).setSubText("Pris" +((RealEstate) fieldlist.getFieldIndex(counter)).getPrice()+" kr.");
+        ((GUI_Street)gui.getFields()[counter]).setDescription("<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<p><font size=\"+1\"><strong>"+fieldlist.getFieldIndex(counter).getName()+"</strong></font><br>\n" +
+                "Leje af grund &emsp; &emsp;kr.   "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent0()+" <br>\n" +
+                "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent1()+"<br>\n" +
+                ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent2()+"<br>\n" +
+                ">> 3 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent3()+"<br>\n" +
+                ">> 4 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent4()+"<br>\n" +
+                ">> hotel &emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent5()+"<br>\n" +
+                "Opgraderingspris &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getUpgradeValue()+"<br>\n" +
+                "Pantværdi &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()/2+"</p> \n" +
+                "</body>\t\n" +
+                "</html>");
+        ((GUI_Street)gui.getFields()[counter]).setBackGroundColor(new Color(0, 0, 255));
+        counter++;
 
-        gui.getFields()[6].setTitle(stringArrayList.get(7));
-        gui.getFields()[6].setSubText("Pris: 2000 kr.");
-        gui.getFields()[6].setBackGroundColor(new Color(255, 102, 0));
-
-        gui.getFields()[7].setTitle(stringArrayList.get(8));
-        gui.getFields()[7].setSubText("Prøv Lykken");
+        ((GUI_Tax)gui.getFields()[counter]).setTitle(stringArrayList.get(counter+1));
+        ((GUI_Tax)gui.getFields()[counter]).setSubText("Betal indkomstskat: 10% eller 4000 kr.");
+        ((GUI_Tax)gui.getFields()[counter]).setBackGroundColor(new Color(255, 255, 204));
+        counter++;
 
 
-        gui.getFields()[8].setTitle(stringArrayList.get(9));
-        gui.getFields()[8].setSubText("Pris: 2000 kr.");
-        gui.getFields()[8].setBackGroundColor(new Color(255, 102, 0));
+        ((GUI_Shipping)gui.getFields()[counter]).setTitle(stringArrayList.get(counter+1));
+        ((GUI_Shipping)gui.getFields()[counter]).setSubText("Pris" +((Ferry) fieldlist.getFieldIndex(counter)).getPrice()+" kr.");
+        ((GUI_Shipping)gui.getFields()[counter]).setDescription("<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<p><font size=\"+1\"><strong>"+fieldlist.getFieldIndex(counter).getName()+".</strong></font><br>\n" +
+                "Leje &emsp; &emsp; &emsp; &emsp;&emsp;kr.   "+((Ferry) fieldlist.getFieldIndex(counter)).getPrice()/8+" <br>\n" +
+                "2 rederier ejes\t &emsp; >>  "+((Ferry)fieldlist.getFieldIndex(counter)).getPrice()/4+"<br>\n" +
+                "3 rederier ejes\t &emsp; >>  "+((Ferry)fieldlist.getFieldIndex(counter)).getPrice()/2+"<br>\n" +
+                "4 rederier ejes\t &emsp; >>  "+((Ferry)fieldlist.getFieldIndex(counter)).getPrice()+"<br>\n" +
+                "Pantværdi &emsp; kr. "+((Ferry)fieldlist.getFieldIndex(counter)).getPrice()/2+"</p> \n" +
+                "</body>\t\n" +
+                "</html>");
+        counter++;
 
-        gui.getFields()[9].setTitle(stringArrayList.get(10));
-        gui.getFields()[9].setSubText("Pris: 2400 kr.");
-        gui.getFields()[9].setBackGroundColor(new Color(255, 102, 0));
 
-        gui.getFields()[10].setTitle(stringArrayList.get(11));
-        gui.getFields()[10].setSubText("På besøg");
+        ((GUI_Street)gui.getFields()[counter]).setTitle(stringArrayList.get(counter+1));
+        ((GUI_Street)gui.getFields()[counter]).setSubText("Pris: "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()+" kr.");
+        ((GUI_Street)gui.getFields()[counter]).setBackGroundColor(new Color(255, 102, 0));
+        ((GUI_Street)gui.getFields()[counter]).setDescription("<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<p><font size=\"+1\"><strong>"+fieldlist.getFieldIndex(counter).getName()+"</strong></font><br>\n" +
+                "Leje af grund &emsp; &emsp;kr.   "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent0()+" <br>\n" +
+                "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent1()+"<br>\n" +
+                ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent2()+"<br>\n" +
+                ">> 3 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent3()+"<br>\n" +
+                ">> 4 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent4()+"<br>\n" +
+                ">> hotel &emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent5()+"<br>\n" +
+                "Opgraderingspris &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getUpgradeValue()+"<br>\n" +
+                "Pantværdi &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()/2+"</p> \n" +
+                "</body>\t\n" +
+                "</html>");
+        counter++;
 
 
-        gui.getFields()[11].setTitle(stringArrayList.get(12));
-        gui.getFields()[11].setSubText("Pris: 2800 kr.");
-        gui.getFields()[11].setBackGroundColor(new Color(102, 255, 102));
+        ((GUI_Chance)gui.getFields()[counter]).setTitle(stringArrayList.get(counter+1));
+        ((GUI_Chance)gui.getFields()[counter]).setSubText("Prøv Lykken");
+        counter++;
 
-        gui.getFields()[12].setTitle(stringArrayList.get(13));
-        gui.getFields()[12].setSubText("Pris: 3000 kr.");
+        ((GUI_Street)gui.getFields()[counter]).setTitle(stringArrayList.get(counter+1));
+        ((GUI_Street)gui.getFields()[counter]).setSubText("Pris: "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()+" kr.");
+        ((GUI_Street)gui.getFields()[counter]).setDescription("<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<p><font size=\"+1\"><strong>"+fieldlist.getFieldIndex(counter).getName()+"</strong></font><br>\n" +
+                "Leje af grund &emsp; &emsp;kr.   "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent0()+" <br>\n" +
+                "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent1()+"<br>\n" +
+                ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent2()+"<br>\n" +
+                ">> 3 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent3()+"<br>\n" +
+                ">> 4 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent4()+"<br>\n" +
+                ">> hotel &emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent5()+"<br>\n" +
+                "Opgraderingspris &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getUpgradeValue()+"<br>\n" +
+                "Pantværdi &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()/2+"</p> \n" +
+                "</body>\t\n" +
+                "</html>");
+        ((GUI_Street)gui.getFields()[counter]).setBackGroundColor(new Color(255, 102, 0));
+        counter++;
 
-        gui.getFields()[13].setTitle(stringArrayList.get(14));
-        gui.getFields()[13].setSubText("Pris: 2800 kr.");
-        gui.getFields()[13].setBackGroundColor(new Color(102, 255, 102));
 
-        gui.getFields()[14].setTitle(stringArrayList.get(15));
-        gui.getFields()[14].setSubText("Pris: 3200 kr.");
-        gui.getFields()[14].setBackGroundColor(new Color(102, 255, 102));
+        ((GUI_Street)gui.getFields()[counter]).setTitle(stringArrayList.get(counter+1));
+        ((GUI_Street)gui.getFields()[counter]).setSubText("Pris: "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()+" kr.");
+        ((GUI_Street)gui.getFields()[counter]).setDescription("<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<p><font size=\"+1\"><strong>"+fieldlist.getFieldIndex(counter).getName()+"</strong></font><br>\n" +
+                "Leje af grund &emsp; &emsp;kr.   "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent0()+" <br>\n" +
+                "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent1()+"<br>\n" +
+                ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent2()+"<br>\n" +
+                ">> 3 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent3()+"<br>\n" +
+                ">> 4 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent4()+"<br>\n" +
+                ">> hotel &emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent5()+"<br>\n" +
+                "Opgraderingspris &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getUpgradeValue()+"<br>\n" +
+                "Pantværdi &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()/2+"</p> \n" +
+                "</body>\t\n" +
+                "</html>");
+        ((GUI_Street)gui.getFields()[counter]).setBackGroundColor(new Color(255, 102, 0));
+        counter++;
 
-        gui.getFields()[15].setTitle(stringArrayList.get(16));
-        gui.getFields()[15].setSubText("Pris: 4000 kr.");
+        ((GUI_Jail)gui.getFields()[counter]).setTitle(stringArrayList.get(counter+1));
+        ((GUI_Jail)gui.getFields()[counter]).setSubText(fieldlist.getFieldIndex(counter).getName());
+        counter++;
 
-        gui.getFields()[16].setTitle(stringArrayList.get(17));
-        gui.getFields()[16].setSubText("Pris: 3600 kr.");
-        gui.getFields()[16].setBackGroundColor(new Color(153, 153, 153));
 
-        gui.getFields()[17].setTitle(stringArrayList.get(18));
-        gui.getFields()[17].setSubText("Prøv Lykken");
+        ((GUI_Street)gui.getFields()[counter]).setTitle(stringArrayList.get(counter+1));
+        ((GUI_Street)gui.getFields()[counter]).setSubText("Pris: "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()+" kr.");
+        ((GUI_Street)gui.getFields()[counter]).setDescription("<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<p><font size=\"+1\"><strong>"+fieldlist.getFieldIndex(counter).getName()+"</strong></font><br>\n" +
+                "Leje af grund &emsp; &emsp;kr.   "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent0()+" <br>\n" +
+                "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent1()+"<br>\n" +
+                ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent2()+"<br>\n" +
+                ">> 3 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent3()+"<br>\n" +
+                ">> 4 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent4()+"<br>\n" +
+                ">> hotel &emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent5()+"<br>\n" +
+                "Opgraderingspris &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getUpgradeValue()+"<br>\n" +
+                "Pantværdi &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()/2+"</p> \n" +
+                "</body>\t\n" +
+                "</html>");
+        gui.getFields()[counter].setBackGroundColor(new Color(102, 255, 102));
+        counter++;
 
-        gui.getFields()[18].setTitle(stringArrayList.get(19));
-        gui.getFields()[18].setSubText("Pris: 3600 kr.");
-        gui.getFields()[18].setBackGroundColor(new Color(153, 153, 153));
+        ((GUI_Brewery)gui.getFields()[counter]).setTitle(stringArrayList.get(counter+1));
+        ((GUI_Brewery)gui.getFields()[counter]).setSubText("Pris: "+((Brewery) fieldlist.getFieldIndex(counter)).getPrice()+" kr.");
+        ((GUI_Brewery)gui.getFields()[counter]).setDescription("<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<p><font size=\"+1\"><strong> Tuborg Squash.</strong></font>\n" +
+                "<br>Ejes en virksomhed betales 100 gange hvad øjnene viser. <br><br>\n" +
+                "Ejes Tuborg Squash og Coca-Cola, betales 200 gange øjenenes værdi.<br>\n" +
+                "Pantværdi &emsp; kr. 1500<br><br><br></p> \n" +
+                "</body>\t\n" +
+                "</html>");
+        counter++;
 
-        gui.getFields()[19].setTitle(stringArrayList.get(20));
-        gui.getFields()[19].setSubText("Pris: 4000 kr.");
-        gui.getFields()[19].setBackGroundColor(new Color(153, 153, 153));
+        ((GUI_Street)gui.getFields()[counter]).setTitle(stringArrayList.get(counter+1));
+        ((GUI_Street)gui.getFields()[counter]).setSubText("Pris: "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()+" kr.");
+        ((GUI_Street)gui.getFields()[counter]).setDescription("<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<p><font size=\"+1\"><strong>"+fieldlist.getFieldIndex(counter).getName()+"</strong></font><br>\n" +
+                "Leje af grund &emsp; &emsp;kr.   "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent0()+" <br>\n" +
+                "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent1()+"<br>\n" +
+                ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent2()+"<br>\n" +
+                ">> 3 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent3()+"<br>\n" +
+                ">> 4 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent4()+"<br>\n" +
+                ">> hotel &emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent5()+"<br>\n" +
+                "Opgraderingspris &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getUpgradeValue()+"<br>\n" +
+                "Pantværdi &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()/2+"</p> \n" +
+                "</body>\t\n" +
+                "</html>");
+        ((GUI_Street)gui.getFields()[counter]).setBackGroundColor(new Color(102, 255, 102));
+        counter++;
 
-        gui.getFields()[20].setTitle(stringArrayList.get(21));
-        gui.getFields()[20].setSubText("Gratis Parkering");
-        gui.getFields()[20].setBackGroundColor(new Color(255, 255, 204));
+        ((GUI_Street)gui.getFields()[counter]).setTitle(stringArrayList.get(counter+1));
+        ((GUI_Street)gui.getFields()[counter]).setSubText("Pris: "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()+" kr.");
+        ((GUI_Street)gui.getFields()[counter]).setDescription("<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<p><font size=\"+1\"><strong>"+fieldlist.getFieldIndex(counter).getName()+"</strong></font><br>\n" +
+                "Leje af grund &emsp; &emsp;kr.   "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent0()+" <br>\n" +
+                "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent1()+"<br>\n" +
+                ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent2()+"<br>\n" +
+                ">> 3 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent3()+"<br>\n" +
+                ">> 4 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent4()+"<br>\n" +
+                ">> hotel &emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent5()+"<br>\n" +
+                "Opgraderingspris &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getUpgradeValue()+"<br>\n" +
+                "Pantværdi &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()/2+"</p> \n" +
+                "</body>\t\n" +
+                "</html>");
+        ((GUI_Street)gui.getFields()[14]).setBackGroundColor(new Color(102, 255, 102));
+        counter++;
 
-        gui.getFields()[21].setTitle(stringArrayList.get(22));
-        gui.getFields()[21].setSubText("Pris 4400 kr.");
-        gui.getFields()[21].setBackGroundColor(new Color(255, 0, 0));
+        ((GUI_Shipping)gui.getFields()[counter]).setTitle(stringArrayList.get(counter+1));
+        ((GUI_Shipping)gui.getFields()[counter]).setSubText("Pris" +((Ferry) fieldlist.getFieldIndex(counter)).getPrice()+" kr.");
+        ((GUI_Shipping)gui.getFields()[counter]).setDescription("<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<p><font size=\"+1\"><strong>"+fieldlist.getFieldIndex(counter).getName()+".</strong></font><br>\n" +
+                "Leje &emsp; &emsp; &emsp; &emsp;&emsp;kr.   "+((Ferry) fieldlist.getFieldIndex(counter)).getPrice()/8+" <br>\n" +
+                "2 rederier ejes\t &emsp; >>  "+((Ferry)fieldlist.getFieldIndex(counter)).getPrice()/4+"<br>\n" +
+                "3 rederier ejes\t &emsp; >>  "+((Ferry)fieldlist.getFieldIndex(counter)).getPrice()/2+"<br>\n" +
+                "4 rederier ejes\t &emsp; >>  "+((Ferry)fieldlist.getFieldIndex(counter)).getPrice()+"<br>\n" +
+                "Pantværdi &emsp; kr. "+((Ferry)fieldlist.getFieldIndex(counter)).getPrice()/2+"</p> \n" +
+                "</body>\t\n" +
+                "</html>");
+        counter++;
 
-        gui.getFields()[22].setTitle(stringArrayList.get(23));
-        gui.getFields()[22].setSubText("Prøv Lykken");
+        ((GUI_Street)gui.getFields()[counter]).setTitle(stringArrayList.get(counter+1));
+        ((GUI_Street)gui.getFields()[counter]).setSubText("Pris: "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()+" kr.");
+        ((GUI_Street)gui.getFields()[counter]).setDescription("<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<p><font size=\"+1\"><strong>"+fieldlist.getFieldIndex(counter).getName()+"</strong></font><br>\n" +
+                "Leje af grund &emsp; &emsp;kr.   "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent0()+" <br>\n" +
+                "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent1()+"<br>\n" +
+                ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent2()+"<br>\n" +
+                ">> 3 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent3()+"<br>\n" +
+                ">> 4 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent4()+"<br>\n" +
+                ">> hotel &emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent5()+"<br>\n" +
+                "Opgraderingspris &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getUpgradeValue()+"<br>\n" +
+                "Pantværdi &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()/2+"</p> \n" +
+                "</body>\t\n" +
+                "</html>");
+        ((GUI_Street)gui.getFields()[counter]).setBackGroundColor(new Color(153, 153, 153));
+        counter++;
 
-        gui.getFields()[23].setTitle(stringArrayList.get(24));
-        gui.getFields()[23].setSubText("Pris: 4400 kr.");
-        gui.getFields()[23].setBackGroundColor(new Color(255, 0, 0));
+        ((GUI_Chance)gui.getFields()[counter]).setTitle(stringArrayList.get(counter+1));
+        ((GUI_Chance)gui.getFields()[counter]).setSubText("Prøv Lykken");
+        counter++;
 
-        gui.getFields()[24].setTitle(stringArrayList.get(25));
-        gui.getFields()[24].setSubText("Pris: 4800 kr.");
-        gui.getFields()[24].setBackGroundColor(new Color(255, 0, 0));
+        ((GUI_Street)gui.getFields()[counter]).setTitle(stringArrayList.get(counter+1));
+        ((GUI_Street)gui.getFields()[counter]).setSubText("Pris: "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()+" kr.");
+        ((GUI_Street)gui.getFields()[counter]).setDescription("<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<p><font size=\"+1\"><strong>"+fieldlist.getFieldIndex(counter).getName()+"</strong></font><br>\n" +
+                "Leje af grund &emsp; &emsp;kr.   "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent0()+" <br>\n" +
+                "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent1()+"<br>\n" +
+                ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent2()+"<br>\n" +
+                ">> 3 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent3()+"<br>\n" +
+                ">> 4 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent4()+"<br>\n" +
+                ">> hotel &emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent5()+"<br>\n" +
+                "Opgraderingspris &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getUpgradeValue()+"<br>\n" +
+                "Pantværdi &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()/2+"</p> \n" +
+                "</body>\t\n" +
+                "</html>");
+        ((GUI_Street)gui.getFields()[18]).setBackGroundColor(new Color(153, 153, 153));
+        counter++;
 
-        gui.getFields()[25].setTitle(stringArrayList.get(26));
-        gui.getFields()[25].setSubText("Pris: 4000 kr.");
+        ((GUI_Street)gui.getFields()[counter]).setTitle(stringArrayList.get(counter+1));
+        ((GUI_Street)gui.getFields()[counter]).setSubText("Pris: "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()+" kr.");
+        ((GUI_Street)gui.getFields()[counter]).setDescription("<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<p><font size=\"+1\"><strong>"+fieldlist.getFieldIndex(counter).getName()+"</strong></font><br>\n" +
+                "Leje af grund &emsp; &emsp;kr.   "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent0()+" <br>\n" +
+                "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent1()+"<br>\n" +
+                ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent2()+"<br>\n" +
+                ">> 3 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent3()+"<br>\n" +
+                ">> 4 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent4()+"<br>\n" +
+                ">> hotel &emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent5()+"<br>\n" +
+                "Opgraderingspris &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getUpgradeValue()+"<br>\n" +
+                "Pantværdi &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()/2+"</p> \n" +
+                "</body>\t\n" +
+                "</html>");
+        ((GUI_Street)gui.getFields()[counter]).setBackGroundColor(new Color(153, 153, 153));
+        counter++;
 
-        gui.getFields()[26].setTitle(stringArrayList.get(27));
-        gui.getFields()[26].setSubText("Pris: 5200 kr.");
-        gui.getFields()[26].setBackGroundColor(new Color(255, 255, 255));
+        ((GUI_Refuge)gui.getFields()[counter]).setTitle(stringArrayList.get(counter+1));
+        ((GUI_Refuge)gui.getFields()[counter]).setSubText(((Neutral)fieldlist.getFieldIndex(counter)).getName());
+        ((GUI_Refuge)gui.getFields()[counter]).setBackGroundColor(new Color(255, 255, 204));
+        counter++;
 
-        gui.getFields()[27].setTitle(stringArrayList.get(28));
-        gui.getFields()[27].setSubText("Pris: 5200 kr.");
-        gui.getFields()[27].setBackGroundColor(new Color(255, 255, 255));
+        ((GUI_Street)gui.getFields()[counter]).setTitle(stringArrayList.get(counter+1));
+        ((GUI_Street)gui.getFields()[counter]).setSubText("Pris: "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()+" kr.");
+        ((GUI_Street)gui.getFields()[counter]).setDescription("<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<p><font size=\"+1\"><strong>"+fieldlist.getFieldIndex(counter).getName()+"</strong></font><br>\n" +
+                "Leje af grund &emsp; &emsp;kr.   "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent0()+" <br>\n" +
+                "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent1()+"<br>\n" +
+                ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent2()+"<br>\n" +
+                ">> 3 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent3()+"<br>\n" +
+                ">> 4 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent4()+"<br>\n" +
+                ">> hotel &emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent5()+"<br>\n" +
+                "Opgraderingspris &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getUpgradeValue()+"<br>\n" +
+                "Pantværdi &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()/2+"</p> \n" +
+                "</body>\t\n" +
+                "</html>");
+        ((GUI_Street)gui.getFields()[counter]).setBackGroundColor(new Color(255, 0, 0));
+        counter++;
 
-        gui.getFields()[28].setTitle(stringArrayList.get(29));
-        gui.getFields()[28].setSubText("Pris: 3000 kr.");
+        ((GUI_Chance)gui.getFields()[counter]).setTitle(stringArrayList.get(23));
+        ((GUI_Chance)gui.getFields()[counter]).setSubText("Prøv Lykken");
+        counter++;
 
-        gui.getFields()[29].setTitle(stringArrayList.get(30));
-        gui.getFields()[29].setSubText("Pris: 5600 kr.");
-        gui.getFields()[29].setBackGroundColor(new Color(255, 255, 255));
+        ((GUI_Street)gui.getFields()[counter]).setTitle(stringArrayList.get(counter+1));
+        ((GUI_Street)gui.getFields()[counter]).setSubText("Pris: "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()+" kr.");
+        ((GUI_Street)gui.getFields()[counter]).setDescription("<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<p><font size=\"+1\"><strong>"+fieldlist.getFieldIndex(counter).getName()+"</strong></font><br>\n" +
+                "Leje af grund &emsp; &emsp;kr.   "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent0()+" <br>\n" +
+                "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent1()+"<br>\n" +
+                ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent2()+"<br>\n" +
+                ">> 3 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent3()+"<br>\n" +
+                ">> 4 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent4()+"<br>\n" +
+                ">> hotel &emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent5()+"<br>\n" +
+                "Opgraderingspris &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getUpgradeValue()+"<br>\n" +
+                "Pantværdi &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()/2+"</p> \n" +
+                "</body>\t\n" +
+                "</html>");
+        ((GUI_Street)gui.getFields()[counter]).setBackGroundColor(new Color(255, 0, 0));
+        counter++;
 
-        gui.getFields()[30].setTitle(stringArrayList.get(31));
-        gui.getFields()[30].setSubText("De fængsles");
+        ((GUI_Street)gui.getFields()[counter]).setTitle(stringArrayList.get(counter+1));
+        ((GUI_Street)gui.getFields()[counter]).setSubText("Pris: "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()+" kr.");
+        ((GUI_Street)gui.getFields()[counter]).setDescription("<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<p><font size=\"+1\"><strong>"+fieldlist.getFieldIndex(counter).getName()+"</strong></font><br>\n" +
+                "Leje af grund &emsp; &emsp;kr.   "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent0()+" <br>\n" +
+                "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent1()+"<br>\n" +
+                ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent2()+"<br>\n" +
+                ">> 3 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent3()+"<br>\n" +
+                ">> 4 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent4()+"<br>\n" +
+                ">> hotel &emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent5()+"<br>\n" +
+                "Opgraderingspris &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getUpgradeValue()+"<br>\n" +
+                "Pantværdi &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()/2+"</p> \n" +
+                "</body>\t\n" +
+                "</html>");
+        ((GUI_Street)gui.getFields()[counter]).setBackGroundColor(new Color(255, 0, 0));
+        counter++;
 
-        gui.getFields()[31].setTitle(stringArrayList.get(32));
-        gui.getFields()[31].setSubText("Pris: 6000 kr.");
-        gui.getFields()[31].setBackGroundColor(new Color(255, 255, 0));
+        ((GUI_Shipping)gui.getFields()[counter]).setTitle(stringArrayList.get(counter+1));
+        ((GUI_Shipping)gui.getFields()[counter]).setSubText("Pris" +((Ferry) fieldlist.getFieldIndex(counter)).getPrice()+" kr.");
+        ((GUI_Shipping)gui.getFields()[counter]).setDescription("<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<p><font size=\"+1\"><strong>"+fieldlist.getFieldIndex(counter).getName()+".</strong></font><br>\n" +
+                "Leje &emsp; &emsp; &emsp; &emsp;&emsp;kr.   "+((Ferry) fieldlist.getFieldIndex(counter)).getPrice()/8+" <br>\n" +
+                "2 rederier ejes\t &emsp; >>  "+((Ferry)fieldlist.getFieldIndex(counter)).getPrice()/4+"<br>\n" +
+                "3 rederier ejes\t &emsp; >>  "+((Ferry)fieldlist.getFieldIndex(counter)).getPrice()/2+"<br>\n" +
+                "4 rederier ejes\t &emsp; >>  "+((Ferry)fieldlist.getFieldIndex(counter)).getPrice()+"<br>\n" +
+                "Pantværdi &emsp; kr. "+((Ferry)fieldlist.getFieldIndex(counter)).getPrice()/2+"</p> \n" +
+                "</body>\t\n" +
+                "</html>");
+        counter++;
 
-        gui.getFields()[32].setTitle(stringArrayList.get(33));
-        gui.getFields()[32].setSubText("Pris: 6000 kr.");
-        gui.getFields()[32].setBackGroundColor(new Color(255, 255, 0));
+        ((GUI_Street)gui.getFields()[counter]).setTitle(stringArrayList.get(counter+1));
+        ((GUI_Street)gui.getFields()[counter]).setSubText("Pris: "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()+" kr.");
+        ((GUI_Street)gui.getFields()[counter]).setDescription("<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<p><font size=\"+1\"><strong>"+fieldlist.getFieldIndex(counter).getName()+"</strong></font><br>\n" +
+                "Leje af grund &emsp; &emsp;kr.   "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent0()+" <br>\n" +
+                "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent1()+"<br>\n" +
+                ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent2()+"<br>\n" +
+                ">> 3 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent3()+"<br>\n" +
+                ">> 4 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent4()+"<br>\n" +
+                ">> hotel &emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent5()+"<br>\n" +
+                "Opgraderingspris &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getUpgradeValue()+"<br>\n" +
+                "Pantværdi &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()/2+"</p> \n" +
+                "</body>\t\n" +
+                "</html>");
+        ((GUI_Street)gui.getFields()[counter]).setBackGroundColor(new Color(255, 255, 255));
+        counter++;
 
-        gui.getFields()[33].setTitle(stringArrayList.get(34));
-        gui.getFields()[33].setSubText("Prøv Lykken");
+        ((GUI_Street)gui.getFields()[counter]).setTitle(stringArrayList.get(counter+1));
+        ((GUI_Street)gui.getFields()[counter]).setSubText("Pris: "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()+" kr.");
+        ((GUI_Street)gui.getFields()[counter]).setDescription("<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<p><font size=\"+1\"><strong>"+fieldlist.getFieldIndex(counter).getName()+"</strong></font><br>\n" +
+                "Leje af grund &emsp; &emsp;kr.   "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent0()+" <br>\n" +
+                "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent1()+"<br>\n" +
+                ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent2()+"<br>\n" +
+                ">> 3 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent3()+"<br>\n" +
+                ">> 4 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent4()+"<br>\n" +
+                ">> hotel &emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent5()+"<br>\n" +
+                "Opgraderingspris &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getUpgradeValue()+"<br>\n" +
+                "Pantværdi &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()/2+"</p> \n" +
+                "</body>\t\n" +
+                "</html>");
+        ((GUI_Street)gui.getFields()[counter]).setBackGroundColor(new Color(255, 255, 255));
+        counter++;
 
-        gui.getFields()[34].setTitle(stringArrayList.get(35));
-        gui.getFields()[34].setSubText("Pris: 6400 kr.");
-        gui.getFields()[34].setBackGroundColor(new Color(255, 255, 0));
+        ((GUI_Brewery)gui.getFields()[counter]).setTitle(stringArrayList.get(counter+1));
+        ((GUI_Brewery)gui.getFields()[counter]).setSubText("Pris: "+((Brewery) fieldlist.getFieldIndex(counter)).getPrice()+" kr.");
+        ((GUI_Brewery)gui.getFields()[counter]).setDescription("<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<p><font size=\"+1\"><strong> Tuborg Squash.</strong></font>\n" +
+                "<br>Ejes en virksomhed betales 100 gange hvad øjnene viser. <br><br>\n" +
+                "Ejes Tuborg Squash og Coca-Cola, betales 200 gange øjenenes værdi.<br>\n" +
+                "Pantværdi &emsp; kr. 1500<br><br><br></p> \n" +
+                "</body>\t\n" +
+                "</html>");
+        counter++;
 
-        gui.getFields()[35].setTitle(stringArrayList.get(36));
-        gui.getFields()[35].setSubText("Pris: 4000 kr.");
+        ((GUI_Street)gui.getFields()[counter]).setTitle(stringArrayList.get(counter+1));
+        ((GUI_Street)gui.getFields()[counter]).setSubText("Pris: "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()+" kr.");
+        ((GUI_Street)gui.getFields()[counter]).setDescription("<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<p><font size=\"+1\"><strong>"+fieldlist.getFieldIndex(counter).getName()+"</strong></font><br>\n" +
+                "Leje af grund &emsp; &emsp;kr.   "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent0()+" <br>\n" +
+                "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent1()+"<br>\n" +
+                ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent2()+"<br>\n" +
+                ">> 3 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent3()+"<br>\n" +
+                ">> 4 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent4()+"<br>\n" +
+                ">> hotel &emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent5()+"<br>\n" +
+                "Opgraderingspris &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getUpgradeValue()+"<br>\n" +
+                "Pantværdi &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()/2+"</p> \n" +
+                "</body>\t\n" +
+                "</html>");
+        ((GUI_Street)gui.getFields()[counter]).setBackGroundColor(new Color(255, 255, 255));
+        counter++;
 
-        gui.getFields()[36].setTitle(stringArrayList.get(37));
-        gui.getFields()[36].setSubText("Prøv Lykken");
+        ((GUI_Jail)gui.getFields()[counter]).setTitle(stringArrayList.get(counter+1));
+        ((GUI_Jail)gui.getFields()[counter]).setSubText(((GoJail)fieldlist.getFieldIndex(counter)).getName());
+        counter++;
 
-        gui.getFields()[37].setTitle(stringArrayList.get(38));
-        gui.getFields()[37].setSubText("Pris: 7000 kr.");
-        gui.getFields()[37].setBackGroundColor(new Color(102, 0, 153));
+        ((GUI_Street)gui.getFields()[counter]).setTitle(stringArrayList.get(counter+1));
+        ((GUI_Street)gui.getFields()[counter]).setSubText("Pris: "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()+" kr.");
+        ((GUI_Street)gui.getFields()[counter]).setDescription("<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<p><font size=\"+1\"><strong>"+fieldlist.getFieldIndex(counter).getName()+"</strong></font><br>\n" +
+                "Leje af grund &emsp; &emsp;kr.   "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent0()+" <br>\n" +
+                "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent1()+"<br>\n" +
+                ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent2()+"<br>\n" +
+                ">> 3 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent3()+"<br>\n" +
+                ">> 4 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent4()+"<br>\n" +
+                ">> hotel &emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent5()+"<br>\n" +
+                "Opgraderingspris &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getUpgradeValue()+"<br>\n" +
+                "Pantværdi &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()/2+"</p> \n" +
+                "</body>\t\n" +
+                "</html>");
+        ((GUI_Street)gui.getFields()[counter]).setBackGroundColor(new Color(255, 255, 0));
+        counter++;
 
-        gui.getFields()[38].setTitle(stringArrayList.get(39));
-        gui.getFields()[38].setSubText("Ekstra ordinær statsskat: Betal 2000 kr.");
-        gui.getFields()[38].setBackGroundColor(new Color(255, 255, 204));
+        ((GUI_Street)gui.getFields()[counter]).setTitle(stringArrayList.get(counter+1));
+        ((GUI_Street)gui.getFields()[counter]).setSubText("Pris: "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()+" kr.");
+        ((GUI_Street)gui.getFields()[counter]).setDescription("<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<p><font size=\"+1\"><strong>"+fieldlist.getFieldIndex(counter).getName()+"</strong></font><br>\n" +
+                "Leje af grund &emsp; &emsp;kr.   "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent0()+" <br>\n" +
+                "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent1()+"<br>\n" +
+                ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent2()+"<br>\n" +
+                ">> 3 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent3()+"<br>\n" +
+                ">> 4 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent4()+"<br>\n" +
+                ">> hotel &emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent5()+"<br>\n" +
+                "Opgraderingspris &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getUpgradeValue()+"<br>\n" +
+                "Pantværdi &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()/2+"</p> \n" +
+                "</body>\t\n" +
+                "</html>");
+        ((GUI_Street)gui.getFields()[counter]).setBackGroundColor(new Color(255, 255, 0));
+        counter++;
 
-        gui.getFields()[39].setTitle(stringArrayList.get(40));
-        gui.getFields()[39].setSubText("Pris: 8000 kr.");
-        gui.getFields()[39].setBackGroundColor(new Color(102, 0, 153));
+        ((GUI_Chance)gui.getFields()[counter]).setTitle(stringArrayList.get(counter+1));
+        ((GUI_Chance)gui.getFields()[counter]).setSubText(fieldlist.getFieldIndex(counter).getName());
+        counter++;
+
+        ((GUI_Street)gui.getFields()[counter]).setTitle(stringArrayList.get(counter+1));
+        ((GUI_Street)gui.getFields()[counter]).setSubText("Pris: "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()+" kr.");
+        ((GUI_Street)gui.getFields()[counter]).setDescription("<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<p><font size=\"+1\"><strong>"+fieldlist.getFieldIndex(counter).getName()+"</strong></font><br>\n" +
+                "Leje af grund &emsp; &emsp;kr.   "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent0()+" <br>\n" +
+                "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent1()+"<br>\n" +
+                ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent2()+"<br>\n" +
+                ">> 3 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent3()+"<br>\n" +
+                ">> 4 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent4()+"<br>\n" +
+                ">> hotel &emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent5()+"<br>\n" +
+                "Opgraderingspris &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getUpgradeValue()+"<br>\n" +
+                "Pantværdi &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()/2+"</p> \n" +
+                "</body>\t\n" +
+                "</html>");
+        ((GUI_Street)gui.getFields()[counter]).setBackGroundColor(new Color(255, 255, 0));
+        counter++;
+
+        ((GUI_Shipping)gui.getFields()[counter]).setTitle(stringArrayList.get(counter+1));
+        ((GUI_Shipping)gui.getFields()[counter]).setSubText("Pris" +((Ferry) fieldlist.getFieldIndex(counter)).getPrice()+" kr.");
+        ((GUI_Shipping)gui.getFields()[counter]).setDescription("<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<p><font size=\"+1\"><strong>"+fieldlist.getFieldIndex(counter).getName()+".</strong></font><br>\n" +
+                "Leje &emsp; &emsp; &emsp; &emsp;&emsp;kr.   "+((Ferry) fieldlist.getFieldIndex(counter)).getPrice()/8+" <br>\n" +
+                "2 rederier ejes\t &emsp; >>  "+((Ferry)fieldlist.getFieldIndex(counter)).getPrice()/4+"<br>\n" +
+                "3 rederier ejes\t &emsp; >>  "+((Ferry)fieldlist.getFieldIndex(counter)).getPrice()/2+"<br>\n" +
+                "4 rederier ejes\t &emsp; >>  "+((Ferry)fieldlist.getFieldIndex(counter)).getPrice()+"<br>\n" +
+                "Pantværdi &emsp; kr. "+((Ferry)fieldlist.getFieldIndex(counter)).getPrice()/2+"</p> \n" +
+                "</body>\t\n" +
+                "</html>");
+        counter++;
+
+        ((GUI_Chance)gui.getFields()[counter]).setTitle(stringArrayList.get(counter+1));
+        ((GUI_Chance)gui.getFields()[counter]).setSubText(fieldlist.getFieldIndex(counter).getName());
+        counter++;
+
+        ((GUI_Street)gui.getFields()[counter]).setTitle(stringArrayList.get(counter+1));
+        ((GUI_Street)gui.getFields()[counter]).setSubText("Pris: "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()+" kr.");
+        ((GUI_Street)gui.getFields()[counter]).setDescription("<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<p><font size=\"+1\"><strong>"+fieldlist.getFieldIndex(counter).getName()+"</strong></font><br>\n" +
+                "Leje af grund &emsp; &emsp;kr.   "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent0()+" <br>\n" +
+                "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent1()+"<br>\n" +
+                ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent2()+"<br>\n" +
+                ">> 3 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent3()+"<br>\n" +
+                ">> 4 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent4()+"<br>\n" +
+                ">> hotel &emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent5()+"<br>\n" +
+                "Opgraderingspris &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getUpgradeValue()+"<br>\n" +
+                "Pantværdi &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()/2+"</p> \n" +
+                "</body>\t\n" +
+                "</html>");
+        ((GUI_Street)gui.getFields()[counter]).setBackGroundColor(new Color(102, 0, 153));
+        counter++;
+
+        ((GUI_Tax)gui.getFields()[counter]).setTitle(stringArrayList.get(counter+1));
+        ((GUI_Tax)gui.getFields()[counter]).setSubText("Betal 2000 kr.");
+        ((GUI_Tax)gui.getFields()[counter]).setBackGroundColor(new Color(255, 255, 204));
+        counter++;
+
+        ((GUI_Street)gui.getFields()[counter]).setTitle(stringArrayList.get(counter+1));
+        ((GUI_Street)gui.getFields()[counter]).setSubText("Pris: "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()+" kr.");
+        ((GUI_Street)gui.getFields()[counter]).setDescription("<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<p><font size=\"+1\"><strong>"+fieldlist.getFieldIndex(counter).getName()+"</strong></font><br>\n" +
+                "Leje af grund &emsp; &emsp;kr.   "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent0()+" <br>\n" +
+                "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent1()+"<br>\n" +
+                ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent2()+"<br>\n" +
+                ">> 3 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent3()+"<br>\n" +
+                ">> 4 hus\t&emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent4()+"<br>\n" +
+                ">> hotel &emsp;\t&emsp; &emsp; >> "+((RealEstate)fieldlist.getFieldIndex(counter)).getRent5()+"<br>\n" +
+                "Opgraderingspris &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getUpgradeValue()+"<br>\n" +
+                "Pantværdi &emsp; kr. "+((RealEstate)fieldlist.getFieldIndex(counter)).getPrice()/2+"</p> \n" +
+                "</body>\t\n" +
+                "</html>");
+        ((GUI_Street)gui.getFields()[counter]).setBackGroundColor(new Color(102, 0, 153));
+        counter++;
 
 
     }
