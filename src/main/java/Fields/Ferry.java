@@ -7,8 +7,8 @@ public class Ferry extends Property {
         super.buyProperty(player);
     }
 
-    public void mortgageEstimation(Player player, int mortgagePrice) {
-        super.mortgageProperty(player, mortgagePrice);
+    public void mortgageEstimation(Player player) {
+        super.mortgageProperty(player);
     }
 
     public void rent(Player player, FieldList fieldList) {
@@ -50,8 +50,8 @@ public class Ferry extends Property {
             player.getAccount().subtractionAccount(2000);
             super.getPlayer().getAccount().additionAccount(2000);
         } else if (f == 4) {
-            player.getAccount().subtractionAccount(2000);
-            super.getPlayer().getAccount().additionAccount(2000);
+            player.getAccount().subtractionAccount(4000);
+            super.getPlayer().getAccount().additionAccount(4000);
         } else {
             System.out.println("An error has occured.");
         }

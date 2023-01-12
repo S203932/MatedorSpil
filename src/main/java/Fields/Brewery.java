@@ -9,8 +9,8 @@ public class Brewery extends Property {
         super.buyProperty(player);
     }
 
-    public void mortgageEstimation(Player player, int mortgagePrice) {
-        super.mortgageProperty(player, mortgagePrice);
+    public void mortgageEstimation(Player player) {
+        super.mortgageProperty(player);
     }
 
     public int[] dieTotal(DiceCup dice) {

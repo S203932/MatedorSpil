@@ -1,5 +1,7 @@
 package Fields;
 // Class is written by Daniel Stensen s211449 and Fayyad Mahmoud S224266
+import SupportClasses.DiceCup;
+import SupportClasses.Die;
 import SupportClasses.Player;
 
 public class GoJail extends Field {
@@ -9,9 +11,9 @@ public class GoJail extends Field {
 
     // Position for active field for sending player to jail
     public GoJail() {
-        setPosition(31);
+        setPosition(30);
         setName("De fængsles");
-        setMoveTo(11);
+        setMoveTo(10);
     }
 
     public int getPosition() {
@@ -51,9 +53,21 @@ public class GoJail extends Field {
                 player.setJail(0);
             }
 
-            //Transfers amount from player account for exiting jail
-            player.getAccount().subtractionAccount(1000);
+        }
 
+    }
+
+    public void PayOutOfJail(Player player) {
+        if (player.getJail() == 1) {
+            player.getAccount().subtractionAccount(1000);
         }
     }
-}
+        public void HitOutOfJail(Player player, DiceCup dice){
+            int[] dieValues = new int[2];
+            dieValues[0] = dice.getIndexDie(0);
+            dieValues[1] = dice.getIndexDie(1);
+            if (player.getJail() == 1 && dieValues[0]==dieValues[1]) {
+                        player.setJail(0);
+                    }
+            }
+    }

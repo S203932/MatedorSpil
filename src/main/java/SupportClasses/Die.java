@@ -19,4 +19,8 @@ public class Die {
     public int get() {
         return face;
     }
+
+    public void setValue(int setDieValue){
+        face = setDieValue;
+    }
 }

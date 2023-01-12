@@ -39,4 +39,7 @@ public class DiceCup {
         return sum;
     }
 
+    public void setDice(int index, int setDieValue){
+        this.dice[index].setValue(setDieValue);
+    }
 }

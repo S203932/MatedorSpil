@@ -18,7 +18,7 @@ public class Player {
     public Player() {
         setPlayerName("Player one");
         startAccount();
-        setPosition(-1);
+        setPosition(0);
         instantiateProperty();
         setJail(0);
         setFreejail(0);
@@ -112,14 +112,20 @@ public class Player {
         String string = "";
         int counter = 0;
         if(property[0] == null){
-            string = string + name + " has no properties";
+            string = "De ejer ingen grunde";
         }else{
             while(property[counter] != null){
-                string = string + property[counter].getName() +"\n";
+                int i=1;
+                string = string + property[counter].getName() + " - position " + property[counter].getPosition() + " på brættet" +"\n";
                 counter++;
             }
         }
         return string;
+    }
+
+    public String getPropertyName(int i){
+        String PropertyName=property[i].getName();
+        return PropertyName;
     }
 
     public String toString(){

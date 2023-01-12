@@ -127,18 +127,18 @@ public class ChanceCards {
         switch (type){
 
             case 1:
-                gui.showMessage(description);
+                gui.displayChanceCard(description);
                 player.getAccount().additionAccount(transaction);
                 break;
 
             case 2:
-                gui.showMessage(description);
+                gui.displayChanceCard(description);
                 player.setPosition(moveTo);
                 gui_player.getCar().setPosition(fields[moveTo]);
                 break;
 
             case 3:
-                gui.showMessage(description);
+                gui.displayChanceCard(description);
                 player.getAccount().additionAccount(Participants.length*transaction);
                 for (int i = 0; i < Participants.length; i++) {
                     Participants[i].getAccount().subtractionAccount(transaction);
@@ -146,13 +146,13 @@ public class ChanceCards {
                 break;
 
             case 4:
-                gui.showMessage(description);
+                gui.displayChanceCard(description);
                 player.setPosition(player.getPosition()+Offset);
                 gui_player.getCar().setPosition(fields[moveTo]);
                 break;
 
             case 5:
-                gui.showMessage(description);
+                gui.displayChanceCard(description);
                 if (player.getPosition() == 17 || player.getPosition() == 22)
                 {
                     player.setPosition(25);
@@ -173,7 +173,7 @@ public class ChanceCards {
                 break;
 
             case 6:
-                gui.showMessage(description);
+                gui.displayChanceCard(description);
                 if (player.getPosition() == 17 || player.getPosition() == 22)
                 {
                     player.setPosition(25);
@@ -199,11 +199,11 @@ public class ChanceCards {
                 break;
 
             case 7:
-                gui.showMessage(description);
+                gui.displayChanceCard(description);
                 player.setFreejail(1);
 
             case 8:
-                gui.showMessage(description);
+                gui.displayChanceCard(description);
                 int house = 0;
                 int hotel = 0;
                 int temp = 0;
@@ -218,6 +218,28 @@ public class ChanceCards {
                     }
                 }
                 player.getAccount().subtractionAccount(houserate*house+hotelrate*hotel);
+
+            case 9:
+                gui.displayChanceCard(description);
+
+                int playertotal = 0;
+                int tomp = 0;
+                for (int i = 0; i < player.getProperty().length; i++) {
+                    if (player.getProperty()[i].getClass().equals(RealEstate.class)){
+                        tomp = ((RealEstate)player.getProperty()[i]).getUpgrade();
+                        playertotal += tomp*((RealEstate) player.getProperty()[i]).getUpgradeValue();
+                        playertotal += player.getProperty()[i].getPrice();
+                    }
+                }
+                playertotal += player.getAccount().getAmount();
+                if (playertotal <= 15000) {
+                    player.getAccount().additionAccount(40000);
+                    gui.showMessage("De modtager Matador legattet grundet de har mindre 15 tusind kr. til deres navn.");
+                }
+                else {
+                    gui.showMessage("De modtager IKKE Matador legattet grundet de har mere end 15 tusind kr. til deres navn.");
+                }
+
             /*
             case 1:
                 String chosenButton = gui.getUserButtonPressed(

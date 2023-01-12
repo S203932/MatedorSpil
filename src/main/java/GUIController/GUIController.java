@@ -13,32 +13,42 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class GUIController {
-    GUI_Field[] fields = {
-            new GUI_Start(), new GUI_Street(), new GUI_Chance(), new GUI_Street(), new GUI_Tax(),
-
-            new GUI_Shipping(), new GUI_Street(), new GUI_Chance(), new GUI_Street(), new GUI_Street(),
-
-            new GUI_Jail(), new GUI_Street(), new GUI_Brewery(), new GUI_Street(), new GUI_Street(),
-
-            new GUI_Shipping(), new GUI_Street(), new GUI_Chance(), new GUI_Street(), new GUI_Street(),
-
-            new GUI_Refuge(), new GUI_Street(), new GUI_Chance(), new GUI_Street(), new GUI_Street(),
-
-            new GUI_Shipping(), new GUI_Street(), new GUI_Street(), new GUI_Brewery(), new GUI_Street(),
-
-            new GUI_Jail(), new GUI_Street(), new GUI_Street(), new GUI_Chance(), new GUI_Street(),
-
-            new GUI_Shipping(), new GUI_Chance(), new GUI_Street(), new GUI_Tax(), new GUI_Street()
-    };
+    GUI_Field[] fields = setupGUIFields();
     private GUI gui = new GUI(fields);
     private DiceCup dice = new DiceCup(2);
     private GUI_Car car = new GUI_Car();
     private Player[] player;
 
+    public GUI_Field[] setupGUIFields() {
+        GUI_Field[] field = {
+                new GUI_Start(), new GUI_Street(), new GUI_Chance(), new GUI_Street(), new GUI_Tax(),
 
+                new GUI_Shipping(), new GUI_Street(), new GUI_Chance(), new GUI_Street(), new GUI_Street(),
+
+                new GUI_Jail(), new GUI_Street(), new GUI_Brewery(), new GUI_Street(), new GUI_Street(),
+
+                new GUI_Shipping(), new GUI_Street(), new GUI_Chance(), new GUI_Street(), new GUI_Street(),
+
+                new GUI_Refuge(), new GUI_Street(), new GUI_Chance(), new GUI_Street(), new GUI_Street(),
+
+                new GUI_Shipping(), new GUI_Street(), new GUI_Street(), new GUI_Brewery(), new GUI_Street(),
+
+                new GUI_Jail(), new GUI_Street(), new GUI_Street(), new GUI_Chance(), new GUI_Street(),
+
+                new GUI_Shipping(), new GUI_Chance(), new GUI_Street(), new GUI_Tax(), new GUI_Street()
+        };
+        return field;
+    }
     //
     public GUI_Player[] setupPlayers(Player[] player) {
         GUI_Player[] GUI_player = new GUI_Player[player.length];
+        GUI_Car tractor = new GUI_Car(Color.black, Color.white, GUI_Car.Type.TRACTOR, GUI_Car.Pattern.CHECKERED);
+        GUI_Car racecar = new GUI_Car(Color.red, Color.black, GUI_Car.Type.RACECAR, GUI_Car.Pattern.HORIZONTAL_GRADIANT);
+        GUI_Car ufo = new GUI_Car(Color.WHITE, Color.gray, GUI_Car.Type.UFO, GUI_Car.Pattern.DIAGONAL_DUAL_COLOR);
+        GUI_Car car = new GUI_Car(Color.MAGENTA, Color.yellow, GUI_Car.Type.CAR, GUI_Car.Pattern.FILL);
+        GUI_Car tractor1 = new GUI_Car(Color.ORANGE, Color.BLUE, GUI_Car.Type.TRACTOR, GUI_Car.Pattern.DIAGONAL_DUAL_COLOR);
+        GUI_Car ufo1 = new GUI_Car(Color.GREEN, Color.RED, GUI_Car.Type.UFO, GUI_Car.Pattern.DOTTED);
+        GUI_Car[] vehicles = new GUI_Car[]{tractor, racecar,ufo,car,tractor1,ufo1};
         if ((player.length) == 3) {
             String[] nameArray = new String[3];
             for (int i = 0; i < player.length; i++) {
@@ -55,7 +65,7 @@ public class GUIController {
                 nameArray[i] = playerName;
                 player[i].setPlayerName(playerName);
                 player[i].getAccount().setAccount(30000);
-                GUI_player[i] = new GUI_Player(player[i].getPlayerName(), 30000);
+                GUI_player[i] = new GUI_Player(player[i].getPlayerName(), 30000,vehicles[i]);
                 gui.addPlayer(GUI_player[i]);
                 if (repeat == 1) {
                     i = i - 1;
@@ -71,13 +81,13 @@ public class GUIController {
                 for (int j = 0; j < nameArray.length; j++) {
                     if (playerName.equalsIgnoreCase(nameArray[j])) {
                         repeat = 1;
-                        System.out.println("Navnet er optaget. Indtast nyt navn");
+                        System.out.println("Navnet er  optaget. Indtast nyt navn");
                     }
                 }
                 nameArray[i] = playerName;
                 player[i].setPlayerName(playerName);
                 player[i].getAccount().setAccount(30000);
-                GUI_player[i] = new GUI_Player(player[i].getPlayerName(), 30000);
+                GUI_player[i] = new GUI_Player(player[i].getPlayerName(), 30000, vehicles[i]);
                 gui.addPlayer(GUI_player[i]);
                 if (repeat == 1) {
                     i = i - 1;
@@ -99,7 +109,7 @@ public class GUIController {
                 nameArray[i] = playerName;
                 player[i].setPlayerName(playerName);
                 player[i].getAccount().setAccount(30000);
-                GUI_player[i] = new GUI_Player(player[i].getPlayerName(), 30000);
+                GUI_player[i] = new GUI_Player(player[i].getPlayerName(), 30000, vehicles[i]);
                 gui.addPlayer(GUI_player[i]);
                 if (repeat == 1) {
                     i = i - 1;
@@ -121,7 +131,7 @@ public class GUIController {
                 nameArray[i] = playerName;
                 player[i].setPlayerName(playerName);
                 player[i].getAccount().setAccount(30000);
-                GUI_player[i] = new GUI_Player(player[i].getPlayerName(), 30000);
+                GUI_player[i] = new GUI_Player(player[i].getPlayerName(), 30000, vehicles[i]);
                 gui.addPlayer(GUI_player[i]);
                 if (repeat == 1) {
                     i = i - 1;
@@ -132,9 +142,9 @@ public class GUIController {
     }
 
     public void takeTurn(Player player, GUI gui, GUI_Player gui_player, FieldList fieldList, GUI_Field[] fields, Player[] players) {
-        String rollDie = gui.getUserButtonPressed(player.getPlayerName() + "'s turn. Choose an option:",
-                "Press to roll the die.", "Press to forefit and give in.");
-        if (rollDie.equalsIgnoreCase("Press to roll the die.")) {
+        String rollDie = gui.getUserButtonPressed("Det er " + player.getPlayerName() + "s tur.",
+                "Tryk for at kaste med tegninger", "Tryk for at give op");
+        if (rollDie.equalsIgnoreCase("Tryk for at kaste med tegninger")) {
             System.out.println("Dice has been rolled");
             dice.rollDice();
             gui.setDice(dice.getIndexDie(0), dice.getIndexDie(1));
@@ -142,6 +152,7 @@ public class GUIController {
             GUI_Field field = gui.getFields()[player.getPosition()];
             gui_player.getCar().setPosition(field);
 
+            int position=player.getPosition();
             // Check availability and buying free Property such as RealEstate, Ferry and Brewery
             if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(RealEstate.class) ||
                     fieldList.getFieldIndex(player.getPosition()).getClass().equals(Ferry.class) ||
@@ -149,28 +160,35 @@ public class GUIController {
                 System.out.println("Field is a property");
                 if (((Property) fieldList.getFieldIndex(player.getPosition())).getAvailability()) {
                     System.out.println("property is not owned");
-                    gui.showMessage("The field is an unowned property, press the button to buy it.");
-                    ((Property) fieldList.getFieldIndex(player.getPosition())).buyProperty(player);
-                    player.setProperty(((Property) fieldList.getFieldIndex(player.getPosition())));
-                    fields[player.getPosition()].setDescription("Is owned by: " + player.getPlayerName());
-                    gui_player.setBalance(player.getAccount().getAmount());
+                    String buy = gui.getUserButtonPressed("Grund " + fieldList.getFieldIndex(player.getPosition()).getName() +
+                            " er til salg", "Køb grund", "Nej Tak");
+                    //   gui.showMessage("The field is an unowned property, press the button to buy it.");
+                    if (buy.equalsIgnoreCase("Køb grund")) {
+                        ((Property) fieldList.getFieldIndex(player.getPosition())).buyProperty(player);
+                        player.setProperty(((Property) fieldList.getFieldIndex(player.getPosition())));
+                        fields[player.getPosition()].setDescription("Is owned by: " + player.getPlayerName());
+                        gui_player.setBalance(player.getAccount().getAmount());
+                    }
 
                     // Pay rent for owned RealEstate
-                } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(RealEstate.class)) {
+                } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(RealEstate.class)&&
+                        !((Property) fieldList.getFieldIndex(position)).getMortgage()) {           //Checking if property is pawned
                     System.out.println("RealEstate is owned");
-                    gui.showMessage("The RealEstate is owned, press the button to pay rent.");
+                    gui.showMessage("Denne ejendomme er ejet. Tryk på knappen for at betale leje.");
                     ((RealEstate) fieldList.getFieldIndex(player.getPosition())).rent(player);
 
                     // Pay rent for owned Ferry
-                } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Ferry.class)) {
+                } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Ferry.class)&&
+                        !((Property) fieldList.getFieldIndex(position)).getMortgage()) {           //Checking if property is pawned
                     System.out.println("Ferry is owned");
-                    gui.showMessage("The Ferry is owned, press the button to pay rent.");
+                    gui.showMessage("Færge er ejet. Tryk på knappen for at betale leje,");
                     ((Ferry) fieldList.getFieldIndex(player.getPosition())).rent(player, fieldList);
 
                     // Pay rent for owned Brewery
-                } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Brewery.class)) {
+                } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Brewery.class)&&
+                        !((Property) fieldList.getFieldIndex(position)).getMortgage()) {        //Checking if property is pawned
                     System.out.println("Brewery is owned");
-                    gui.showMessage("The Brewery is owned, press the button to pay rent.");
+                    gui.showMessage("Bryggeri er ejet. Tryk på knappen for at betale leje.");
                     ((Brewery) fieldList.getFieldIndex(player.getPosition())).rent(player, fieldList, dice);
                 }
             } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Chance.class)) {
@@ -190,8 +208,8 @@ public class GUIController {
 
             } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Neutral.class)) {
                 System.out.println("Field is of type Neutral");
-                gui.showMessage("Nothing worth mentioning happens on this field, press the button " +
-                        "to pass the turn.");
+                gui.showMessage("Tag' det roligt. Her sker ikke så meget \n" +
+                        "Tryk på knappen for at gå vidder.");
 
             } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Tax5.class) ||
                     fieldList.getFieldIndex(player.getPosition()).getClass().equals(Tax39.class)) {
@@ -213,22 +231,47 @@ public class GUIController {
 
             } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(GoJail.class)) {
                 System.out.println("Field is of type GoJail");
-                gui.showMessage("Sucks to be you. Press the button to move to jail.");
+                gui.showMessage("Beklager. De skal fængsel.");
                 GoJail goJail = new GoJail();
                 goJail.GoToJail(player);
                 if (player.getJail() == 1) {
                     player.getAccount().additionAccount(-1);
                 }
-                player.setPosition(6);
-                gui_player.getCar().setPosition(fields[6]);
+                player.setPosition(10);
+                gui_player.getCar().setPosition(fields[10]);
             }
-        }else {
+        } else {
             player.setForfeit(1);
-            gui.showMessage("You have now forfeited. Your properties will remain bought, but can " +
-                    "no longer take turns.");
+            gui.showMessage("De er fallit. Deres ejendomme forbliver købte,\n"
+                    + "men De kan ikke længere deltage i spillet.");
+        }
+        //Graphics setup to show players properties and show ability of pawning property
+        String list = gui.getUserButtonPressed("Du ejer følgende Ejendomme:\n"
+                + player.getNamesOfProperties(), "Afslut tur", "Pansætte ejedom");
+        int end = 0;
+        while (end == 0) {
+        if (list.equalsIgnoreCase("Pansætte ejedom")&& end==0) {
+            if (player.getNamesOfProperties()==player.getNamesOfProperties()){
+                String noPropertie = gui.getUserButtonPressed(player.getNamesOfProperties()+""
+                        + player.getNamesOfProperties(), "Afslut tur", "Tryk for at give op");
+                        break;
             }
+            int pawning = gui.getUserInteger("Vælg ejendommens position for at pansætte \n"
+                    + player.getNamesOfProperties(), 1, 40);
+                if (!fieldList.getFieldIndex(pawning-1).getClass().equals(Ferry.class)||
+                        !fieldList.getFieldIndex(pawning-1).getClass().equals(Brewery.class)||
+                        !fieldList.getFieldIndex(pawning-1).getClass().equals(RealEstate.class)||
+                        ((Property) fieldList.getFieldIndex(pawning - 1)).getMortgage()||
+                        ((Property) fieldList.getFieldIndex(pawning - 1)).getAvailability()){
+                    gui.showMessage("Denne ejedom kan ikke pantsættes. Vælg en anden ejedom");
+                } else if (!((Property) fieldList.getFieldIndex(pawning - 1)).getMortgage()) {
+                    ((Property) fieldList.getFieldIndex(pawning - 1)).mortgageProperty(player);
+                    end=1;
+                }
+            } else if(list.equalsIgnoreCase("Afslut tur")){ break;}
         }
 
+    }
 
 
 
@@ -239,10 +282,25 @@ public class GUIController {
         ArrayList<String> stringArrayList = readFile.ReadFile(filename);
         gui.getFields()[0].setTitle(stringArrayList.get(1));
         gui.getFields()[0].setBackGroundColor(new Color(204, 0, 0));
+        ((GUI_Start)gui.getFields()[0]).setSubText("This is subtext");
 
         gui.getFields()[1].setTitle(stringArrayList.get(2));
-        gui.getFields()[1].setSubText("Pris: 1200 kr.");
+        gui.getFields()[1].setDescription("<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "<title>Page Title</title>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "\n" +
+                "<h1>This is a Heading</h1>\n" +
+                "<p>This is a paragraph.</p>\n" +
+                "\n" +
+                "</body>\n" +
+                "</html>");
+        gui.getFields()[1].setSubText("Pris: 1200 kr.\r\n1\r\n2\r\n3\r\n4\r\n5\r\n6\r\n7\r\n8\r\n9\r\n10\r\n11\r\n12");
         gui.getFields()[1].setBackGroundColor(new Color(0, 0, 255));
+        ((GUI_Street)gui.getFields()[1]).setHouses(3);
+        ((GUI_Street)gui.getFields()[1]).setHotel(true);
 
         gui.getFields()[2].setTitle(stringArrayList.get(3));
         gui.getFields()[2].setSubText("Prøv Lykken");
@@ -259,7 +317,7 @@ public class GUIController {
         gui.getFields()[5].setTitle(stringArrayList.get(6));
         gui.getFields()[5].setSubText("Scanlines");
 
-        gui.getFields()[6].setSubText(stringArrayList.get(7));
+        gui.getFields()[6].setTitle(stringArrayList.get(7));
         gui.getFields()[6].setSubText("Pris: 2000 kr.");
         gui.getFields()[6].setBackGroundColor(new Color(255, 102, 0));
 
@@ -389,13 +447,6 @@ public class GUIController {
     }
 
 
-  /*  public int show() {
-        gui.showMessage("Vælger antale af spiller ");
-        int numberInput;
-        //Indlæser et tal mellem 2 og 4
-        numberInput = gui.getUserInteger("Indtast et tal mellem 2 og 4", 2, 4);
-        return numberInput;
-    }*/
 
     public GUI getGui(){
      return this.gui;
