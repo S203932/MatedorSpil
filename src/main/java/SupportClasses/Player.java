@@ -112,7 +112,7 @@ public class Player {
         String string = "";
         int counter = 0;
         if(property[0] == null){
-            string = string + name + " has no properties";
+            string = "De ejer ingen grunde";
         }else{
             while(property[counter] != null){
                 int i=1;

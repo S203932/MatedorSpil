@@ -251,10 +251,18 @@ public class GUIController {
         int end = 0;
         while (end == 0) {
         if (list.equalsIgnoreCase("Pansætte ejedom")&& end==0) {
+            if (player.getNamesOfProperties()==player.getNamesOfProperties()){
+                String noPropertie = gui.getUserButtonPressed(player.getNamesOfProperties()+""
+                        + player.getNamesOfProperties(), "Afslut tur", "Tryk for at give op");
+                        break;
+            }
             int pawning = gui.getUserInteger("Vælg ejendommens position for at pansætte \n"
                     + player.getNamesOfProperties(), 1, 40);
-                if (((Property) fieldList.getFieldIndex(pawning - 1)).getMortgage()
-                        ||((Property) fieldList.getFieldIndex(pawning - 1)).getAvailability()){
+                if (!fieldList.getFieldIndex(pawning-1).getClass().equals(Ferry.class)||
+                        !fieldList.getFieldIndex(pawning-1).getClass().equals(Brewery.class)||
+                        !fieldList.getFieldIndex(pawning-1).getClass().equals(RealEstate.class)||
+                        ((Property) fieldList.getFieldIndex(pawning - 1)).getMortgage()||
+                        ((Property) fieldList.getFieldIndex(pawning - 1)).getAvailability()){
                     gui.showMessage("Denne ejedom kan ikke pantsættes. Vælg en anden ejedom");
                 } else if (!((Property) fieldList.getFieldIndex(pawning - 1)).getMortgage()) {
                     ((Property) fieldList.getFieldIndex(pawning - 1)).mortgageProperty(player);
