@@ -60,7 +60,7 @@ public abstract class Property extends Field {
     // Method for mortgage players property
     public void mortgageProperty(Player player){
        int mortgagePrice=round(getPrice()/2);
-       if(player.getPlayerName()==this.player.getPlayerName()){
+       if(player.getPlayerName().equals(this.player.getPlayerName())){
         this.player.getAccount().additionAccount(mortgagePrice);}
         this.player = player;
         this.mortgage=true;

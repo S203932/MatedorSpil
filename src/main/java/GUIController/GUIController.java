@@ -166,7 +166,7 @@ public class GUIController {
                     if (buy.equalsIgnoreCase("Køb grund")) {
                         ((Property) fieldList.getFieldIndex(player.getPosition())).buyProperty(player);
                         player.setProperty(((Property) fieldList.getFieldIndex(player.getPosition())));
-                        fields[player.getPosition()].setDescription("Is owned by: " + player.getPlayerName());
+                        fields[player.getPosition()].setSubText(player.getPlayerName());
                         gui_player.setBalance(player.getAccount().getAmount());
                     }
 
@@ -221,8 +221,10 @@ public class GUIController {
                             " pengebeholdning eller om de ønsker at betale 4000 kr.", "Betal 10%", "Betal 4000 kr.");
                     if (choice.equalsIgnoreCase("Betal 10%")) {
                         ((Tax5) fieldList.getFieldIndex(player.getPosition())).rent(player, 1);
+                        gui_player.setBalance(player.getAccount().getAmount());
                     } else {
                         ((Tax5) fieldList.getFieldIndex(player.getPosition())).rent(player, 2);
+                        gui_player.setBalance(player.getAccount().getAmount());
                     }
                 } else {
                     System.out.println("Field is of type TAX39");

@@ -1,6 +1,9 @@
 package SupportClasses;
 // Class is written by Patrick Machalet s203932
 import Fields.Property;
+import Fields.RealEstate;
+
+import java.awt.*;
 
 public class Player {
     private String name;
@@ -126,6 +129,133 @@ public class Player {
     public String getPropertyName(int i){
         String PropertyName=property[i].getName();
         return PropertyName;
+    }
+
+    // The method below needs a junit
+    public boolean eligbleForHouse(){
+        int[] colorIndex = new int[8];
+        Color[] colors = new Color[]{Color.BLUE,Color.ORANGE,Color.GREEN,Color.GRAY,
+        Color.RED,Color.WHITE,Color.YELLOW,Color.MAGENTA};
+        int counter = 0;
+        // checks to see if their is properties in array
+        if(property[0] != null){
+            //Goes through every property in array until there is null value
+            while(property[counter] != null ){
+                // Checks if property at the index is a RealEstate
+                if(property[counter].getClass().equals(RealEstate.class)){
+                    //Loops through each color
+                    for(int i = 0; i>colorIndex.length; i++){
+                        //Checks if the RealEstate share a color with the colors in the color array
+                        // if it is the case then it ticks up that place in colorIndex array
+                        if(property[counter].getColor().equals(colors[i])){
+                            colorIndex[i]++;
+                        }
+                    }
+                }
+                counter++;
+            }
+            //Checks colorIndex to see if there is 2 of the first or last or three of the rest of the colors.
+            boolean eligble = false;
+            for(int i = 0; i>colorIndex.length;i++){
+
+                if(i>0||i<7){
+                    if(colorIndex[i]>2){
+                        eligble = true;
+                    }
+                }else if(i==0||i==7) {
+                    if (colorIndex[i] > 1) {
+                        eligble = true;
+                    }
+                }
+            }
+            if(eligble){
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
+
+    public boolean mortgageCheck(){
+        int counter = 0;
+        boolean eligble = false;
+        while(property[counter]!= null){
+            if(!property[counter].getMortgage()) {
+                eligble = true;
+            }
+        }
+        if(eligble){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public Property[] eligbleRealEstate(){
+        Property[] properties = new Property[40];
+        int[] colorIndex = new int[8];
+        Color[] colors = new Color[]{Color.BLUE,Color.ORANGE,Color.GREEN,Color.GRAY,
+                Color.RED,Color.WHITE,Color.YELLOW,Color.MAGENTA};
+        int counter = 0;
+        // checks to see if their is properties in array
+        if(property[0] != null){
+            //Goes through every property in array until there is null value
+            while(property[counter] != null ){
+                // Checks if property at the index is a RealEstate
+                if(property[counter].getClass().equals(RealEstate.class)){
+                    //Loops through each color
+                    for(int i = 0; i>colorIndex.length; i++){
+                        //Checks if the RealEstate share a color with the colors in the color array
+                        // if it is the case then it ticks up that place in colorIndex array
+                        if(property[counter].getColor().equals(colors[i])){
+                            colorIndex[i]++;
+                        }
+                    }
+                }
+                counter++;
+            }
+            //Checks colorIndex to see if there is 2 of the first or last or three of the rest of the colors.
+
+            for(int i = 0; i>colorIndex.length;i++){
+
+                if(i>0||i<7){
+                    if(colorIndex[i]>2){
+                        colorIndex[i]=-1;
+
+                    }
+                }else if(i==0||i==7) {
+                    if (colorIndex[i] > 1) {
+                        colorIndex[i]= -1;
+                    }
+                }
+            }
+
+            // Reverts the color index to colors
+            Color[] eligbleColors = new Color[8];
+            int colorCounter = 0;
+            for(int i = 0; i>colorIndex.length;i++){
+                if(colorIndex[i]==-1){
+                    eligbleColors[colorCounter]=colors[i];
+                    colorCounter++;
+                }
+            }
+            colorCounter = 0;
+            int propertyCounter = 0;
+            while(eligbleColors[colorCounter]!=null){
+                for(int i = 0; i>property.length;i++){
+                    if(property[i] != null){
+                        if(property[i].getColor().equals(eligbleColors[i])){
+                            properties[propertyCounter] = property[i];
+                            propertyCounter++;
+                        }
+                    }
+                }
+                colorCounter++;
+            }
+        }
+        return properties;
     }
 
     public String toString(){

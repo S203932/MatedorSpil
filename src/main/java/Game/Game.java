@@ -2,9 +2,12 @@ package Game;
 // Class is written by Patrick Machalet s203932
 
 import Fields.FieldList;
+import Fields.Property;
 import GUIController.GUIController;
 import SupportClasses.Player;
+import gui_fields.GUI_Field;
 import gui_fields.GUI_Player;
+import gui_main.GUI;
 
 public class Game {
     public static void main(String[] args){
@@ -49,18 +52,21 @@ public class Game {
         }
         guiController.getGui().showMessage("Game is over.");
 
+    }
+    //The method below is the menu for the player after they've rolled the dice
+    //It is supposed to offer the player option to do, mortgage, buy house/hotel and end turn
+    // Mortgage, buy house/hotel and endturn should each have their own method
+    public void endMenu(Player player, GUI gui, GUI_Player gui_player, FieldList fieldList, GUI_Field[] fields, Player[] players){
+        // Checks if the player has properties and they are not all mortgaged
+        if(player.getProperty()[0] != null || player.mortgageCheck()){
+            // Checks if the player has three properties of the same color otherwise they should not
+            // be allowed to buy houses/hotels
+            if(player.eligbleForHouse()){
+                //An array with RealEstate eligble for upgrade
+                Property[] UpgradeableRealEstate = player.eligbleRealEstate();
 
-
-        //for(int i=0;gui_players.length>i;i++){
-        //    gui_players[i].setBalance(players[i].getAccount().getPengebeholdning());
-        //}
-
-
-
-
-
-
-
+            }
+        }
 
     }
 }

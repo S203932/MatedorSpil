@@ -324,7 +324,7 @@ public class FieldList {
         ((RealEstate)fieldList[29]).setUpgradeValue(3000);
         ((RealEstate)fieldList[29]).setName(stringArrayList.get(30));
         ((RealEstate)fieldList[29]).setPrice(5600);
-        ((RealEstate)fieldList[29]).setColor(Color.white);
+        ((RealEstate)fieldList[29]).setColor(Color.WHITE);
         ((RealEstate)fieldList[29]).setRent0(500);
         ((RealEstate)fieldList[29]).setRent1(2400);
         ((RealEstate)fieldList[29]).setRent2(7200);
@@ -357,7 +357,7 @@ public class FieldList {
         ((RealEstate)fieldList[32]).setUpgradeValue(4000);
         ((RealEstate)fieldList[32]).setName(stringArrayList.get(33));
         ((RealEstate)fieldList[32]).setPrice(6000);
-        ((RealEstate)fieldList[32]).setColor(Color.yellow);
+        ((RealEstate)fieldList[32]).setColor(Color.YELLOW);
         ((RealEstate)fieldList[32]).setRent0(550);
         ((RealEstate)fieldList[32]).setRent1(2600);
         ((RealEstate)fieldList[32]).setRent2(7800);
@@ -376,7 +376,7 @@ public class FieldList {
         ((RealEstate)fieldList[34]).setUpgradeValue(4000);
         ((RealEstate)fieldList[34]).setName(stringArrayList.get(35));
         ((RealEstate)fieldList[34]).setPrice(6400);
-        ((RealEstate)fieldList[34]).setColor(Color.yellow);
+        ((RealEstate)fieldList[34]).setColor(Color.YELLOW);
         ((RealEstate)fieldList[34]).setRent0(600);
         ((RealEstate)fieldList[34]).setRent1(3000);
         ((RealEstate)fieldList[34]).setRent2(9000);
