@@ -270,10 +270,25 @@ public class GUIController {
         ArrayList<String> stringArrayList = readFile.ReadFile(filename);
         gui.getFields()[0].setTitle(stringArrayList.get(1));
         gui.getFields()[0].setBackGroundColor(new Color(204, 0, 0));
+        ((GUI_Start)gui.getFields()[0]).setSubText("This is subtext");
 
         gui.getFields()[1].setTitle(stringArrayList.get(2));
-        gui.getFields()[1].setSubText("Pris: 1200 kr.");
+        gui.getFields()[1].setDescription("<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "<title>Page Title</title>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "\n" +
+                "<h1>This is a Heading</h1>\n" +
+                "<p>This is a paragraph.</p>\n" +
+                "\n" +
+                "</body>\n" +
+                "</html>");
+        gui.getFields()[1].setSubText("Pris: 1200 kr.\r\n1\r\n2\r\n3\r\n4\r\n5\r\n6\r\n7\r\n8\r\n9\r\n10\r\n11\r\n12");
         gui.getFields()[1].setBackGroundColor(new Color(0, 0, 255));
+        ((GUI_Street)gui.getFields()[1]).setHouses(3);
+        ((GUI_Street)gui.getFields()[1]).setHotel(true);
 
         gui.getFields()[2].setTitle(stringArrayList.get(3));
         gui.getFields()[2].setSubText("Prøv Lykken");
