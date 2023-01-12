@@ -248,15 +248,19 @@ public class GUIController {
         //Graphics setup to show players properties and show ability of pawning property
         String list = gui.getUserButtonPressed("Du ejer følgende Ejendomme:\n"
                 + player.getNamesOfProperties(), "Afslut tur", "Pansætte ejedom");
-        if (list.equalsIgnoreCase("Pansætte ejedom")) {
+        int end = 0;
+        while (end == 0) {
+        if (list.equalsIgnoreCase("Pansætte ejedom")&& end==0) {
             int pawning = gui.getUserInteger("Vælg ejendommens position for at pansætte \n"
                     + player.getNamesOfProperties(), 1, 40);
-
-            if (!((Property) fieldList.getFieldIndex(pawning - 1)).getMortgage()) {
-                ((Property) fieldList.getFieldIndex(pawning - 1)).mortgageProperty(player);
-            } else {
-                gui.showMessage("Denne ejedom er pantsæt. Vælg en anden ejedom");
-            }
+                if (((Property) fieldList.getFieldIndex(pawning - 1)).getMortgage()
+                        ||((Property) fieldList.getFieldIndex(pawning - 1)).getAvailability()){
+                    gui.showMessage("Denne ejedom kan ikke pantsættes. Vælg en anden ejedom");
+                } else if (!((Property) fieldList.getFieldIndex(pawning - 1)).getMortgage()) {
+                    ((Property) fieldList.getFieldIndex(pawning - 1)).mortgageProperty(player);
+                    end=1;
+                }
+            } else if(list.equalsIgnoreCase("Afslut tur")){ break;}
         }
 
     }
