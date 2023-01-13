@@ -21,16 +21,19 @@ class FerryTest extends Property{
         player2.getAccount().setAccount(10000);
         ((Ferry)fieldList.getFieldIndex(5)).rent(player2, fieldList);
         assertEquals(10500, player.getAccount().getAmount());
+        assertEquals(9500, player2.getAccount().getAmount());
 
         ((Ferry)fieldList.getFieldIndex(15)).setPlayer(player);
         ((Ferry)fieldList.getFieldIndex(15)).setAvailability(false);
         ((Ferry)fieldList.getFieldIndex(15)).rent(player2, fieldList);
         assertEquals(11500, player.getAccount().getAmount());
+        assertEquals(8500, player2.getAccount().getAmount());
 
         ((Ferry)fieldList.getFieldIndex(25)).setPlayer(player);
         ((Ferry)fieldList.getFieldIndex(25)).setAvailability(false);
         ((Ferry)fieldList.getFieldIndex(25)).rent(player2, fieldList);
         assertEquals(13500, player.getAccount().getAmount());
+        assertEquals(6500, player2.getAccount().getAmount());
 
         ((Ferry)fieldList.getFieldIndex(35)).setPlayer(player);
         ((Ferry)fieldList.getFieldIndex(35)).setAvailability(false);
