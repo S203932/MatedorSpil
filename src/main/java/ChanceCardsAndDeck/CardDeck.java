@@ -267,17 +267,17 @@ public class CardDeck {
 
         // Move Special cases
         card[37] = new ChanceCards();
-        card[37].setType(2); // move +3
+        card[37].setType(4); // move +3
         card[37].setOffset(+3);
         card[37].setDescription(stringArrayList.get(37));
 
         card[38] = new ChanceCards();
-        card[38].setType(2); // move -3
+        card[38].setType(4); // move -3
         card[38].setOffset(-3);
         card[38].setDescription(stringArrayList.get(38));
 
         card[39] = new ChanceCards();
-        card[39].setType(2); // move -3
+        card[39].setType(4); // move -3
         card[39].setOffset(-3);
         card[39].setDescription(stringArrayList.get(39));
 

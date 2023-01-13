@@ -215,7 +215,8 @@ public class ChanceCards {
                 int hotel = 0;
                 int temp = 0;
                 for (int i = 0; i < player.getProperty().length; i++) {
-                    if (player.getProperty()[i].getClass().equals(RealEstate.class)){
+                    if (player.getProperty()[i] != null){
+                        if (player.getProperty()[i].getClass().equals(RealEstate.class)){
                         temp = ((RealEstate)player.getProperty()[i]).getUpgrade();
                             if (temp == 5) {
                                 hotel++;
@@ -223,6 +224,7 @@ public class ChanceCards {
                                 house += temp;
                             }
                     }
+                }
                 }
                 player.getAccount().subtractionAccount(houserate*house+hotelrate*hotel);
 
@@ -233,10 +235,12 @@ public class ChanceCards {
                 int playertotal = 0;
                 int tomp = 0;
                 for (int i = 0; i < player.getProperty().length; i++) {
-                    if (player.getProperty()[i].getClass().equals(RealEstate.class)){
-                        tomp = ((RealEstate)player.getProperty()[i]).getUpgrade();
-                        playertotal += tomp*((RealEstate) player.getProperty()[i]).getUpgradeValue();
-                        playertotal += player.getProperty()[i].getPrice();
+                    if (player.getProperty()[i] != null) {
+                        if (player.getProperty()[i].getClass().equals(RealEstate.class)) {
+                            tomp = ((RealEstate) player.getProperty()[i]).getUpgrade();
+                            playertotal += tomp * ((RealEstate) player.getProperty()[i]).getUpgradeValue();
+                            playertotal += player.getProperty()[i].getPrice();
+                        }
                     }
                 }
                 playertotal += player.getAccount().getAmount();
