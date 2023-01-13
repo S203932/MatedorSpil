@@ -4,14 +4,22 @@ import java.lang.*;
 import ChanceCardsAndDeck.CardDeck;
 import ChanceCardsAndDeck.ChanceCards;
 import Fields.*;
-import GUIController.GUIController;
 import gui_fields.GUI_Field;
 import gui_fields.GUI_Player;
 import gui_main.GUI;
 
+
 public class Bot extends Player {
     private DiceCup dice = new DiceCup(2);
-
+    public Bot() {
+        setPlayerName("Player two");
+        startAccount();
+        setPosition(0);
+        instantiateProperty();
+        setJail(0);
+        setFreejail(0);
+        setForfeit(0);
+    }
     public void BotTakeTurn(Player player, GUI gui, GUI_Player gui_player, FieldList fieldList, GUI_Field[] fields, Player[] players) {
         System.out.println("Dice has been rolled");
         dice.rollDice();
@@ -32,7 +40,7 @@ public class Bot extends Player {
 
                 ((Property) fieldList.getFieldIndex(player.getPosition())).buyProperty(player);
                 player.setProperty(((Property) fieldList.getFieldIndex(player.getPosition())));
-                fields[player.getPosition()].setDescription("Is owned by: " + player.getPlayerName());
+                fields[player.getPosition()].setSubText(player.getPlayerName());
                 gui_player.setBalance(player.getAccount().getAmount());
 
             } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(RealEstate.class) &&
@@ -97,5 +105,5 @@ public class Bot extends Player {
 
         }
     }
-}
+    }
 

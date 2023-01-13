@@ -39,7 +39,45 @@ public class GUIController {
         };
         return field;
     }
+
     //
+    public GUI_Player[] setupBot(Player[] player) {
+        GUI_Player[] GUI_player = new GUI_Player[player.length];
+        GUI_Car tractor = new GUI_Car(Color.black, Color.white, GUI_Car.Type.TRACTOR, GUI_Car.Pattern.CHECKERED);
+        GUI_Car racecar = new GUI_Car(Color.red, Color.black, GUI_Car.Type.RACECAR, GUI_Car.Pattern.HORIZONTAL_GRADIANT);
+        GUI_Car ufo = new GUI_Car(Color.WHITE, Color.gray, GUI_Car.Type.UFO, GUI_Car.Pattern.DIAGONAL_DUAL_COLOR);
+        GUI_Car car = new GUI_Car(Color.MAGENTA, Color.yellow, GUI_Car.Type.CAR, GUI_Car.Pattern.FILL);
+        GUI_Car tractor1 = new GUI_Car(Color.ORANGE, Color.BLUE, GUI_Car.Type.TRACTOR, GUI_Car.Pattern.DIAGONAL_DUAL_COLOR);
+        GUI_Car ufo1 = new GUI_Car(Color.GREEN, Color.RED, GUI_Car.Type.UFO, GUI_Car.Pattern.DOTTED);
+        GUI_Car[] vehicles = new GUI_Car[]{tractor, racecar, ufo, car, tractor1, ufo1};
+
+        if ((player.length) == 2) {
+            String[] nameArray = new String[2];
+                int counter = 0;
+                String playerName = "";
+                if (counter == 0) {
+                    playerName = gui.getUserString("Indtast spillerens navn");
+                    player[0].setPlayerName(playerName);
+                    player[0].getAccount().setAccount(30000);
+                    GUI_player[0] = new GUI_Player(player[0].getPlayerName(), 30000, vehicles[0]);
+                    gui.addPlayer(GUI_player[0]);
+                    counter++;
+                }
+                while (counter == 1) {
+                    String botName = gui.getUserString("Indtast Bottens navn (Må ikke være det samme som tidligere indtastet)");
+                    if (!playerName.equalsIgnoreCase(botName)) {
+                        player[1].setPlayerName(botName);
+                        player[1].getAccount().setAccount(30000);
+                        GUI_player[1] = new GUI_Player(player[1].getPlayerName(), 30000, vehicles[1]);
+                        gui.addPlayer(GUI_player[1]);
+                        return GUI_player;
+                    } else {
+                        gui.showMessage("navnet er optaget. Indtast nyt navn");
+                    }
+                }
+            }
+        return GUI_player;
+    }
     public GUI_Player[] setupPlayers(Player[] player) {
         GUI_Player[] GUI_player = new GUI_Player[player.length];
         GUI_Car tractor = new GUI_Car(Color.black, Color.white, GUI_Car.Type.TRACTOR, GUI_Car.Pattern.CHECKERED);
