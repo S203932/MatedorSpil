@@ -1,5 +1,7 @@
 package SupportClasses;
 
+import java.util.Timer;
+import java.util.TimerTask;
 import java.lang.*;
 import ChanceCardsAndDeck.CardDeck;
 import ChanceCardsAndDeck.ChanceCards;
@@ -20,14 +22,16 @@ public class Bot extends Player {
         setFreejail(0);
         setForfeit(0);
     }
-    public void BotTakeTurn(Player player, GUI gui, GUI_Player gui_player, FieldList fieldList, GUI_Field[] fields, Player[] players) {
+    public void BotTakeTurn(Player player, GUI gui, GUI_Player gui_player, FieldList fieldList, GUI_Field[] fields, Player[] players) throws InterruptedException {
+
+        Thread.sleep(2000);
         System.out.println("Dice has been rolled");
         dice.rollDice();
         gui.setDice(dice.getIndexDie(0), dice.getIndexDie(1));
         player.diceRollPosition(dice.result());
         GUI_Field field = gui.getFields()[player.getPosition()];
         gui_player.getCar().setPosition(field);
-
+        Thread.sleep(2000);
         int position = player.getPosition();
         // Check availability and buying free Property such as RealEstate, Ferry and Brewery
         if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(RealEstate.class) ||
@@ -61,7 +65,7 @@ public class Bot extends Player {
                 ((Brewery) fieldList.getFieldIndex(player.getPosition())).rent(player, fieldList, dice);
             }
         } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Chance.class)) {
-
+            Thread.sleep(2000);
             System.out.println("Field is a chance field");
             Chance chance = new Chance();
             CardDeck cardDeck = chance.getCardDeck();

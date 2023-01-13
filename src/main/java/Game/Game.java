@@ -11,7 +11,7 @@ import gui_fields.GUI_Player;
 import gui_main.GUI;
 
 public class Game {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
 
         GUIController guiController = new GUIController();
