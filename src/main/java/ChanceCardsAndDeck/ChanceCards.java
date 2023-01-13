@@ -143,7 +143,9 @@ public class ChanceCards {
                 gui.displayChanceCard(description);
                 player.getAccount().additionAccount(Participants.length*transaction);
                 for (int i = 0; i < Participants.length; i++) {
+                    if (Participants[i] != null){
                     Participants[i].getAccount().subtractionAccount(transaction);
+                }
                 }
                 break;
 
@@ -151,7 +153,7 @@ public class ChanceCards {
             case 4:
                 gui.displayChanceCard(description);
                 player.setPosition(player.getPosition()+Offset);
-                gui_player.getCar().setPosition(fields[moveTo]);
+                gui_player.getCar().setPosition(fields[player.getPosition()]);
                 break;
 
             // Moves the player to the nearest ferry
@@ -196,11 +198,13 @@ public class ChanceCards {
                     player.setPosition(15);
                 }
 
-                if (!((Property) fieldList.getFieldIndex(player.getPosition())).getAvailability()) {
+
+                if (!(((Ferry) fieldList.getFieldIndex(player.getPosition())).getAvailability())) {
                     ((Ferry) fieldList.getFieldIndex(player.getPosition())).rent(player, fieldList);
                     ((Ferry) fieldList.getFieldIndex(player.getPosition())).rent(player, fieldList);
+
                 }
-                gui_player.getCar().setPosition(fields[moveTo]);
+                gui_player.getCar().setPosition(fields[player.getPosition()]);
                 break;
 
             // Get out of jail free.

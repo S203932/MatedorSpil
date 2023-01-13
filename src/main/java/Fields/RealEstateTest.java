@@ -20,7 +20,7 @@ class RealEstateTest {
     }
 
     // Method for mortgage is tested:
-   /* @Test
+  /* @Test
     void mortgageEstimation() {
         RealEstate realEstate = new RealEstate();
         realEstate.setPrice(500);
