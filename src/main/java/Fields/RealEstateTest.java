@@ -20,16 +20,19 @@ class RealEstateTest {
     }
 
     // Method for mortgage is tested:
-  /* @Test
+  @Test
     void mortgageEstimation() {
         RealEstate realEstate = new RealEstate();
         realEstate.setPrice(500);
         Player player = new Player();
+        player.setPlayerName("Peter");
+        realEstate.setPlayer(player);
+
         player.getAccount().setAccount(5000);
         realEstate.mortgageEstimation(player);
         assertEquals(5250, player.getAccount().getAmount());
     }
-*/
+
     // Method for paying and receiving rent on an owned property is tested:
     @Test
     void rent() {
