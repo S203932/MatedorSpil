@@ -258,6 +258,8 @@ public class Player {
         return properties;
     }
 
+    //public void elibleToSellHouse()
+
     public String toString(){
         int counter = 0;
         String string = "Player's name: " + name + "\n";

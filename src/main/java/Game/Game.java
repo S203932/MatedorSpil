@@ -65,6 +65,7 @@ public class Game {
                 //An array with RealEstate eligble for upgrade
                 Property[] UpgradeableRealEstate = player.eligbleRealEstate();
 
+
             }
         }
 
