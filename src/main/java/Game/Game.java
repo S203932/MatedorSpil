@@ -44,11 +44,11 @@ public class Game {
             }
             for (int i = 0; i < players.length; i++) {
                 if (players[i].getForfeit() == 0) {
-                    if (players[i].getClass().equals(Bot.class)){
-                        ((Bot)players[i]).BotTakeTurn(players[i], guiController.getGui(), gui_players[i], fieldList, guiController.getGUI_Fields(), players);
-                    }
-                    else {
+                    if (players[i].getClass().equals(Bot.class)) {
+                        ((Bot) players[i]).BotTakeTurn(players[i], guiController.getGui(), gui_players[i], fieldList, guiController.getGUI_Fields(), players);
+                    } else {
                         guiController.takeTurn(players[i], guiController.getGui(), gui_players[i], fieldList, guiController.getGUI_Fields(), players);
+                        endMenu(players[i], guiController.getGui(), gui_players[i], fieldList, guiController.getGUI_Fields(), players);
                     }
                     System.out.println(players[i].toString());
 
@@ -69,20 +69,105 @@ public class Game {
 
     }
 
+
+    // Following shows how to insert multiple buttons dynamically
+    //String[] example2 = new String[]{"one","two","three","four","five","six"};
+    //String example = gui.getUserButtonPressed("couple of buttons",example2);
+
+
     //The method below is the menu for the player after they've rolled the dice
     //It is supposed to offer the player option to do, mortgage, buy house/hotel and end turn
     // Mortgage, buy house/hotel and endturn should each have their own method
-    public void endMenu(Player player, GUI gui, GUI_Player gui_player, FieldList fieldList, GUI_Field[] fields, Player[] players) {
+    public static void endMenu(Player player, GUI gui, GUI_Player gui_player, FieldList fieldList, GUI_Field[] fields, Player[] players) {
+
+        // This menu is if the player has houses to sell, can buy houses, has a mortgaged property and can mortgage a property
+        if (player.eligbleForHouse() && player.eligibleToSellHouse() && player.elligibleToMortgage() && player.elligibleToBuyBackMortgage()) {
+
+
+            // This menu is if the player has houses to sell, can buy houses and can mortgage property
+        } else if (player.eligbleForHouse() && player.eligibleToSellHouse() && player.elligibleToMortgage()) {
+
+
+            // This menu is if the player can buy houses, has a property to mortgage and has a mortgaged property
+        } else if (player.elligibleToMortgage() && player.elligibleToBuyBackMortgage() && player.eligbleForHouse()) {
+
+
+            //This menu is if the player can buy houses and has a property to mortgage
+        } else if (player.eligbleForHouse() && player.elligibleToMortgage()) {
+
+
+            // This menu is if the player has a house to sell, can buy back a property and can mortgage a property
+        } else if (player.eligibleToSellHouse() && player.elligibleToBuyBackMortgage() && player.elligibleToMortgage()) {
+
+
+            // This menu is if the player has a house to sell and can buy back a property
+        } else if (player.eligibleToSellHouse() && player.elligibleToBuyBackMortgage()) {
+
+
+            // This menu is if the player can buy back a property and has a property to mortgage
+        } else if (player.elligibleToBuyBackMortgage() && player.elligibleToMortgage()) {
+
+
+            // This menu is if the player can mortgage a property
+        } else if (player.elligibleToMortgage()) {
+            String option = "";
+            while (!option.equalsIgnoreCase("Afslut tur")) {
+                option = gui.getUserButtonPressed("Du har følgende valmuligheder:", "Pantsæt en ejendom", "Afslut tur");
+                String option2 = "";
+                if (!option.equalsIgnoreCase("Afslut tur")) {
+                    while (!option2.equalsIgnoreCase("Ingen af overstående")) {
+                        Property[] properties = player.getPropertiesThatCanMortgage();
+                        String[] propertyNames = player.getNamesOfPropertiesToMortgage();
+                        option2 = gui.getUserSelection("Vælg en ejendom at pantsætte", propertyNames);
+                        for (int i = 0; i < properties.length; i++) {
+                            if (properties[i] != null) {
+                                if (properties[i].getName().equalsIgnoreCase(option2)) {
+                                    properties[i].mortgageProperty(player);
+                                }
+                            }
+
+                        }
+                    }
+                }
+
+            }
+
+
+            // This menu is if the player can only end their turn
+        } else {
+            gui.getUserButtonPressed("Du har desværre ikke mange muligheder hva.", "Afslut tur");
+
+        }
+
+
+        /*
         // Checks if the player has properties and they are not all mortgaged
-        if (player.getProperty()[0] != null || player.mortgageCheck()) {
+        if (player.getProperty()[0] != null || player.elligibleToMortgage()) {
             // Checks if the player has three properties of the same color otherwise they should not
             // be allowed to buy houses/hotels
+
+            // here I shall only offer them to mortgage their properties
+
             if (player.eligbleForHouse()) {
                 //An array with RealEstate eligble for upgrade
                 Property[] UpgradeableRealEstate = player.eligbleRealEstate();
 
+                // here I shall offer them to mortgage
+
+                //Checks if the player has houses and they therefore should be able to sell them
+                if(player.eligibleToSellHouse()){
+                    // An array of the properties the player has with houses on them.
+                    Property[] propertyWithHouseToSell = player.propertiesWithHousesOnThem();
+
+
+
+
+                }
+
             }
         }
+
+         */
 
     }
 }

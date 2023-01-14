@@ -2,7 +2,7 @@
   <configuration default="false" name="Start Spillet" type="Application" factoryName="Application">
     <option name="MAIN_CLASS_NAME" value="Game.Game" />
     <module name="MatedorSpil" />
-    <option name="VM_PARAMETERS" value="-Dsun.java2d.uiScale=1.0" />
+    <option name="VM_PARAMETERS" value="-Dsun.java2d.uiScale=1.3" />
     <extension name="coverage">
       <pattern>
         <option name="PATTERN" value="Game.*" />
