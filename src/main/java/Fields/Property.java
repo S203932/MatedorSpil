@@ -73,6 +73,12 @@ public abstract class Property extends Field {
     }
  //   public abstract void rent(Player player,);
 
+    public void buyBackMortgage(Player player){
+        if(mortgage){
+            player.getAccount().subtractionAccount(price/2);
+            this.mortgage = false;
+        }
+    }
 
     public String toString(){
         return "Position: "+getPosition();

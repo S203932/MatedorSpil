@@ -3,6 +3,7 @@ package Game;
 
 import Fields.FieldList;
 import Fields.Property;
+import Fields.RealEstate;
 import GUIController.GUIController;
 import SupportClasses.Bot;
 import SupportClasses.Player;
@@ -47,6 +48,37 @@ public class Game {
                     if (players[i].getClass().equals(Bot.class)) {
                         ((Bot) players[i]).BotTakeTurn(players[i], guiController.getGui(), gui_players[i], fieldList, guiController.getGUI_Fields(), players);
                     } else {
+
+                        // These lines are for test if the player should be able to buy and sell houses
+
+
+                        /*
+                        //Assign all orange properties to player 1
+                        ((RealEstate)fieldList.getFieldIndex(6)).buyProperty(players[0]);
+                        players[0].setProperty(((RealEstate)fieldList.getFieldIndex(6)));
+
+                        ((RealEstate)fieldList.getFieldIndex(8)).buyProperty(players[0]);
+                        players[0].setProperty(((RealEstate)fieldList.getFieldIndex(8)));
+
+                        ((RealEstate)fieldList.getFieldIndex(9)).buyProperty(players[0]);
+                        players[0].setProperty(((RealEstate)fieldList.getFieldIndex(9)));
+
+                         */
+
+
+                        /*
+                        // assigns all the blue properties to player 1
+                        ((RealEstate) fieldList.getFieldIndex(1)).buyProperty(players[0]);
+                        players[0].setProperty(((RealEstate) fieldList.getFieldIndex(1)));
+
+                        ((RealEstate) fieldList.getFieldIndex(3)).buyProperty(players[0]);
+                        players[0].setProperty(((RealEstate) fieldList.getFieldIndex(3)));
+
+                         */
+
+                        gui_players[0].setBalance(players[0].getAccount().getAmount());
+
+
                         guiController.takeTurn(players[i], guiController.getGui(), gui_players[i], fieldList, guiController.getGUI_Fields(), players);
                         endMenu(players[i], guiController.getGui(), gui_players[i], fieldList, guiController.getGUI_Fields(), players);
                     }
@@ -80,6 +112,7 @@ public class Game {
     // Mortgage, buy house/hotel and endturn should each have their own method
     public static void endMenu(Player player, GUI gui, GUI_Player gui_player, FieldList fieldList, GUI_Field[] fields, Player[] players) {
 
+        /*
         // This menu is if the player has houses to sell, can buy houses, has a mortgaged property and can mortgage a property
         if (player.eligbleForHouse() && player.eligibleToSellHouse() && player.elligibleToMortgage() && player.elligibleToBuyBackMortgage()) {
 
@@ -103,11 +136,123 @@ public class Game {
             // This menu is if the player has a house to sell and can buy back a property
         } else if (player.eligibleToSellHouse() && player.elligibleToBuyBackMortgage()) {
 
+         */
+
+
+        // This menu is if the player is eligible to buy house
+        if (player.eligbleForHouse()) {
+            String option = "";
+            while (!option.equalsIgnoreCase("Afslut tur")) {
+                option = gui.getUserButtonPressed("Du har følgende valgmuligheder:", "Pantsæt en ejendom",
+                        "Køb tilbage pantsætning", "Køb hus", "Sælg hus", "Afslut tur");
+                String option2 = "";
+                if (!option.equalsIgnoreCase("Afslut tur")) {
+                    if (option.equalsIgnoreCase("Pantsæt en ejendom")) {
+                        while (!option2.equalsIgnoreCase("Ingen af overstående")) {
+                            Property[] properties = player.getPropertiesThatCanMortgage();
+                            String[] propertyNames = player.getNamesOfPropertiesToMortgage();
+                            option2 = gui.getUserSelection("Vælg en ejendom at pantsætte", propertyNames);
+                            for (int i = 0; i < properties.length; i++) {
+                                if (properties[i] != null) {
+                                    if (properties[i].getName().equalsIgnoreCase(option2)) {
+                                        properties[i].mortgageProperty(player);
+                                        gui_player.setBalance(player.getAccount().getAmount());
+                                    }
+                                }
+
+                            }
+                        }
+                    } else if (option.equalsIgnoreCase("Køb tilbage pantsætning")) {
+                        while (!option2.equalsIgnoreCase("Ingen af overstående")) {
+                            Property[] properties = player.getPropertiesToBuyBack();
+                            String[] propertyNames = player.getPropertiesToBuyBackNames();
+                            option2 = gui.getUserSelection("Vælg en ejendom at tilbagekøbe fra banken", propertyNames);
+                            for (int i = 0; i < properties.length; i++) {
+                                if (properties[i] != null) {
+                                    if (properties[i].getName().equalsIgnoreCase(option2)) {
+                                        properties[i].buyBackMortgage(player);
+                                        gui_player.setBalance(player.getAccount().getAmount());
+                                    }
+                                }
+                            }
+                        }
+                    } else if (option.equalsIgnoreCase("Køb hus")) {
+                        while (!option2.equalsIgnoreCase("Ingen af overstående")) {
+                            Property[] properties = player.eligbleRealEstateForHouses();
+                            String[] propertyNames = player.getNamesOfPropertiesToBuyHouse();
+                            option2 = gui.getUserSelection("Vælg en ejendom du ønsker at opgradere", propertyNames);
+                            for (int i = 0; i < properties.length; i++) {
+                                if (properties[i] != null) {
+                                    if (properties[i].getName().equalsIgnoreCase(option2)) {
+                                        ((RealEstate) properties[i]).upgradeProperty(player);
+                                        GUIController.setHouseGraphic(properties[i], gui);
+                                        gui_player.setBalance(player.getAccount().getAmount());
+                                    }
+                                }
+                            }
+                        }
+                    } else if (option.equalsIgnoreCase("Sælg hus")) {
+                        while (!option2.equalsIgnoreCase("Ingen af overstående")) {
+                            Property[] properties = player.propertiesWithHousesOnThem();
+                            String[] propertyNames = player.getNamesOfPropertiesWithHouses();
+                            option2 = gui.getUserSelection("Vælg en ejendom du ønsker at nedgradere:", propertyNames);
+                            for (int i = 0; i < properties.length; i++) {
+                                if (properties[i] != null) {
+                                    if (properties[i].getName().equalsIgnoreCase(option2)) {
+                                        ((RealEstate) properties[i]).downgradeProperty(player);
+                                        GUIController.setHouseGraphic(properties[i], gui);
+                                        gui_player.setBalance(player.getAccount().getAmount());
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
 
             // This menu is if the player can buy back a property and has a property to mortgage
-        } else if (player.elligibleToBuyBackMortgage() && player.elligibleToMortgage()) {
+        } else if (player.hasProperties()) {
+            String option = "";
+            while (!option.equalsIgnoreCase("Afslut tur")) {
+                option = gui.getUserButtonPressed("Du har følgende valgmuligheder:", "Pantsæt en ejendom",
+                        "Køb tilbage pantsætning", "Afslut tur");
+                String option2 = "";
+                if (!option.equalsIgnoreCase("Afslut tur")) {
+                    if (option.equalsIgnoreCase("Pantsæt en ejendom")) {
+                        while (!option2.equalsIgnoreCase("Ingen af overstående")) {
+                            Property[] properties = player.getPropertiesThatCanMortgage();
+                            String[] propertyNames = player.getNamesOfPropertiesToMortgage();
+                            option2 = gui.getUserSelection("Vælg en ejendom at pantsætte", propertyNames);
+                            for (int i = 0; i < properties.length; i++) {
+                                if (properties[i] != null) {
+                                    if (properties[i].getName().equalsIgnoreCase(option2)) {
+                                        properties[i].mortgageProperty(player);
+                                        gui_player.setBalance(player.getAccount().getAmount());
+                                    }
+                                }
 
+                            }
+                        }
+                    } else if (option.equalsIgnoreCase("Køb tilbage pantsætning")) {
+                        while (!option2.equalsIgnoreCase("Ingen af overstående")) {
+                            Property[] properties = player.getPropertiesToBuyBack();
+                            String[] propertyNames = player.getPropertiesToBuyBackNames();
+                            option2 = gui.getUserSelection("Vælg en ejendom at tilbagekøbe fra banken", propertyNames);
+                            for (int i = 0; i < properties.length; i++) {
+                                if (properties[i] != null) {
+                                    if (properties[i].getName().equalsIgnoreCase(option2)) {
+                                        properties[i].buyBackMortgage(player);
+                                        gui_player.setBalance(player.getAccount().getAmount());
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
 
+/*
             // This menu is if the player can mortgage a property
         } else if (player.elligibleToMortgage()) {
             String option = "";
@@ -123,6 +268,7 @@ public class Game {
                             if (properties[i] != null) {
                                 if (properties[i].getName().equalsIgnoreCase(option2)) {
                                     properties[i].mortgageProperty(player);
+                                    gui_player.setBalance(player.getAccount().getAmount());
                                 }
                             }
 
@@ -131,6 +277,7 @@ public class Game {
                 }
 
             }
+*/
 
 
             // This menu is if the player can only end their turn

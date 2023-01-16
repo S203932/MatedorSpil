@@ -122,6 +122,20 @@ public class RealEstate extends Property {
             super.getPlayer().getAccount().additionAccount(rent5);
         }
     }
+
+    public void upgradeProperty(Player player){
+        if(upgrade>=0 && upgrade <5){
+            player.getAccount().subtractionAccount(upgradeValue);
+            upgrade++;
+        }
+    }
+
+    public void downgradeProperty(Player player){
+        if(upgrade>0 && upgrade <= 5){
+            player.getAccount().additionAccount(upgradeValue);
+            upgrade--;
+        }
+    }
 }
 
 
