@@ -213,7 +213,7 @@ public class CardDeck {
         card[26].setDescription(stringArrayList.get(26));
 
         card[27] = new ChanceCardsAndDeck.ChanceCards();
-        card[27].setType(1); // Receive 40000 kr if owning less than 15000
+        card[27].setType(9); // Receive 40000 kr if owning less than 15000
         card[27].setTransaction(+40000);
         card[27].setDescription(stringArrayList.get(27));
 

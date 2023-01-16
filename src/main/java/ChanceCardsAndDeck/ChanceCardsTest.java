@@ -2,6 +2,7 @@ package ChanceCardsAndDeck;
 import Fields.Ferry;
 import Fields.FieldList;
 import Fields.Property;
+import Fields.RealEstate;
 import SupportClasses.Player;
 import gui_fields.GUI_Field;
 import gui_fields.GUI_Player;
@@ -162,9 +163,11 @@ class ChanceCardsTest {
         card.cardAction(player, gui, fieldList, gui.getFields(), gui_player, Participants);
         assertEquals(1, player.getFreejail());
     }
-/*
+
+    /*
+    // Gets 500 for each house and 2000 for each hotel
     @Test
-    void cardActionType8(){
+    void cardActionType8() {
         ChanceCards chanceCards = new ChanceCards();
         Player player = new Player();
         FieldList fieldList = new FieldList();
@@ -176,13 +179,43 @@ class ChanceCardsTest {
         cardDeck.setCards();
         ChanceCards card = cardDeck.getCard(25);
 
-        player.setPosition(17);
+        player.setPosition(2);
+        player.getAccount().setAccount(2500);
+
+
+
+        fieldList.setupField("Dansk.txt");
+        ((RealEstate) fieldList.getFieldIndex(1)).setPlayer(player);
+        ((RealEstate) fieldList.getFieldIndex(1)).setAvailability(false);
+        ((RealEstate) fieldList.getFieldIndex(1)).setUpgrade(1);
+
+        ((RealEstate) fieldList.getFieldIndex(3)).setPlayer(player);
+        ((RealEstate) fieldList.getFieldIndex(3)).setAvailability(false);
+        ((RealEstate) fieldList.getFieldIndex(3)).setUpgrade(5);
+
+
         card.cardAction(player, gui, fieldList, gui.getFields(), gui_player, Participants);
-        assertEquals(25, player.getPosition());
+        assertEquals(0, player.getAccount().getAmount());
 
     }
-    //@Test
+*/
+    // Receive 40K if player has less than 15K
+    @Test
    void cardActionType9(){
-        int type = 9;
-    }*/
+       ChanceCards chanceCards = new ChanceCards();
+       Player player = new Player();
+       FieldList fieldList = new FieldList();
+       GUI gui = new GUI();
+       GUI_Player gui_player = new GUI_Player(player.getPlayerName(), player.getFreejail());
+       Player[] Participants = new Player[1];
+
+       CardDeck cardDeck = new CardDeck();
+       cardDeck.setCards();
+       ChanceCards card = cardDeck.getCard(27);
+
+       player.getAccount().setAccount(1000);
+       card.cardAction(player, gui, fieldList, gui.getFields(), gui_player, Participants);
+       assertEquals(41000, player.getAccount().getAmount());
+
+    }
 }

@@ -227,11 +227,11 @@ public class ChanceCards {
                             } else {
                                 house += temp;
                             }
+                        }
                     }
                 }
-                }
                 player.getAccount().subtractionAccount(houserate*house+hotelrate*hotel);
-
+                break;
                 // Check if the player owns less than 15 K
             case 9:
                 gui.displayChanceCard(description);
