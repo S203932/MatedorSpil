@@ -1,5 +1,4 @@
 package SupportClasses;
-// Class is written by Kristian Urban 163301
 public class DiceCup {
     private Die[] dice;
 
@@ -14,14 +13,7 @@ public class DiceCup {
             d.roll();
         }
     }
-    // Shoving a rolled die in GUI
-  /* public void showDice(GUI gui){
-        int faceValue = getIndexDie(0);
-        int x=7;
-        int y=7;
-        int rotation=5;
-        gui.setDice(faceValue,x,y,rotation,faceValue,x,y,rotation);}
-    */
+
 
     public int getIndexDie(int index){
         if(dice.length<=index){

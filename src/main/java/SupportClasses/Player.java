@@ -1,5 +1,4 @@
 package SupportClasses;
-// Class is written by Patrick Machalet s203932
 
 import Fields.Property;
 import Fields.RealEstate;
@@ -128,7 +127,8 @@ public class Player {
         return string;
     }
 
-    // Metoden giver et array af navnene på ejendommene som spilleren ejer. Arrayets sidste index har teksten "Ingen af overstående"
+
+   // Method returns an array of names on the properties that the players own and can mortgage. Last index is "Ingen af overstående"
     public String[] getNamesOfPropertiesToMortgage() {
         int counter = 0;
         int counter3 = 0;
@@ -158,14 +158,15 @@ public class Player {
         return PropertyName;
     }
 
-    // The method below needs a junit
-    //Metoden returnere en boolean der indikere om spilleren kan købe huse eller ej
+
+
+    //Method returns a boolean that indicates wether the player can buy houses or not
     public boolean eligbleForHouse() {
         int[] colorIndex = new int[8];
         Color[] colors = new Color[]{Color.BLUE, Color.ORANGE, Color.GREEN, Color.GRAY,
                 Color.RED, Color.WHITE, Color.YELLOW, Color.MAGENTA};
         int counter = 0;
-        // checks to see if their is properties in array
+        // checks to see if there is properties in array
         if (property[0] != null) {
             //Goes through every property in array until there is null value
             while (property[counter] != null) {
@@ -206,39 +207,7 @@ public class Player {
         }
     }
 
-    // Metod returns a boolean that indicates wether or not the player can mortgage their property
-    public boolean elligibleToMortgage() {
-        int counter = 0;
-        boolean eligble = false;
-        while (property[counter] != null) {
-            if (!property[counter].getMortgage()) {
-                eligble = true;
-            }
-            counter++;
-        }
-        if (eligble) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
-    // Method returns a boolean that indicates wether or not the player has a mortgaged property they can buy back
-    public boolean elligibleToBuyBackMortgage() {
-        int counter = 0;
-        boolean eligble = false;
-        while (property[counter] != null) {
-            if (property[counter].getMortgage()) {
-                eligble = true;
-            }
-            counter++;
-        }
-        if (eligble) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
     //Method returns an array of properties the player can build houses on
     public Property[] eligbleRealEstateForHouses() {

@@ -1,6 +1,4 @@
 package SupportClasses;
-// Class is written by Patrick Machalet s203932
-
 public class Account {
     private int amount;
 
@@ -34,13 +32,6 @@ public class Account {
             this.amount = 0;
         }
 
-    }
-
-    public void transactionAccount(int transactionValue) {
-        this.amount = amount + transactionValue;
-        if(this.amount <0) {
-            this.amount = 0;
-        }
     }
 
     public int getAmount() {
