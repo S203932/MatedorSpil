@@ -112,20 +112,7 @@ public class Player {
 
     }
 
-    public String getNamesOfProperties() {
-        String string = "";
-        int counter = 0;
-        if (property[0] == null) {
-            string = "De ejer ingen grunde";
-        } else {
-            while (property[counter] != null) {
-                int i = 1;
-                string = string + property[counter].getName() + " - position " + property[counter].getPosition() + " på brættet" + "\n";
-                counter++;
-            }
-        }
-        return string;
-    }
+
 
 
    // Method returns an array of names on the properties that the players own and can mortgage. Last index is "Ingen af overstående"
@@ -337,22 +324,6 @@ public class Player {
         return strings;
     }
 
-    //Method returns a boolean wether or not the player has houses to sell
-    public boolean eligibleToSellHouse() {
-        int counter = 0;
-        boolean eligible = false;
-        while (property[counter] != null) {
-            if (property[counter].getClass().equals(RealEstate.class)) {
-                if (((RealEstate) property[counter]).getUpgrade() > 0) {
-                    eligible = true;
-                }
-            }
-            counter++;
-        }
-        return eligible;
-
-
-    }
 
     // method that returns the properties, where the player can buy back their mortgage
     public Property[] getPropertiesToBuyBack() {

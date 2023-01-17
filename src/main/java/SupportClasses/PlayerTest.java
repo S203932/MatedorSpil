@@ -1,6 +1,6 @@
 package SupportClasses;
 
-import Fields.Field;
+
 import Fields.FieldList;
 import Fields.Property;
 import Fields.RealEstate;

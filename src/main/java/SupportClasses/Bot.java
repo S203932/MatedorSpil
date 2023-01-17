@@ -1,7 +1,6 @@
 package SupportClasses;
 
-import java.util.Timer;
-import java.util.TimerTask;
+
 import java.lang.*;
 import ChanceCardsAndDeck.CardDeck;
 import ChanceCardsAndDeck.ChanceCards;
@@ -69,7 +68,7 @@ public class Bot extends Player {
             System.out.println("Field is a chance field");
             Chance chance = new Chance();
             CardDeck cardDeck = chance.getCardDeck();
-            int randomNumber = (int) (Math.random() * 19) + 0;
+            int randomNumber = (int) (Math.random() * 45) + 0;
             cardDeck.setCards();
             ChanceCards chanceCard = cardDeck.getCard(randomNumber);
             System.out.println(chanceCard.getDescription());
