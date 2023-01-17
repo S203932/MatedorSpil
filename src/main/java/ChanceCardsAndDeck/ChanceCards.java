@@ -133,9 +133,14 @@ public class ChanceCards {
 
             // Moves the player on the board.
             case 2:
+                if (player.getPosition()>10 && transaction > 0){
+                    player.getAccount().subtractionAccount(5000);
+                } else if (transaction > 0) {
+                    player.getAccount().subtractionAccount(1000);
+                }
                 gui.displayChanceCard(description);
                 player.setPosition(moveTo);
-                player.getAccount().subtractionAccount(1000);
+
                 gui_player.getCar().setPosition(fields[moveTo]);
                 break;
 
@@ -211,7 +216,7 @@ public class ChanceCards {
             // Get out of jail free.
             case 7:
                 gui.displayChanceCard(description);
-                player.setFreejail(1);
+                player.setFreejail(0);
 
                 // Pay X amount per house and hotel the player owns
             case 8:
@@ -251,7 +256,7 @@ public class ChanceCards {
                 playertotal += player.getAccount().getAmount();
                 if (playertotal <= 15000) {
                     player.getAccount().additionAccount(40000);
-                    gui.showMessage("De modtager Matador legattet grundet de har mindre 15 tusind kr. til deres navn.");
+                    gui.showMessage("De modtager Matador legattet grundet de har mindre end 15 tusind kr. til deres navn.");
                 }
                 else {
                     gui.showMessage("De modtager IKKE Matador legattet grundet de har mere end 15 tusind kr. til deres navn.");
