@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class PropertyTest1 extends Property {
+class PropertyTest extends Property {
 
     @Test
     void buyProperty() {

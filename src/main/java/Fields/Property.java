@@ -2,9 +2,6 @@ package Fields;
 
 import SupportClasses.Player;
 
-import static java.lang.Math.round;
-
-
 public abstract class Property extends Field {
 
     private int price;

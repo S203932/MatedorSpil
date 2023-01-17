@@ -1,12 +1,11 @@
 package Fields;
 import SupportClasses.Player;
-import java.util.Scanner;
 
 public class Tax5 extends Tax {
     //Creating options for tax pay on tax field 5.
     public void rent(Player player, int optionTax) {
         int playertotal = 0;
-        int tomp = 0;
+        int tomp;
         int counter = 0;
         if (optionTax==2){
             player.getAccount().subtractionAccount(4000);
