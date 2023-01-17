@@ -222,7 +222,7 @@ public class ChanceCards {
             // Get out of jail free.
             case 7:
                 gui.displayChanceCard(description);
-                player.setFreejail(0);
+                player.setFreejail(1);
 
                 // Pay X amount per house and hotel the player owns
             case 8:
@@ -255,6 +255,9 @@ public class ChanceCards {
                         if (player.getProperty()[i].getClass().equals(RealEstate.class)) {
                             tomp = ((RealEstate) player.getProperty()[i]).getUpgrade();
                             playertotal += tomp * ((RealEstate) player.getProperty()[i]).getUpgradeValue();
+                            playertotal += player.getProperty()[i].getPrice();
+                        }
+                        else{
                             playertotal += player.getProperty()[i].getPrice();
                         }
                     }
