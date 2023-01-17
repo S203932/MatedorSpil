@@ -1,33 +1,32 @@
 package Fields;
 
 import SupportClasses.Player;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class PropertyTest {
+class PropertyTest extends Property {
 
-    @org.junit.jupiter.api.Test
+    @Test
     void buyProperty() {
-        Property property = new Property();
-        property.setValue(3);
         Player player = new Player();
-        player.getAccount().setAccount(3);
+        player.getAccount().setAccount(5000);
+        player.setPlayerName("Thomas");
+        Property property = new RealEstate();
+        property.setPrice(2500);
         property.buyProperty(player);
-        assertEquals(0, player.getAccount().getPengebeholdning());
+        assertEquals(2500, player.getAccount().getAmount());
+        assertEquals("Thomas", property.getPlayer().getPlayerName());
+
+
     }
 
-    @org.junit.jupiter.api.Test
-    void payRentProperty() {
-        Property property = new Property();
-        property.setValue(3);
+    @Test
+    void mortgageProperty() {
         Player player = new Player();
-        player.getAccount().setAccount(3);
-        property.setPlayer(player);
-        Player player2 = new Player();
-        player2.getAccount().setAccount(3);
-        property.PayRentProperty(player2);
-        assertEquals(0,player2.getAccount().getPengebeholdning());
-        assertEquals(6,player.getAccount().getPengebeholdning());
-
+        setPrice(4000);
+        player.getAccount().setAccount(5000);
+        mortgageProperty(player);
+        assertEquals(7000, player.getAccount().getAmount());
     }
 }

@@ -1,71 +1,76 @@
 package Fields;
-// Class is written by Kristian Urban 163301 and Zainab Hameed s204747
 
 import SupportClasses.Player;
 
-import java.awt.*;
+public abstract class Property extends Field {
 
-
-public class Property extends Field {
-    //
-
-    private int value;
+    private int price;
+    private boolean mortgage;
     private boolean availability;
-    private int type;
-
     private Player player;
 
     public Property() {
-        setValue(0);
+        setPrice(0);
+        setMortgage(false);
         setAvailability(true);
-        setType(-1);
-        setColor(Color.black);
         setPlayer(player);
     }
 
-    public void setValue(int value) {
-        this.value = value;
+    public int getPrice() {
+        return this.price;
     }
 
-    public void setAvailability(boolean availability) {
-        this.availability = availability;
+    public void setPrice(int price) {
+        this.price = price;
     }
 
-    public void setType(int type) {
-        this.type = type;
+    public boolean getMortgage() {
+        return this.mortgage;
     }
 
-    public void setPlayer(Player player){
-        this.player = player;
-    }
-
-    public int getValue() {
-        return this.value;
+    public void setMortgage(boolean mortgage) {
+        this.mortgage = mortgage;
     }
 
     public boolean getAvailability() {
         return this.availability;
     }
 
-    public int getType() {
-        return this.type;
+    public void setAvailability(boolean availability) {
+        this.availability = availability;
     }
 
     public Player getPlayer() {
         return this.player;
     }
 
-    public void buyProperty(Player player){
-        this.availability = false;
-        player.getAccount().subtractionAccount(this.value);
+    public void setPlayer(Player player) {
         this.player = player;
     }
-    public void PayRentProperty(Player player){
-            player.getAccount().subtractionAccount(this.value);
-            this.player.getAccount().additionKonto(this.value);
+
+    // Method for buying af Property such as RealEstate, Brewery or Ferry
+    public void buyProperty(Player player) {
+        this.availability = false;
+        player.getAccount().subtractionAccount(this.price);
+        this.player = player;
     }
 
-    public String toString(){
-        return "Position: "+getPosition();
+    // Method for mortgage players property
+    public void mortgageProperty(Player player) {
+        if (!mortgage) {
+            player.getAccount().additionAccount(price / 2);
+            this.mortgage = true;
+        }
+    }
+
+    public void buyBackMortgage(Player player) {
+        if (mortgage) {
+            player.getAccount().subtractionAccount(price / 2);
+            this.mortgage = false;
+        }
+    }
+
+    public String toString() {
+        return "Position: " + getPosition();
     }
 }

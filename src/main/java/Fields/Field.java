@@ -1,33 +1,38 @@
 package Fields;
-// Class is written by Kristian Urban 163301 and Zainab Hameed s204747
+
 import java.awt.*;
 
-public class Field {
-    private int position;
+public abstract class Field {
     private String name;
-
+    private int position; //This is the position on the board not the index
     private Color color;
+    private int type;
 
-    public Field(){
+    public Field() {
         setName("Noname");
         setPosition(-1);
         setColor(Color.black);
+        setType(-1);
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setPosition(int position) {
-        this.position = position;
+    public Color getColor() {
+        return this.color;
     }
 
     public void setColor(Color color) {
         this.color = color;
-    }
-
-    public Color getColor(){
-        return this.color;
     }
 
     public String setName() {
@@ -38,8 +43,12 @@ public class Field {
         return this.position;
     }
 
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
     @Override
-    public String toString(){
+    public String toString() {
         return "This field is a : " + this.getClass().getSimpleName();
     }
 }

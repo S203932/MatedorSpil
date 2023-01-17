@@ -1,5 +1,5 @@
 package GUIController;
-// Class is written by Patrick Machalet s203932 and Nataliia Khaiko s224295
+
 import ChanceCardsAndDeck.CardDeck;
 import ChanceCardsAndDeck.ChanceCards;
 import CreateAndWriteToAndFromTXT.ReadFile;
@@ -13,315 +13,531 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class GUIController {
-    GUI_Field[] fields = {
-            new GUI_Start(), new GUI_Street(), new GUI_Street(), new GUI_Chance(), new GUI_Street(), new GUI_Street(),
-
-            new GUI_Jail(), new GUI_Street(), new GUI_Street(), new GUI_Chance(), new GUI_Street(), new GUI_Street(),
-
-            new GUI_Refuge(), new GUI_Street(), new GUI_Street(), new GUI_Chance(), new GUI_Street(), new GUI_Street(),
-
-            new GUI_Jail(), new GUI_Street(), new GUI_Street(), new GUI_Chance(), new GUI_Street(), new GUI_Street(),
-    };
-    private GUI gui = new GUI(fields);
-    private DiceCup dice = new DiceCup(1);
-    private GUI_Car car=new GUI_Car();
+    GUI_Field[] fields = setupGUIFields();
+    private final GUI gui = new GUI(fields);
+    private final DiceCup dice = new DiceCup(2);
+    private final GUI_Car car = new GUI_Car();
     private Player[] player;
 
-//The following initializePlayers method won't work since it is a void method, so'
-    // the players are only existing in that specific method and are "recreated"
-    // everytime you call that method
-    public void initialzePlayers() {
-       int amountPlayers = gui.getUserInteger("Enter amount of players", 2, 4);
-        Player[] player =new Player[amountPlayers];
-        GUI_Player[] GUI_player=new GUI_Player[amountPlayers];
-        if (amountPlayers==2){
-            for (int i = 0; i < player.length; i++ ){
-                player[i]=new Player();
-                player[i].setPlayerName(gui.getUserString("Enter name"));
-                player[i].getAccount().setAccount(20);
-                GUI_player[i]=new GUI_Player(player[i].getPlayerName(),20);
-                gui.addPlayer(GUI_player[i]);
-            }
-        } else if(amountPlayers==3){
-            for (int i = 0; i < player.length; i++ ){
-                player[i]=new Player();
-                player[i].setPlayerName(gui.getUserString("Enter name"));
-                player[i].getAccount().setAccount(18);
-                GUI_player[i]=new GUI_Player(player[i].getPlayerName(),18);
-                gui.addPlayer(GUI_player[i]);
-            }
-        } else if(amountPlayers==4){
-            for (int i = 0; i < player.length; i++ ){
-                player[i]=new Player();
-                player[i].setPlayerName(gui.getUserString("Enter name"));
-                player[i].getAccount().setAccount(16);
-                GUI_player[i]=new GUI_Player(player[i].getPlayerName(),16);
-                gui.addPlayer(GUI_player[i]);
-            }
+    public static void setHouseGraphic(Property property, GUI gui) {
+        int upgradeStatus = ((RealEstate) property).getUpgrade();
+        if (upgradeStatus == 0) {
+            ((GUI_Street) gui.getFields()[property.getPosition() - 1]).setHouses(0);
+        } else if (upgradeStatus == 1) {
+            ((GUI_Street) gui.getFields()[property.getPosition() - 1]).setHouses(1);
+        } else if (upgradeStatus == 2) {
+            ((GUI_Street) gui.getFields()[property.getPosition() - 1]).setHouses(2);
+        } else if (upgradeStatus == 3) {
+            ((GUI_Street) gui.getFields()[property.getPosition() - 1]).setHouses(3);
+        } else if (upgradeStatus == 4) {
+            ((GUI_Street) gui.getFields()[property.getPosition() - 1]).setHouses(4);
+        } else if (upgradeStatus == 5) {
+            ((GUI_Street) gui.getFields()[property.getPosition() - 1]).setHotel(true);
+        } else {
+            System.out.println("Something went wrong when adding house graphic");
         }
-        int turn=0;
-        for(int i=0; i<amountPlayers; i++){
-            Player playerNow=player[turn];
-            gui.showMessage(playerNow.getPlayerName()+"'s  turn");
-            dice.rollDice();
-            int roll=dice.result();
-            gui.setDie(dice.result());
-            playerNow.setPosition((playerNow.getPosition()+roll)% fields.length);
-            GUI_player[turn].getCar().setPosition(gui.getFields()[(playerNow.getPosition()+roll)% fields.length]);
-            turn=((turn+1)%amountPlayers);
-        }
-
     }
 
-    //much of it, if not most, of the method below is from the former initialize players.
-    public GUI_Player[] setupPlayers(Player[] player) {
+    public GUI_Field[] setupGUIFields() {
+        GUI_Field[] field = {new GUI_Start(), new GUI_Street(), new GUI_Chance(), new GUI_Street(), new GUI_Tax(),
+
+                new GUI_Shipping(), new GUI_Street(), new GUI_Chance(), new GUI_Street(), new GUI_Street(),
+
+                new GUI_Jail(), new GUI_Street(), new GUI_Brewery(), new GUI_Street(), new GUI_Street(),
+
+                new GUI_Shipping(), new GUI_Street(), new GUI_Chance(), new GUI_Street(), new GUI_Street(),
+
+                new GUI_Refuge(), new GUI_Street(), new GUI_Chance(), new GUI_Street(), new GUI_Street(),
+
+                new GUI_Shipping(), new GUI_Street(), new GUI_Street(), new GUI_Brewery(), new GUI_Street(),
+
+                new GUI_Jail(), new GUI_Street(), new GUI_Street(), new GUI_Chance(), new GUI_Street(),
+
+                new GUI_Shipping(), new GUI_Chance(), new GUI_Street(), new GUI_Tax(), new GUI_Street()};
+        return field;
+    }
+
+    //
+    public GUI_Player[] setupBot(Player[] player) {
         GUI_Player[] GUI_player = new GUI_Player[player.length];
+        GUI_Car tractor = new GUI_Car(Color.black, Color.white, GUI_Car.Type.TRACTOR, GUI_Car.Pattern.CHECKERED);
+        GUI_Car racecar = new GUI_Car(Color.red, Color.black, GUI_Car.Type.RACECAR, GUI_Car.Pattern.HORIZONTAL_GRADIANT);
+        GUI_Car ufo = new GUI_Car(Color.WHITE, Color.gray, GUI_Car.Type.UFO, GUI_Car.Pattern.DIAGONAL_DUAL_COLOR);
+        GUI_Car car = new GUI_Car(Color.MAGENTA, Color.yellow, GUI_Car.Type.CAR, GUI_Car.Pattern.FILL);
+        GUI_Car tractor1 = new GUI_Car(Color.ORANGE, Color.BLUE, GUI_Car.Type.TRACTOR, GUI_Car.Pattern.DIAGONAL_DUAL_COLOR);
+        GUI_Car ufo1 = new GUI_Car(Color.GREEN, Color.RED, GUI_Car.Type.UFO, GUI_Car.Pattern.DOTTED);
+        GUI_Car[] vehicles = new GUI_Car[]{tractor, racecar, ufo, car, tractor1, ufo1};
+
         if ((player.length) == 2) {
             String[] nameArray = new String[2];
-            for (int i = 0; i < player.length; i++) {
-                System.out.println("i : "+i);
-                player[i] = new Player();
-                String playerName = gui.getUserString("Enter a new name");
-                int repeat = 0;
-                for(int j=0; j<nameArray.length;j++){
-                    if(playerName.equalsIgnoreCase(nameArray[j])){
-                        repeat = 1;
-                        System.out.println("Name has already been entered.");
-                    }
-                }
-                nameArray[i] = playerName;
-                player[i].setPlayerName(playerName);
-                player[i].getAccount().setAccount(20);
-                GUI_player[i] = new GUI_Player(player[i].getPlayerName(), 20);
-                gui.addPlayer(GUI_player[i]);
-                if(repeat == 1) {
-                    i = i - 1;
-                }
+            int counter = 0;
+            String playerName = "";
+            if (counter == 0) {
+                playerName = gui.getUserString("Indtast spillerens navn");
+                player[0].setPlayerName(playerName);
+                player[0].getAccount().setAccount(30000);
+                GUI_player[0] = new GUI_Player(player[0].getPlayerName(), 30000, vehicles[0]);
+                gui.addPlayer(GUI_player[0]);
+                counter++;
             }
-        } else if ((player.length) == 3) {
-            String[] nameArray = new String[3];
-            for (int i = 0; i < player.length; i++) {
-                System.out.println("i : "+i);
-                player[i] = new Player();
-                String playerName = gui.getUserString("Enter a new name");
-                int repeat = 0;
-                for(int j=0; j<nameArray.length;j++){
-                    if(playerName.equalsIgnoreCase(nameArray[j])){
-                        repeat = 1;
-                        System.out.println("Name has already been entered.");
-                    }
-                }
-                nameArray[i] = playerName;
-                player[i].setPlayerName(playerName);
-                player[i].getAccount().setAccount(18);
-                GUI_player[i] = new GUI_Player(player[i].getPlayerName(), 18);
-                gui.addPlayer(GUI_player[i]);
-                if(repeat == 1) {
-                    i = i - 1;
-                }
-            }
-        } else if ((player.length) == 4) {
-            String[] nameArray = new String[4];
-            for (int i = 0; i < player.length; i++) {
-                System.out.println("i : "+i);
-                player[i] = new Player();
-                String playerName = gui.getUserString("Enter a new name");
-                int repeat = 0;
-                for(int j=0; j<nameArray.length;j++){
-                    if(playerName.equalsIgnoreCase(nameArray[j])){
-                        repeat = 1;
-                        System.out.println("Name has already been entered.");
-                    }
-                }
-                nameArray[i] = playerName;
-                player[i].setPlayerName(playerName);
-                player[i].getAccount().setAccount(16);
-                GUI_player[i] = new GUI_Player(player[i].getPlayerName(), 16);
-                gui.addPlayer(GUI_player[i]);
-                if(repeat == 1){
-                    i = i -1;
+            while (counter == 1) {
+                String botName = gui.getUserString("Indtast Bottens navn (Må ikke være det samme som tidligere indtastet)");
+                if (!playerName.equalsIgnoreCase(botName)) {
+                    player[1].setPlayerName(botName);
+                    player[1].getAccount().setAccount(30000);
+                    GUI_player[1] = new GUI_Player(player[1].getPlayerName(), 30000, vehicles[1]);
+                    gui.addPlayer(GUI_player[1]);
+                    return GUI_player;
+                } else {
+                    gui.showMessage("navnet er optaget. Indtast nyt navn");
                 }
             }
         }
         return GUI_player;
     }
 
-    public void takeTurn(Player player, GUI gui, GUI_Player gui_player, FieldList fieldList,GUI_Field[] fields){
-        String rollDie = gui.getUserButtonPressed(player.getPlayerName()+"'s turn. Choose an option:",
-                "Press to roll the die.","Press to forefit and give in.");
-        if(rollDie.equalsIgnoreCase("Press to roll the die.")){
+    public GUI_Player[] setupPlayers(Player[] player) {
+        GUI_Player[] GUI_player = new GUI_Player[player.length];
+        GUI_Car tractor = new GUI_Car(Color.black, Color.white, GUI_Car.Type.TRACTOR, GUI_Car.Pattern.CHECKERED);
+        GUI_Car racecar = new GUI_Car(Color.red, Color.black, GUI_Car.Type.RACECAR, GUI_Car.Pattern.HORIZONTAL_GRADIANT);
+        GUI_Car ufo = new GUI_Car(Color.WHITE, Color.gray, GUI_Car.Type.UFO, GUI_Car.Pattern.DIAGONAL_DUAL_COLOR);
+        GUI_Car car = new GUI_Car(Color.MAGENTA, Color.yellow, GUI_Car.Type.CAR, GUI_Car.Pattern.FILL);
+        GUI_Car tractor1 = new GUI_Car(Color.ORANGE, Color.BLUE, GUI_Car.Type.TRACTOR, GUI_Car.Pattern.DIAGONAL_DUAL_COLOR);
+        GUI_Car ufo1 = new GUI_Car(Color.GREEN, Color.RED, GUI_Car.Type.UFO, GUI_Car.Pattern.DOTTED);
+        GUI_Car[] vehicles = new GUI_Car[]{tractor, racecar, ufo, car, tractor1, ufo1};
+        if ((player.length) == 3) {
+            String[] nameArray = new String[3];
+            for (int i = 0; i < player.length; i++) {
+                System.out.println("i : " + i);
+                player[i] = new Player();
+                String playerName = gui.getUserString("Indtast navn");
+                int repeat = 0;
+                for (int j = 0; j < nameArray.length; j++) {
+                    if (playerName.equalsIgnoreCase(nameArray[j])) {
+                        repeat = 1;
+                        System.out.println("Navnet er optaget. Indtast nyt navn");
+                    }
+                }
+                nameArray[i] = playerName;
+                player[i].setPlayerName(playerName);
+                player[i].getAccount().setAccount(30000);
+                GUI_player[i] = new GUI_Player(player[i].getPlayerName(), 30000, vehicles[i]);
+                gui.addPlayer(GUI_player[i]);
+                if (repeat == 1) {
+                    i = i - 1;
+                }
+            }
+        } else if ((player.length) == 4) {
+            String[] nameArray = new String[4];
+            for (int i = 0; i < player.length; i++) {
+                System.out.println("i : " + i);
+                player[i] = new Player();
+                String playerName = gui.getUserString("Indtast navn");
+                int repeat = 0;
+                for (int j = 0; j < nameArray.length; j++) {
+                    if (playerName.equalsIgnoreCase(nameArray[j])) {
+                        repeat = 1;
+                        System.out.println("Navnet er  optaget. Indtast nyt navn");
+                    }
+                }
+                nameArray[i] = playerName;
+                player[i].setPlayerName(playerName);
+                player[i].getAccount().setAccount(30000);
+                GUI_player[i] = new GUI_Player(player[i].getPlayerName(), 30000, vehicles[i]);
+                gui.addPlayer(GUI_player[i]);
+                if (repeat == 1) {
+                    i = i - 1;
+                }
+            }
+        } else if ((player.length) == 5) {
+            String[] nameArray = new String[5];
+            for (int i = 0; i < player.length; i++) {
+                System.out.println("i : " + i);
+                player[i] = new Player();
+                String playerName = gui.getUserString("Indtast navn");
+                int repeat = 0;
+                for (int j = 0; j < nameArray.length; j++) {
+                    if (playerName.equalsIgnoreCase(nameArray[j])) {
+                        repeat = 1;
+                        System.out.println("Navnet er optaget. Indtast nyt navn");
+                    }
+                }
+                nameArray[i] = playerName;
+                player[i].setPlayerName(playerName);
+                player[i].getAccount().setAccount(30000);
+                GUI_player[i] = new GUI_Player(player[i].getPlayerName(), 30000, vehicles[i]);
+                gui.addPlayer(GUI_player[i]);
+                if (repeat == 1) {
+                    i = i - 1;
+                }
+            }
+        } else if ((player.length) == 6) {
+            String[] nameArray = new String[6];
+            for (int i = 0; i < player.length; i++) {
+                System.out.println("i : " + i);
+                player[i] = new Player();
+                String playerName = gui.getUserString("Indtast navn");
+                int repeat = 0;
+                for (int j = 0; j < nameArray.length; j++) {
+                    if (playerName.equalsIgnoreCase(nameArray[j])) {
+                        repeat = 1;
+                        System.out.println("Navnet er optaget. Indtast nyt navn");
+                    }
+                }
+                nameArray[i] = playerName;
+                player[i].setPlayerName(playerName);
+                player[i].getAccount().setAccount(30000);
+                GUI_player[i] = new GUI_Player(player[i].getPlayerName(), 30000, vehicles[i]);
+                gui.addPlayer(GUI_player[i]);
+                if (repeat == 1) {
+                    i = i - 1;
+                }
+            }
+        }
+        return GUI_player;
+    }
+
+    public void takeTurn(Player player, GUI gui, GUI_Player gui_player, FieldList fieldList, GUI_Field[] fields, Player[] players) {
+        String rollDie = gui.getUserButtonPressed("Det er " + player.getPlayerName() + "s tur.", "Tryk for at kaste med tegninger", "Tryk for at give op");
+        if (rollDie.equalsIgnoreCase("Tryk for at kaste med tegninger")) {
+            System.out.println("Dice has been rolled");
             dice.rollDice();
-            gui.setDie(dice.result());
+            gui.setDice(dice.getIndexDie(0), dice.getIndexDie(1));
             player.diceRollPosition(dice.result());
+
+
             GUI_Field field = gui.getFields()[player.getPosition()];
             gui_player.getCar().setPosition(field);
-            if(fieldList.getFieldIndex(player.getPosition()).getClass().equals(Property.class)){
-                System.out.println("Field is a property");
-                if(((Property)fieldList.getFieldIndex(player.getPosition())).getAvailability()){
-                    System.out.println("property is not owned");
-                    gui.showMessage("The field is an unowned property, press the button to buy it.");
-                    ((Property)fieldList.getFieldIndex(player.getPosition())).buyProperty(player);
-                    fields[player.getPosition()].setDescription("Is owned by: "+player.getPlayerName());
-                    gui_player.setBalance(player.getAccount().getPengebeholdning());
 
-                }else{
-                    ((Property)fieldList.getFieldIndex(player.getPosition())).PayRentProperty(player);
-                    System.out.println("Property is owned");
-                    gui.showMessage("The property is owned, press the button to pay rent.");
+
+            int position = player.getPosition();
+            // Check availability and buying free Property such as RealEstate, Ferry and Brewery
+            if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(RealEstate.class) || fieldList.getFieldIndex(player.getPosition()).getClass().equals(Ferry.class) || fieldList.getFieldIndex(player.getPosition()).getClass().equals(Brewery.class)) {
+                System.out.println("Field is a property");
+                if (((Property) fieldList.getFieldIndex(player.getPosition())).getAvailability()) {
+                    System.out.println("property is not owned");
+                    String buy = gui.getUserButtonPressed("Grund " + fieldList.getFieldIndex(player.getPosition()).getName() + " er til salg", "Køb grund", "Nej Tak");
+                    //   gui.showMessage("The field is an unowned property, press the button to buy it.");
+                    if (buy.equalsIgnoreCase("Køb grund")) {
+                        ((Property) fieldList.getFieldIndex(player.getPosition())).buyProperty(player);
+                        player.setProperty(((Property) fieldList.getFieldIndex(player.getPosition())));
+                        fields[player.getPosition()].setSubText(player.getPlayerName());
+                        gui_player.setBalance(player.getAccount().getAmount());
+                    }
+
+                    // Pay rent for owned RealEstate
+                } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(RealEstate.class) && !((Property) fieldList.getFieldIndex(position)).getMortgage()) {           //Checking if property is pawned
+                    System.out.println("RealEstate is owned");
+                    gui.showMessage("Denne ejendomme er ejet. Tryk på knappen for at betale leje.");
+                    ((RealEstate) fieldList.getFieldIndex(player.getPosition())).rent(player);
+
+                    // Pay rent for owned Ferry
+                } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Ferry.class) && !((Property) fieldList.getFieldIndex(position)).getMortgage()) {           //Checking if property is pawned
+                    System.out.println("Ferry is owned");
+                    gui.showMessage("Færge er ejet. Tryk på knappen for at betale leje,");
+                    ((Ferry) fieldList.getFieldIndex(player.getPosition())).rent(player, fieldList);
+
+                    // Pay rent for owned Brewery
+                } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Brewery.class) && !((Property) fieldList.getFieldIndex(position)).getMortgage()) {        //Checking if property is pawned
+                    System.out.println("Brewery is owned");
+                    gui.showMessage("Bryggeri er ejet. Tryk på knappen for at betale leje.");
+                    ((Brewery) fieldList.getFieldIndex(player.getPosition())).rent(player, fieldList, dice);
                 }
-            }else if(fieldList.getFieldIndex(player.getPosition()).getClass().equals(Chance.class)){
+            } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Chance.class)) {
+
+
                 //cardDeck.initilalizeCard();
                 //cardDeck.cards();
+                System.out.println("Field is a chance field");
                 Chance chance = new Chance();
                 CardDeck cardDeck = chance.getCardDeck();
-                int randomNumber = (int)(Math.random() * 7) + 0;
+                int randomNumber = (int) (Math.random() * 45);
                 cardDeck.setCards();
                 ChanceCards chanceCard = cardDeck.getCard(randomNumber);
                 System.out.println(chanceCard.getDescription());
-                chanceCard.cardAction(player,gui, fieldList.getFieldList(), fields, gui_player);
-            }else if(fieldList.getFieldIndex(player.getPosition()).getClass().equals(NeutralFields.class)){
-                gui.showMessage("Nothing worth mentioning happens on this field, press the button " +
-                        "to pass the turn.");
-            }else if(fieldList.getFieldIndex(player.getPosition()).getClass().equals(StartField.class)){
-                gui.showMessage("You've landed on start, congrats you get 2. Press the button" +
-                        "to accept.");
-                gui_player.getCar().setPosition(fields[0]);
-            }else if(fieldList.getFieldIndex(player.getPosition()).getClass().equals(GoJail.class)){
-                gui.showMessage("Sucks to be you. Press the button to move to jail.");
+                chanceCard.cardAction(player, gui, fieldList, fields, gui_player, players);
+
+
+            } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Neutral.class)) {
+                System.out.println("Field is of type Neutral");
+                gui.showMessage("Tag' det roligt. Her sker ikke så meget \n" + "Tryk på knappen for at gå vidder.");
+
+            } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Tax5.class) || fieldList.getFieldIndex(player.getPosition()).getClass().equals(Tax39.class)) {
+                System.out.println("Field is of type Tax");
+
+                if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(Tax5.class)) {
+                    System.out.println("Field is of type TAX5");
+                    String choice = gui.getUserButtonPressed("Vælg om de ønsker at betale 10% af deres nuværende" + " pengebeholdning eller om de ønsker at betale 4000 kr.", "Betal 10%", "Betal 4000 kr.");
+                    if (choice.equalsIgnoreCase("Betal 10%")) {
+                        ((Tax5) fieldList.getFieldIndex(player.getPosition())).rent(player, 1);
+                        gui_player.setBalance(player.getAccount().getAmount());
+                    } else {
+                        ((Tax5) fieldList.getFieldIndex(player.getPosition())).rent(player, 2);
+                        gui_player.setBalance(player.getAccount().getAmount());
+                    }
+                } else {
+                    System.out.println("Field is of type TAX39");
+                    ((Tax39) fieldList.getFieldIndex(player.getPosition())).rent(player);
+                }
+
+            } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(GoJail.class)) {
+                System.out.println("Field is of type GoJail");
+                gui.showMessage("Beklager. De skal fængsel.");
+                if (player.getFreejail() == 1) {
+                    gui.showMessage("Gode nyheder. De ejer løsladelseskort");
+                }
                 GoJail goJail = new GoJail();
                 goJail.GoToJail(player);
-                if(player.getJail()==1){
-                    player.getAccount().additionKonto(-1);
+                if (player.getJail() == 1) {
+                    player.getAccount().subtractionAccount(5000);
                 }
-                player.setPosition(6);
-                gui_player.getCar().setPosition(fields[6]);
+                player.setPosition(10);
+                gui_player.getCar().setPosition(fields[10]);
             }
-
-        }else{
+        } else {
             player.setForfeit(1);
-            gui.showMessage("You have now forfeited. Your properties will remain bought, but can " +
-                    "no longer take turns.");
-
+            gui.showMessage("De er fallit. Deres ejendomme forbliver købte,\n" + "men De kan ikke længere deltage i spillet.");
         }
 
     }
 
-
-
-    public void GUIController(String filename) {
+    public void GUIController(String filename, FieldList fieldlist) {
         ReadFile readFile = new ReadFile();
         ArrayList<String> stringArrayList = readFile.ReadFile(filename);
-        gui.getFields()[0].setTitle(stringArrayList.get(1));
-        gui.getFields()[0].setSubText("Modtager 2$, når du passerer");
-        gui.getFields()[0].setBackGroundColor(new Color(255, 255, 255));
+        int counter = 0;
+        gui.getFields()[counter].setTitle(stringArrayList.get(counter + 1));
+        gui.getFields()[counter].setBackGroundColor(new Color(204, 0, 0));
+        gui.getFields()[counter].setSubText("This is subtext");
+        counter++;
 
-        gui.getFields()[1].setTitle(stringArrayList.get(2));
-        gui.getFields()[1].setSubText("Pris: 1$");
-        gui.getFields()[1].setBackGroundColor(new Color(245, 174, 68));
+        gui.getFields()[counter].setTitle(stringArrayList.get(counter + 1));
+        gui.getFields()[counter].setSubText("Pris" + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() + " kr.");
+        gui.getFields()[counter].setDescription("<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "</head>\n" + "<body>\n" + "<p><font size=\"+1\"><strong>" + fieldlist.getFieldIndex(counter).getName() + "</strong></font><br>\n" + "Leje af grund &emsp; &emsp;kr.   " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent0() + " <br>\n" + "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent1() + "<br>\n" + ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent2() + "<br>\n" + ">> 3 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent3() + "<br>\n" + ">> 4 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent4() + "<br>\n" + ">> hotel &emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent5() + "<br>\n" + "Opgraderingspris &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getUpgradeValue() + "<br>\n" + "Pantværdi &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() / 2 + "</p> \n" + "</body>\t\n" + "</html>");
+        gui.getFields()[counter].setBackGroundColor(new Color(0, 0, 255));
+        //((GUI_Street)gui.getFields()[counter]).setHouses(3);
+        //((GUI_Street)gui.getFields()[counter]).setHotel(true);
+        counter++;
 
-        gui.getFields()[2].setTitle(stringArrayList.get(3));
-        gui.getFields()[2].setSubText("Pris:  1$");
-        gui.getFields()[2].setBackGroundColor(new Color(245, 174, 68));
-
-        gui.getFields()[3].setTitle(stringArrayList.get(4));
-        gui.getFields()[3].setBackGroundColor(new Color(204, 204, 204));
-
-        gui.getFields()[4].setTitle(stringArrayList.get(5));
-        gui.getFields()[4].setSubText("Pris:  1");
-        gui.getFields()[4].setBackGroundColor(new Color(120, 244, 255));
-
-
-        gui.getFields()[5].setTitle(stringArrayList.get(6));
-        gui.getFields()[5].setSubText("Pris:  1");
-        gui.getFields()[5].setBackGroundColor(new Color(120, 244, 255));
-
-        gui.getFields()[6].setSubText(stringArrayList.get(7));
-        gui.getFields()[6].setBackGroundColor(new Color(125, 125, 125));
-
-        gui.getFields()[7].setTitle(stringArrayList.get(8));
-        gui.getFields()[7].setSubText("Pris:  2");
-        gui.getFields()[7].setBackGroundColor(new Color(167, 0, 204));
+        gui.getFields()[counter].setTitle(stringArrayList.get(counter + 1));
+        gui.getFields()[counter].setSubText("Prøv Lykken");
+        counter++;
 
 
-        gui.getFields()[8].setTitle(stringArrayList.get(9));
-        gui.getFields()[8].setSubText("Pris:  2");
-        gui.getFields()[8].setBackGroundColor(new Color(167, 0, 204));
+        gui.getFields()[counter].setTitle(stringArrayList.get(counter + 1));
+        gui.getFields()[counter].setSubText("Pris" + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() + " kr.");
+        gui.getFields()[counter].setDescription("<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "</head>\n" + "<body>\n" + "<p><font size=\"+1\"><strong>" + fieldlist.getFieldIndex(counter).getName() + "</strong></font><br>\n" + "Leje af grund &emsp; &emsp;kr.   " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent0() + " <br>\n" + "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent1() + "<br>\n" + ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent2() + "<br>\n" + ">> 3 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent3() + "<br>\n" + ">> 4 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent4() + "<br>\n" + ">> hotel &emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent5() + "<br>\n" + "Opgraderingspris &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getUpgradeValue() + "<br>\n" + "Pantværdi &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() / 2 + "</p> \n" + "</body>\t\n" + "</html>");
+        gui.getFields()[counter].setBackGroundColor(new Color(0, 0, 255));
+        counter++;
 
-        gui.getFields()[9].setTitle(stringArrayList.get(10));
-        gui.getFields()[9].setBackGroundColor(new Color(204, 204, 204));
-
-        gui.getFields()[10].setTitle(stringArrayList.get(11));
-        gui.getFields()[10].setSubText("Pris:  2");
-        gui.getFields()[10].setBackGroundColor(new Color(142, 169, 41));
+        gui.getFields()[counter].setTitle(stringArrayList.get(counter + 1));
+        gui.getFields()[counter].setSubText("Betal indkomstskat: 10% eller 4000 kr.");
+        gui.getFields()[counter].setBackGroundColor(new Color(255, 255, 204));
+        counter++;
 
 
-        gui.getFields()[11].setTitle(stringArrayList.get(12));
-        gui.getFields()[11].setSubText("Pris:  2");
-        gui.getFields()[11].setBackGroundColor(new Color(142, 169, 41));
+        gui.getFields()[counter].setTitle(stringArrayList.get(counter + 1));
+        gui.getFields()[counter].setSubText("Pris" + ((Ferry) fieldlist.getFieldIndex(counter)).getPrice() + " kr.");
+        gui.getFields()[counter].setDescription("<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "</head>\n" + "<body>\n" + "<p><font size=\"+1\"><strong>" + fieldlist.getFieldIndex(counter).getName() + ".</strong></font><br>\n" + "Leje &emsp; &emsp; &emsp; &emsp;&emsp;kr.   " + ((Ferry) fieldlist.getFieldIndex(counter)).getPrice() / 8 + " <br>\n" + "2 rederier ejes\t &emsp; >>  " + ((Ferry) fieldlist.getFieldIndex(counter)).getPrice() / 4 + "<br>\n" + "3 rederier ejes\t &emsp; >>  " + ((Ferry) fieldlist.getFieldIndex(counter)).getPrice() / 2 + "<br>\n" + "4 rederier ejes\t &emsp; >>  " + ((Ferry) fieldlist.getFieldIndex(counter)).getPrice() + "<br>\n" + "Pantværdi &emsp; kr. " + ((Ferry) fieldlist.getFieldIndex(counter)).getPrice() / 2 + "</p> \n" + "</body>\t\n" + "</html>");
+        counter++;
 
-        gui.getFields()[12].setTitle(stringArrayList.get(13));
-        gui.getFields()[12].setBackGroundColor(new Color(204, 204, 204));
 
-        gui.getFields()[13].setTitle(stringArrayList.get(14));
-        gui.getFields()[13].setSubText("Pris:  3");
-        gui.getFields()[13].setBackGroundColor(new Color(232, 9, 9));
+        gui.getFields()[counter].setTitle(stringArrayList.get(counter + 1));
+        gui.getFields()[counter].setSubText("Pris: " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() + " kr.");
+        gui.getFields()[counter].setBackGroundColor(new Color(255, 102, 0));
+        gui.getFields()[counter].setDescription("<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "</head>\n" + "<body>\n" + "<p><font size=\"+1\"><strong>" + fieldlist.getFieldIndex(counter).getName() + "</strong></font><br>\n" + "Leje af grund &emsp; &emsp;kr.   " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent0() + " <br>\n" + "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent1() + "<br>\n" + ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent2() + "<br>\n" + ">> 3 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent3() + "<br>\n" + ">> 4 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent4() + "<br>\n" + ">> hotel &emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent5() + "<br>\n" + "Opgraderingspris &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getUpgradeValue() + "<br>\n" + "Pantværdi &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() / 2 + "</p> \n" + "</body>\t\n" + "</html>");
+        counter++;
 
-        gui.getFields()[14].setTitle(stringArrayList.get(15));
-        gui.getFields()[14].setSubText("Pris:  3");
-        gui.getFields()[14].setBackGroundColor(new Color(232, 9, 9));
 
-        gui.getFields()[15].setTitle(stringArrayList.get(16));
-        gui.getFields()[15].setBackGroundColor(new Color(204, 204, 204));
+        gui.getFields()[counter].setTitle(stringArrayList.get(counter + 1));
+        gui.getFields()[counter].setSubText("Prøv Lykken");
+        counter++;
 
-        gui.getFields()[16].setTitle(stringArrayList.get(17));
-        gui.getFields()[16].setSubText("Pris:  3");
-        gui.getFields()[16].setBackGroundColor(new Color(255, 255, 50));
+        gui.getFields()[counter].setTitle(stringArrayList.get(counter + 1));
+        gui.getFields()[counter].setSubText("Pris: " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() + " kr.");
+        gui.getFields()[counter].setDescription("<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "</head>\n" + "<body>\n" + "<p><font size=\"+1\"><strong>" + fieldlist.getFieldIndex(counter).getName() + "</strong></font><br>\n" + "Leje af grund &emsp; &emsp;kr.   " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent0() + " <br>\n" + "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent1() + "<br>\n" + ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent2() + "<br>\n" + ">> 3 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent3() + "<br>\n" + ">> 4 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent4() + "<br>\n" + ">> hotel &emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent5() + "<br>\n" + "Opgraderingspris &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getUpgradeValue() + "<br>\n" + "Pantværdi &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() / 2 + "</p> \n" + "</body>\t\n" + "</html>");
+        gui.getFields()[counter].setBackGroundColor(new Color(255, 102, 0));
+        counter++;
 
-        gui.getFields()[17].setTitle(stringArrayList.get(18));
-        gui.getFields()[17].setSubText("Pris:  3");
-        gui.getFields()[17].setBackGroundColor(new Color(255, 255, 50));
 
-        gui.getFields()[18].setTitle(stringArrayList.get(19));
-        gui.getFields()[18].setBackGroundColor(new Color(125, 125, 125));
+        gui.getFields()[counter].setTitle(stringArrayList.get(counter + 1));
+        gui.getFields()[counter].setSubText("Pris: " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() + " kr.");
+        gui.getFields()[counter].setDescription("<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "</head>\n" + "<body>\n" + "<p><font size=\"+1\"><strong>" + fieldlist.getFieldIndex(counter).getName() + "</strong></font><br>\n" + "Leje af grund &emsp; &emsp;kr.   " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent0() + " <br>\n" + "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent1() + "<br>\n" + ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent2() + "<br>\n" + ">> 3 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent3() + "<br>\n" + ">> 4 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent4() + "<br>\n" + ">> hotel &emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent5() + "<br>\n" + "Opgraderingspris &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getUpgradeValue() + "<br>\n" + "Pantværdi &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() / 2 + "</p> \n" + "</body>\t\n" + "</html>");
+        gui.getFields()[counter].setBackGroundColor(new Color(255, 102, 0));
+        counter++;
 
-        gui.getFields()[19].setTitle(stringArrayList.get(20));
-        gui.getFields()[19].setSubText("Pris:  4");
-        gui.getFields()[19].setBackGroundColor(new Color(7, 89, 8));
+        gui.getFields()[counter].setTitle(stringArrayList.get(counter + 1));
+        gui.getFields()[counter].setSubText(fieldlist.getFieldIndex(counter).getName());
+        counter++;
 
-        gui.getFields()[20].setTitle(stringArrayList.get(21));
-        gui.getFields()[20].setSubText("Pris:  4");
-        gui.getFields()[20].setBackGroundColor(new Color(7, 89, 8));
 
-        gui.getFields()[21].setTitle(stringArrayList.get(22));
-        gui.getFields()[21].setBackGroundColor(new Color(204, 204, 204));
+        gui.getFields()[counter].setTitle(stringArrayList.get(counter + 1));
+        gui.getFields()[counter].setSubText("Pris: " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() + " kr.");
+        gui.getFields()[counter].setDescription("<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "</head>\n" + "<body>\n" + "<p><font size=\"+1\"><strong>" + fieldlist.getFieldIndex(counter).getName() + "</strong></font><br>\n" + "Leje af grund &emsp; &emsp;kr.   " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent0() + " <br>\n" + "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent1() + "<br>\n" + ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent2() + "<br>\n" + ">> 3 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent3() + "<br>\n" + ">> 4 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent4() + "<br>\n" + ">> hotel &emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent5() + "<br>\n" + "Opgraderingspris &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getUpgradeValue() + "<br>\n" + "Pantværdi &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() / 2 + "</p> \n" + "</body>\t\n" + "</html>");
+        gui.getFields()[counter].setBackGroundColor(new Color(102, 255, 102));
+        counter++;
 
-        gui.getFields()[22].setTitle(stringArrayList.get(23));
-        gui.getFields()[22].setSubText("Pris:  5");
-        gui.getFields()[22].setBackGroundColor(new Color(12, 33, 148));
+        gui.getFields()[counter].setTitle(stringArrayList.get(counter + 1));
+        gui.getFields()[counter].setSubText("Pris: " + ((Brewery) fieldlist.getFieldIndex(counter)).getPrice() + " kr.");
+        gui.getFields()[counter].setDescription("<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "</head>\n" + "<body>\n" + "<p><font size=\"+1\"><strong> Tuborg Squash.</strong></font>\n" + "<br>Ejes en virksomhed betales 100 gange hvad øjnene viser. <br><br>\n" + "Ejes Tuborg Squash og Coca-Cola, betales 200 gange øjenenes værdi.<br>\n" + "Pantværdi &emsp; kr. 1500<br><br><br></p> \n" + "</body>\t\n" + "</html>");
+        counter++;
 
-        gui.getFields()[23].setTitle(stringArrayList.get(24));
-        gui.getFields()[23].setSubText("Pris:  5");
-        gui.getFields()[23].setBackGroundColor(new Color(12, 33, 148));
+        gui.getFields()[counter].setTitle(stringArrayList.get(counter + 1));
+        gui.getFields()[counter].setSubText("Pris: " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() + " kr.");
+        gui.getFields()[counter].setDescription("<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "</head>\n" + "<body>\n" + "<p><font size=\"+1\"><strong>" + fieldlist.getFieldIndex(counter).getName() + "</strong></font><br>\n" + "Leje af grund &emsp; &emsp;kr.   " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent0() + " <br>\n" + "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent1() + "<br>\n" + ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent2() + "<br>\n" + ">> 3 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent3() + "<br>\n" + ">> 4 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent4() + "<br>\n" + ">> hotel &emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent5() + "<br>\n" + "Opgraderingspris &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getUpgradeValue() + "<br>\n" + "Pantværdi &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() / 2 + "</p> \n" + "</body>\t\n" + "</html>");
+        gui.getFields()[counter].setBackGroundColor(new Color(102, 255, 102));
+        counter++;
+
+        gui.getFields()[counter].setTitle(stringArrayList.get(counter + 1));
+        gui.getFields()[counter].setSubText("Pris: " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() + " kr.");
+        gui.getFields()[counter].setDescription("<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "</head>\n" + "<body>\n" + "<p><font size=\"+1\"><strong>" + fieldlist.getFieldIndex(counter).getName() + "</strong></font><br>\n" + "Leje af grund &emsp; &emsp;kr.   " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent0() + " <br>\n" + "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent1() + "<br>\n" + ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent2() + "<br>\n" + ">> 3 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent3() + "<br>\n" + ">> 4 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent4() + "<br>\n" + ">> hotel &emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent5() + "<br>\n" + "Opgraderingspris &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getUpgradeValue() + "<br>\n" + "Pantværdi &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() / 2 + "</p> \n" + "</body>\t\n" + "</html>");
+        gui.getFields()[14].setBackGroundColor(new Color(102, 255, 102));
+        counter++;
+
+        gui.getFields()[counter].setTitle(stringArrayList.get(counter + 1));
+        gui.getFields()[counter].setSubText("Pris" + ((Ferry) fieldlist.getFieldIndex(counter)).getPrice() + " kr.");
+        gui.getFields()[counter].setDescription("<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "</head>\n" + "<body>\n" + "<p><font size=\"+1\"><strong>" + fieldlist.getFieldIndex(counter).getName() + ".</strong></font><br>\n" + "Leje &emsp; &emsp; &emsp; &emsp;&emsp;kr.   " + ((Ferry) fieldlist.getFieldIndex(counter)).getPrice() / 8 + " <br>\n" + "2 rederier ejes\t &emsp; >>  " + ((Ferry) fieldlist.getFieldIndex(counter)).getPrice() / 4 + "<br>\n" + "3 rederier ejes\t &emsp; >>  " + ((Ferry) fieldlist.getFieldIndex(counter)).getPrice() / 2 + "<br>\n" + "4 rederier ejes\t &emsp; >>  " + ((Ferry) fieldlist.getFieldIndex(counter)).getPrice() + "<br>\n" + "Pantværdi &emsp; kr. " + ((Ferry) fieldlist.getFieldIndex(counter)).getPrice() / 2 + "</p> \n" + "</body>\t\n" + "</html>");
+        counter++;
+
+        gui.getFields()[counter].setTitle(stringArrayList.get(counter + 1));
+        gui.getFields()[counter].setSubText("Pris: " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() + " kr.");
+        gui.getFields()[counter].setDescription("<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "</head>\n" + "<body>\n" + "<p><font size=\"+1\"><strong>" + fieldlist.getFieldIndex(counter).getName() + "</strong></font><br>\n" + "Leje af grund &emsp; &emsp;kr.   " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent0() + " <br>\n" + "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent1() + "<br>\n" + ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent2() + "<br>\n" + ">> 3 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent3() + "<br>\n" + ">> 4 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent4() + "<br>\n" + ">> hotel &emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent5() + "<br>\n" + "Opgraderingspris &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getUpgradeValue() + "<br>\n" + "Pantværdi &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() / 2 + "</p> \n" + "</body>\t\n" + "</html>");
+        gui.getFields()[counter].setBackGroundColor(new Color(153, 153, 153));
+        counter++;
+
+        gui.getFields()[counter].setTitle(stringArrayList.get(counter + 1));
+        gui.getFields()[counter].setSubText("Prøv Lykken");
+        counter++;
+
+        gui.getFields()[counter].setTitle(stringArrayList.get(counter + 1));
+        gui.getFields()[counter].setSubText("Pris: " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() + " kr.");
+        gui.getFields()[counter].setDescription("<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "</head>\n" + "<body>\n" + "<p><font size=\"+1\"><strong>" + fieldlist.getFieldIndex(counter).getName() + "</strong></font><br>\n" + "Leje af grund &emsp; &emsp;kr.   " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent0() + " <br>\n" + "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent1() + "<br>\n" + ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent2() + "<br>\n" + ">> 3 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent3() + "<br>\n" + ">> 4 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent4() + "<br>\n" + ">> hotel &emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent5() + "<br>\n" + "Opgraderingspris &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getUpgradeValue() + "<br>\n" + "Pantværdi &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() / 2 + "</p> \n" + "</body>\t\n" + "</html>");
+        gui.getFields()[18].setBackGroundColor(new Color(153, 153, 153));
+        counter++;
+
+        gui.getFields()[counter].setTitle(stringArrayList.get(counter + 1));
+        gui.getFields()[counter].setSubText("Pris: " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() + " kr.");
+        gui.getFields()[counter].setDescription("<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "</head>\n" + "<body>\n" + "<p><font size=\"+1\"><strong>" + fieldlist.getFieldIndex(counter).getName() + "</strong></font><br>\n" + "Leje af grund &emsp; &emsp;kr.   " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent0() + " <br>\n" + "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent1() + "<br>\n" + ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent2() + "<br>\n" + ">> 3 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent3() + "<br>\n" + ">> 4 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent4() + "<br>\n" + ">> hotel &emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent5() + "<br>\n" + "Opgraderingspris &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getUpgradeValue() + "<br>\n" + "Pantværdi &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() / 2 + "</p> \n" + "</body>\t\n" + "</html>");
+        gui.getFields()[counter].setBackGroundColor(new Color(153, 153, 153));
+        counter++;
+
+        gui.getFields()[counter].setTitle(stringArrayList.get(counter + 1));
+        gui.getFields()[counter].setSubText(fieldlist.getFieldIndex(counter).getName());
+        gui.getFields()[counter].setBackGroundColor(new Color(255, 255, 204));
+        counter++;
+
+        gui.getFields()[counter].setTitle(stringArrayList.get(counter + 1));
+        gui.getFields()[counter].setSubText("Pris: " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() + " kr.");
+        gui.getFields()[counter].setDescription("<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "</head>\n" + "<body>\n" + "<p><font size=\"+1\"><strong>" + fieldlist.getFieldIndex(counter).getName() + "</strong></font><br>\n" + "Leje af grund &emsp; &emsp;kr.   " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent0() + " <br>\n" + "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent1() + "<br>\n" + ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent2() + "<br>\n" + ">> 3 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent3() + "<br>\n" + ">> 4 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent4() + "<br>\n" + ">> hotel &emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent5() + "<br>\n" + "Opgraderingspris &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getUpgradeValue() + "<br>\n" + "Pantværdi &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() / 2 + "</p> \n" + "</body>\t\n" + "</html>");
+        gui.getFields()[counter].setBackGroundColor(new Color(255, 0, 0));
+        counter++;
+
+        gui.getFields()[counter].setTitle(stringArrayList.get(23));
+        gui.getFields()[counter].setSubText("Prøv Lykken");
+        counter++;
+
+        gui.getFields()[counter].setTitle(stringArrayList.get(counter + 1));
+        gui.getFields()[counter].setSubText("Pris: " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() + " kr.");
+        gui.getFields()[counter].setDescription("<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "</head>\n" + "<body>\n" + "<p><font size=\"+1\"><strong>" + fieldlist.getFieldIndex(counter).getName() + "</strong></font><br>\n" + "Leje af grund &emsp; &emsp;kr.   " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent0() + " <br>\n" + "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent1() + "<br>\n" + ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent2() + "<br>\n" + ">> 3 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent3() + "<br>\n" + ">> 4 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent4() + "<br>\n" + ">> hotel &emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent5() + "<br>\n" + "Opgraderingspris &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getUpgradeValue() + "<br>\n" + "Pantværdi &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() / 2 + "</p> \n" + "</body>\t\n" + "</html>");
+        gui.getFields()[counter].setBackGroundColor(new Color(255, 0, 0));
+        counter++;
+
+        gui.getFields()[counter].setTitle(stringArrayList.get(counter + 1));
+        gui.getFields()[counter].setSubText("Pris: " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() + " kr.");
+        gui.getFields()[counter].setDescription("<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "</head>\n" + "<body>\n" + "<p><font size=\"+1\"><strong>" + fieldlist.getFieldIndex(counter).getName() + "</strong></font><br>\n" + "Leje af grund &emsp; &emsp;kr.   " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent0() + " <br>\n" + "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent1() + "<br>\n" + ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent2() + "<br>\n" + ">> 3 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent3() + "<br>\n" + ">> 4 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent4() + "<br>\n" + ">> hotel &emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent5() + "<br>\n" + "Opgraderingspris &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getUpgradeValue() + "<br>\n" + "Pantværdi &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() / 2 + "</p> \n" + "</body>\t\n" + "</html>");
+        gui.getFields()[counter].setBackGroundColor(new Color(255, 0, 0));
+        counter++;
+
+        gui.getFields()[counter].setTitle(stringArrayList.get(counter + 1));
+        gui.getFields()[counter].setSubText("Pris" + ((Ferry) fieldlist.getFieldIndex(counter)).getPrice() + " kr.");
+        gui.getFields()[counter].setDescription("<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "</head>\n" + "<body>\n" + "<p><font size=\"+1\"><strong>" + fieldlist.getFieldIndex(counter).getName() + ".</strong></font><br>\n" + "Leje &emsp; &emsp; &emsp; &emsp;&emsp;kr.   " + ((Ferry) fieldlist.getFieldIndex(counter)).getPrice() / 8 + " <br>\n" + "2 rederier ejes\t &emsp; >>  " + ((Ferry) fieldlist.getFieldIndex(counter)).getPrice() / 4 + "<br>\n" + "3 rederier ejes\t &emsp; >>  " + ((Ferry) fieldlist.getFieldIndex(counter)).getPrice() / 2 + "<br>\n" + "4 rederier ejes\t &emsp; >>  " + ((Ferry) fieldlist.getFieldIndex(counter)).getPrice() + "<br>\n" + "Pantværdi &emsp; kr. " + ((Ferry) fieldlist.getFieldIndex(counter)).getPrice() / 2 + "</p> \n" + "</body>\t\n" + "</html>");
+        counter++;
+
+        gui.getFields()[counter].setTitle(stringArrayList.get(counter + 1));
+        gui.getFields()[counter].setSubText("Pris: " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() + " kr.");
+        gui.getFields()[counter].setDescription("<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "</head>\n" + "<body>\n" + "<p><font size=\"+1\"><strong>" + fieldlist.getFieldIndex(counter).getName() + "</strong></font><br>\n" + "Leje af grund &emsp; &emsp;kr.   " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent0() + " <br>\n" + "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent1() + "<br>\n" + ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent2() + "<br>\n" + ">> 3 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent3() + "<br>\n" + ">> 4 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent4() + "<br>\n" + ">> hotel &emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent5() + "<br>\n" + "Opgraderingspris &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getUpgradeValue() + "<br>\n" + "Pantværdi &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() / 2 + "</p> \n" + "</body>\t\n" + "</html>");
+        gui.getFields()[counter].setBackGroundColor(new Color(255, 255, 255));
+        counter++;
+
+        gui.getFields()[counter].setTitle(stringArrayList.get(counter + 1));
+        gui.getFields()[counter].setSubText("Pris: " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() + " kr.");
+        gui.getFields()[counter].setDescription("<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "</head>\n" + "<body>\n" + "<p><font size=\"+1\"><strong>" + fieldlist.getFieldIndex(counter).getName() + "</strong></font><br>\n" + "Leje af grund &emsp; &emsp;kr.   " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent0() + " <br>\n" + "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent1() + "<br>\n" + ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent2() + "<br>\n" + ">> 3 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent3() + "<br>\n" + ">> 4 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent4() + "<br>\n" + ">> hotel &emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent5() + "<br>\n" + "Opgraderingspris &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getUpgradeValue() + "<br>\n" + "Pantværdi &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() / 2 + "</p> \n" + "</body>\t\n" + "</html>");
+        gui.getFields()[counter].setBackGroundColor(new Color(255, 255, 255));
+        counter++;
+
+        gui.getFields()[counter].setTitle(stringArrayList.get(counter + 1));
+        gui.getFields()[counter].setSubText("Pris: " + ((Brewery) fieldlist.getFieldIndex(counter)).getPrice() + " kr.");
+        gui.getFields()[counter].setDescription("<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "</head>\n" + "<body>\n" + "<p><font size=\"+1\"><strong> Tuborg Squash.</strong></font>\n" + "<br>Ejes en virksomhed betales 100 gange hvad øjnene viser. <br><br>\n" + "Ejes Tuborg Squash og Coca-Cola, betales 200 gange øjenenes værdi.<br>\n" + "Pantværdi &emsp; kr. 1500<br><br><br></p> \n" + "</body>\t\n" + "</html>");
+        counter++;
+
+        gui.getFields()[counter].setTitle(stringArrayList.get(counter + 1));
+        gui.getFields()[counter].setSubText("Pris: " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() + " kr.");
+        gui.getFields()[counter].setDescription("<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "</head>\n" + "<body>\n" + "<p><font size=\"+1\"><strong>" + fieldlist.getFieldIndex(counter).getName() + "</strong></font><br>\n" + "Leje af grund &emsp; &emsp;kr.   " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent0() + " <br>\n" + "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent1() + "<br>\n" + ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent2() + "<br>\n" + ">> 3 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent3() + "<br>\n" + ">> 4 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent4() + "<br>\n" + ">> hotel &emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent5() + "<br>\n" + "Opgraderingspris &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getUpgradeValue() + "<br>\n" + "Pantværdi &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() / 2 + "</p> \n" + "</body>\t\n" + "</html>");
+        gui.getFields()[counter].setBackGroundColor(new Color(255, 255, 255));
+        counter++;
+
+        gui.getFields()[counter].setTitle(stringArrayList.get(counter + 1));
+        gui.getFields()[counter].setSubText(fieldlist.getFieldIndex(counter).getName());
+        counter++;
+
+        gui.getFields()[counter].setTitle(stringArrayList.get(counter + 1));
+        gui.getFields()[counter].setSubText("Pris: " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() + " kr.");
+        gui.getFields()[counter].setDescription("<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "</head>\n" + "<body>\n" + "<p><font size=\"+1\"><strong>" + fieldlist.getFieldIndex(counter).getName() + "</strong></font><br>\n" + "Leje af grund &emsp; &emsp;kr.   " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent0() + " <br>\n" + "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent1() + "<br>\n" + ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent2() + "<br>\n" + ">> 3 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent3() + "<br>\n" + ">> 4 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent4() + "<br>\n" + ">> hotel &emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent5() + "<br>\n" + "Opgraderingspris &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getUpgradeValue() + "<br>\n" + "Pantværdi &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() / 2 + "</p> \n" + "</body>\t\n" + "</html>");
+        gui.getFields()[counter].setBackGroundColor(new Color(255, 255, 0));
+        counter++;
+
+        gui.getFields()[counter].setTitle(stringArrayList.get(counter + 1));
+        gui.getFields()[counter].setSubText("Pris: " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() + " kr.");
+        gui.getFields()[counter].setDescription("<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "</head>\n" + "<body>\n" + "<p><font size=\"+1\"><strong>" + fieldlist.getFieldIndex(counter).getName() + "</strong></font><br>\n" + "Leje af grund &emsp; &emsp;kr.   " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent0() + " <br>\n" + "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent1() + "<br>\n" + ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent2() + "<br>\n" + ">> 3 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent3() + "<br>\n" + ">> 4 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent4() + "<br>\n" + ">> hotel &emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent5() + "<br>\n" + "Opgraderingspris &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getUpgradeValue() + "<br>\n" + "Pantværdi &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() / 2 + "</p> \n" + "</body>\t\n" + "</html>");
+        gui.getFields()[counter].setBackGroundColor(new Color(255, 255, 0));
+        counter++;
+
+        gui.getFields()[counter].setTitle(stringArrayList.get(counter + 1));
+        gui.getFields()[counter].setSubText(fieldlist.getFieldIndex(counter).getName());
+        counter++;
+
+        gui.getFields()[counter].setTitle(stringArrayList.get(counter + 1));
+        gui.getFields()[counter].setSubText("Pris: " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() + " kr.");
+        gui.getFields()[counter].setDescription("<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "</head>\n" + "<body>\n" + "<p><font size=\"+1\"><strong>" + fieldlist.getFieldIndex(counter).getName() + "</strong></font><br>\n" + "Leje af grund &emsp; &emsp;kr.   " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent0() + " <br>\n" + "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent1() + "<br>\n" + ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent2() + "<br>\n" + ">> 3 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent3() + "<br>\n" + ">> 4 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent4() + "<br>\n" + ">> hotel &emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent5() + "<br>\n" + "Opgraderingspris &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getUpgradeValue() + "<br>\n" + "Pantværdi &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() / 2 + "</p> \n" + "</body>\t\n" + "</html>");
+        gui.getFields()[counter].setBackGroundColor(new Color(255, 255, 0));
+        counter++;
+
+        gui.getFields()[counter].setTitle(stringArrayList.get(counter + 1));
+        gui.getFields()[counter].setSubText("Pris" + ((Ferry) fieldlist.getFieldIndex(counter)).getPrice() + " kr.");
+        gui.getFields()[counter].setDescription("<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "</head>\n" + "<body>\n" + "<p><font size=\"+1\"><strong>" + fieldlist.getFieldIndex(counter).getName() + ".</strong></font><br>\n" + "Leje &emsp; &emsp; &emsp; &emsp;&emsp;kr.   " + ((Ferry) fieldlist.getFieldIndex(counter)).getPrice() / 8 + " <br>\n" + "2 rederier ejes\t &emsp; >>  " + ((Ferry) fieldlist.getFieldIndex(counter)).getPrice() / 4 + "<br>\n" + "3 rederier ejes\t &emsp; >>  " + ((Ferry) fieldlist.getFieldIndex(counter)).getPrice() / 2 + "<br>\n" + "4 rederier ejes\t &emsp; >>  " + ((Ferry) fieldlist.getFieldIndex(counter)).getPrice() + "<br>\n" + "Pantværdi &emsp; kr. " + ((Ferry) fieldlist.getFieldIndex(counter)).getPrice() / 2 + "</p> \n" + "</body>\t\n" + "</html>");
+        counter++;
+
+        gui.getFields()[counter].setTitle(stringArrayList.get(counter + 1));
+        gui.getFields()[counter].setSubText(fieldlist.getFieldIndex(counter).getName());
+        counter++;
+
+        gui.getFields()[counter].setTitle(stringArrayList.get(counter + 1));
+        gui.getFields()[counter].setSubText("Pris: " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() + " kr.");
+        gui.getFields()[counter].setDescription("<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "</head>\n" + "<body>\n" + "<p><font size=\"+1\"><strong>" + fieldlist.getFieldIndex(counter).getName() + "</strong></font><br>\n" + "Leje af grund &emsp; &emsp;kr.   " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent0() + " <br>\n" + "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent1() + "<br>\n" + ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent2() + "<br>\n" + ">> 3 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent3() + "<br>\n" + ">> 4 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent4() + "<br>\n" + ">> hotel &emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent5() + "<br>\n" + "Opgraderingspris &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getUpgradeValue() + "<br>\n" + "Pantværdi &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() / 2 + "</p> \n" + "</body>\t\n" + "</html>");
+        gui.getFields()[counter].setBackGroundColor(new Color(102, 0, 153));
+        counter++;
+
+        gui.getFields()[counter].setTitle(stringArrayList.get(counter + 1));
+        gui.getFields()[counter].setSubText("Betal 2000 kr.");
+        gui.getFields()[counter].setBackGroundColor(new Color(255, 255, 204));
+        counter++;
+
+        gui.getFields()[counter].setTitle(stringArrayList.get(counter + 1));
+        gui.getFields()[counter].setSubText("Pris: " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() + " kr.");
+        gui.getFields()[counter].setDescription("<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "</head>\n" + "<body>\n" + "<p><font size=\"+1\"><strong>" + fieldlist.getFieldIndex(counter).getName() + "</strong></font><br>\n" + "Leje af grund &emsp; &emsp;kr.   " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent0() + " <br>\n" + "m/ 1 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent1() + "<br>\n" + ">> 2 hus\t&emsp;\t&emsp; &emsp; >>  " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent2() + "<br>\n" + ">> 3 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent3() + "<br>\n" + ">> 4 hus\t&emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent4() + "<br>\n" + ">> hotel &emsp;\t&emsp; &emsp; >> " + ((RealEstate) fieldlist.getFieldIndex(counter)).getRent5() + "<br>\n" + "Opgraderingspris &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getUpgradeValue() + "<br>\n" + "Pantværdi &emsp; kr. " + ((RealEstate) fieldlist.getFieldIndex(counter)).getPrice() / 2 + "</p> \n" + "</body>\t\n" + "</html>");
+        gui.getFields()[counter].setBackGroundColor(new Color(102, 0, 153));
+        counter++;
 
 
     }
 
 
-  /*  public int show() {
-        gui.showMessage("Vælger antale af spiller ");
-        int numberInput;
-        //Indlæser et tal mellem 2 og 4
-        numberInput = gui.getUserInteger("Indtast et tal mellem 2 og 4", 2, 4);
-        return numberInput;
-    }*/
-
-    public GUI getGui(){
-     return this.gui;
+    public GUI getGui() {
+        return this.gui;
     }
 
-    public GUI_Field[] getGUI_Fields(){
+    public GUI_Field[] getGUI_Fields() {
         return fields;
     }
 
-     }
+}
 
