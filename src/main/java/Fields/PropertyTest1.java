@@ -9,6 +9,15 @@ class PropertyTest1 extends Property {
 
     @Test
     void buyProperty() {
+        Player player = new Player();
+        player.getAccount().setAccount(5000);
+        player.setPlayerName("Thomas");
+        Property property = new RealEstate();
+        property.setPrice(2500);
+        property.buyProperty(player);
+        assertEquals(2500, player.getAccount().getAmount());
+        assertEquals("Thomas",property.getPlayer().getPlayerName());
+
 
     }
     @Test
