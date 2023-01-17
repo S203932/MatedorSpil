@@ -277,7 +277,7 @@ public class GUIController {
                 GoJail goJail = new GoJail();
                 goJail.GoToJail(player);
                 if (player.getJail() == 1) {
-                    player.getAccount().subtractionAccount(1000);
+                    player.getAccount().subtractionAccount(5000);
                 }
                 player.setPosition(10);
                 gui_player.getCar().setPosition(fields[10]);
