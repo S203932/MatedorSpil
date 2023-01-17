@@ -18,6 +18,8 @@ public class Tax5 extends Tax {
                     playertotal += tomp*((RealEstate) player.getProperty()[counter]).getUpgradeValue();
                     playertotal += player.getProperty()[counter].getPrice();
                     counter++;
+                }else{
+                    playertotal += player.getProperty()[counter].getPrice();
                 }
             }
             playertotal += player.getAccount().getAmount();
