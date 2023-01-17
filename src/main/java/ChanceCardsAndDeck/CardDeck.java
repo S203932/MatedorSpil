@@ -283,12 +283,12 @@ public class CardDeck {
 
         card[40] = new ChanceCards();
         card[40].setType(2); // move to jail
-        card[40].setMoveTo(30);
+        card[40].setMoveTo(10);
         card[40].setDescription(stringArrayList.get(40));
 
         card[41] = new ChanceCards();
         card[41].setType(2); // move to jail
-        card[41].setMoveTo(30);
+        card[41].setMoveTo(10);
         card[41].setDescription(stringArrayList.get(41));
 
         card[42] = new ChanceCards();

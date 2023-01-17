@@ -135,6 +135,7 @@ public class ChanceCards {
             case 2:
                 gui.displayChanceCard(description);
                 player.setPosition(moveTo);
+                player.getAccount().subtractionAccount(1000);
                 gui_player.getCar().setPosition(fields[moveTo]);
                 break;
 
