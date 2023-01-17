@@ -1,13 +1,11 @@
 package ChanceCardsAndDeck;
 import Fields.Ferry;
 import Fields.FieldList;
-import Fields.Property;
 import Fields.RealEstate;
 import SupportClasses.Player;
-import gui_fields.GUI_Field;
 import gui_fields.GUI_Player;
 import gui_main.GUI;
-import org.jetbrains.annotations.Nullable;
+
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
