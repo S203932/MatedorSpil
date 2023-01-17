@@ -3,21 +3,9 @@ import SupportClasses.DiceCup;
 import SupportClasses.Player;
 
 public class Brewery extends Property {
-    private Player player;
 
     public void buyProperty(Player player) {
         super.buyProperty(player);
-    }
-
-    public void mortgageEstimation(Player player) {
-        super.mortgageProperty(player);
-    }
-
-    public int[] dieTotal(DiceCup dice) {
-        int[] dieValues = new int[2];
-        dieValues[0] = dice.getIndexDie(0);
-        dieValues[1] = dice.getIndexDie(1);
-        return dieValues;
     }
 
     public void rent(Player player, FieldList fieldList, DiceCup dice) {

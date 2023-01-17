@@ -1,14 +1,9 @@
 package Fields;
 import SupportClasses.Player;
-import jdk.jfr.ContentType;
 
 public class Ferry extends Property {
     public void buyProperty(Player player) {
         super.buyProperty(player);
-    }
-
-    public void mortgageEstimation(Player player) {
-        super.mortgageProperty(player);
     }
 
     public void rent(Player player, FieldList fieldList) {

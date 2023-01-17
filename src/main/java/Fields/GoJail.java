@@ -1,6 +1,5 @@
 package Fields;
 import SupportClasses.DiceCup;
-import SupportClasses.Die;
 import SupportClasses.Player;
 
 public class GoJail extends Field {
