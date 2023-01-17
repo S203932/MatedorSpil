@@ -164,7 +164,6 @@ class ChanceCardsTest {
         assertEquals(1, player.getFreejail());
     }
 
-    /*
     // Gets 500 for each house and 2000 for each hotel
     @Test
     void cardActionType8() {
@@ -179,26 +178,22 @@ class ChanceCardsTest {
         cardDeck.setCards();
         ChanceCards card = cardDeck.getCard(25);
 
-        player.setPosition(2);
-        player.getAccount().setAccount(2500);
-
-
-
         fieldList.setupField("Dansk.txt");
         ((RealEstate) fieldList.getFieldIndex(1)).setPlayer(player);
         ((RealEstate) fieldList.getFieldIndex(1)).setAvailability(false);
         ((RealEstate) fieldList.getFieldIndex(1)).setUpgrade(1);
+        player.setProperty((RealEstate) fieldList.getFieldIndex(1));
 
         ((RealEstate) fieldList.getFieldIndex(3)).setPlayer(player);
         ((RealEstate) fieldList.getFieldIndex(3)).setAvailability(false);
         ((RealEstate) fieldList.getFieldIndex(3)).setUpgrade(5);
+        player.setProperty((RealEstate) fieldList.getFieldIndex(3));
 
-
+        player.getAccount().setAccount(2500);
         card.cardAction(player, gui, fieldList, gui.getFields(), gui_player, Participants);
         assertEquals(0, player.getAccount().getAmount());
-
     }
-*/
+
     // Receive 40K if player has less than 15K
     @Test
    void cardActionType9(){
