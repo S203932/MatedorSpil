@@ -239,7 +239,7 @@ public class GUIController {
                 System.out.println("Field is a chance field");
                 Chance chance = new Chance();
                 CardDeck cardDeck = chance.getCardDeck();
-                int randomNumber = (int) (Math.random() * 19) + 0;
+                int randomNumber = (int) (Math.random() * 45) + 0;
                 cardDeck.setCards();
                 ChanceCards chanceCard = cardDeck.getCard(randomNumber);
                 System.out.println(chanceCard.getDescription());
@@ -277,7 +277,7 @@ public class GUIController {
                 GoJail goJail = new GoJail();
                 goJail.GoToJail(player);
                 if (player.getJail() == 1) {
-                    player.getAccount().additionAccount(-1);
+                    player.getAccount().subtractionAccount(1000);
                 }
                 player.setPosition(10);
                 gui_player.getCar().setPosition(fields[10]);
