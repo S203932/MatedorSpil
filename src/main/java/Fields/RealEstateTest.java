@@ -48,7 +48,5 @@ class RealEstateTest {
 
         assertEquals(0,player2.getAccount().getAmount());
         assertEquals(10,player.getAccount().getAmount());
-
-
     }
 }

@@ -1,5 +1,4 @@
 package Fields;
-// Class is written by Patrick Machalet s203932 and Nataliia Khaiko s224295
 
 import ChanceCardsAndDeck.CardDeck;
 

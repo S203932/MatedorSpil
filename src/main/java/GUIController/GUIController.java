@@ -1,5 +1,4 @@
 package GUIController;
-// Class is written by Patrick Machalet s203932 and Nataliia Khaiko s224295
 
 import ChanceCardsAndDeck.CardDeck;
 import ChanceCardsAndDeck.ChanceCards;
@@ -293,40 +292,6 @@ public class GUIController {
             gui.showMessage("De er fallit. Deres ejendomme forbliver købte,\n"
                     + "men De kan ikke længere deltage i spillet.");
         }
-
-
-        // Previous end menu below
-
-        /*
-
-        //Graphics setup to show players properties and show ability of pawning property
-        String list = gui.getUserButtonPressed("Du ejer følgende Ejendomme:\n"
-                + player.getNamesOfProperties(), "Afslut tur", "Pansætte ejedom");
-        int end = 0;
-        while (end == 0) {
-            if (list.equalsIgnoreCase("Pansætte ejedom")) {
-                if (player.getNamesOfProperties() == player.getNamesOfProperties()) {
-                    String noPropertie = gui.getUserButtonPressed(player.getNamesOfProperties() + ""
-                            + player.getNamesOfProperties(), "Afslut tur", "Tryk for at give op");
-                    break;
-                }
-                int pawning = gui.getUserInteger("Vælg ejendommens position for at pansætte \n"
-                        + player.getNamesOfProperties(), 1, 40);
-                if ((fieldList.getFieldIndex(pawning - 1).getClass().equals(RealEstate.class)||
-                        fieldList.getFieldIndex(pawning - 1).getClass().equals(Brewery.class)||
-                        fieldList.getFieldIndex(pawning - 1).getClass().equals(Ferry.class))&&
-                        !((Property) fieldList.getFieldIndex(pawning - 1)).getMortgage()&&
-                        !((Property) fieldList.getFieldIndex(pawning-1)).getAvailability()) {
-                    ((Property) fieldList.getFieldIndex(pawning - 1)).mortgageProperty(player);
-                    end = 1;
-                } else {
-                    gui.showMessage("Denne ejedom kan ikke pantsættes. Vælg en anden ejedom");
-                    continue;
-                }
-            } else {break;}
-        }
-
-         */
 
     }
 

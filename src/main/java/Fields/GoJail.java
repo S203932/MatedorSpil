@@ -1,5 +1,4 @@
 package Fields;
-// Class is written by Daniel Stensen s211449 and Fayyad Mahmoud S224266
 import SupportClasses.DiceCup;
 import SupportClasses.Die;
 import SupportClasses.Player;
