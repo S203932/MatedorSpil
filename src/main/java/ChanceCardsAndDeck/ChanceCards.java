@@ -133,10 +133,16 @@ public class ChanceCards {
 
             // Moves the player on the board.
             case 2:
-                if (player.getPosition()>10 && transaction > 0){
-                    player.getAccount().subtractionAccount(5000);
-                } else if (transaction > 0) {
-                    player.getAccount().subtractionAccount(1000);
+                if (transaction > 0){
+                    if (player.getFreejail() == 1){
+                        player.setFreejail(0);
+                    } else {
+                        if (player.getPosition() > 10){
+                            player.getAccount().subtractionAccount(5000);
+                        } else {
+                            player.getAccount().subtractionAccount(1000);
+                        }
+                    }
                 }
                 gui.displayChanceCard(description);
                 player.setPosition(moveTo);
