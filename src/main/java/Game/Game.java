@@ -37,7 +37,29 @@ public class Game {
         } else {
             gui_players = guiController.setupPlayers(players);
         }
+                        /*
+                        //Assign all orange properties to player 1
+                        ((RealEstate)fieldList.getFieldIndex(6)).buyProperty(players[0]);
+                        players[0].setProperty(((RealEstate)fieldList.getFieldIndex(6)));
 
+                        ((RealEstate)fieldList.getFieldIndex(8)).buyProperty(players[0]);
+                        players[0].setProperty(((RealEstate)fieldList.getFieldIndex(8)));
+
+                        ((RealEstate)fieldList.getFieldIndex(9)).buyProperty(players[0]);
+                        players[0].setProperty(((RealEstate)fieldList.getFieldIndex(9)));
+                */
+
+
+
+                        /*
+                        // assigns all the blue properties to player 1
+                        ((RealEstate) fieldList.getFieldIndex(1)).buyProperty(players[0]);
+                        players[0].setProperty(((RealEstate) fieldList.getFieldIndex(1)));
+
+                        ((RealEstate) fieldList.getFieldIndex(3)).buyProperty(players[0]);
+                        players[0].setProperty(((RealEstate) fieldList.getFieldIndex(3)));
+
+                         */
         int end = 0;
         while (end != 1) {
             for (int j = 0; j < players.length; j++) {

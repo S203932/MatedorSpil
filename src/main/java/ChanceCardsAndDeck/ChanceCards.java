@@ -135,6 +135,7 @@ public class ChanceCards {
             case 2:
                 if (transaction > 0){
                     if (player.getFreejail() == 1){
+                        gui.showMessage("Gode nyheder. De ejer løsladelseskort");
                         player.setFreejail(0);
                     } else {
                         if (player.getPosition() > 10){

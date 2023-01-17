@@ -189,8 +189,11 @@ public class GUIController {
             dice.rollDice();
             gui.setDice(dice.getIndexDie(0), dice.getIndexDie(1));
             player.diceRollPosition(dice.result());
+
+
             GUI_Field field = gui.getFields()[player.getPosition()];
             gui_player.getCar().setPosition(field);
+
 
             int position = player.getPosition();
             // Check availability and buying free Property such as RealEstate, Ferry and Brewery
@@ -274,6 +277,9 @@ public class GUIController {
             } else if (fieldList.getFieldIndex(player.getPosition()).getClass().equals(GoJail.class)) {
                 System.out.println("Field is of type GoJail");
                 gui.showMessage("Beklager. De skal fængsel.");
+                if(player.getFreejail()==1){
+                    gui.showMessage("Gode nyheder. De ejer løsladelseskort");
+                }
                 GoJail goJail = new GoJail();
                 goJail.GoToJail(player);
                 if (player.getJail() == 1) {
