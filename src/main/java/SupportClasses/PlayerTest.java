@@ -43,4 +43,30 @@ class PlayerTest extends Property{
         assertEquals("Hvidovrevej", property[1].getName());
     }
 
+        @Test
+        void hasProperties(){
+        Player player = new Player();
+        FieldList fieldList = new FieldList();
+
+        fieldList.setupField("Dansk.txt");
+        player.setProperty((RealEstate) fieldList.getFieldIndex(1));
+        player.setProperty((RealEstate) fieldList.getFieldIndex(3));
+        player.hasProperties();
+        assert(player.hasProperties());
+        }
+
+        @Test
+        void propertiesWithHousesOnThem(){
+            Player player = new Player();
+            FieldList fieldList = new FieldList();
+
+            fieldList.setupField("Dansk.txt");
+            player.setProperty((RealEstate) fieldList.getFieldIndex(1));
+            player.setProperty((RealEstate) fieldList.getFieldIndex(3));
+            ((RealEstate) fieldList.getFieldIndex(1)).setUpgrade(4);
+            ((RealEstate) fieldList.getFieldIndex(3)).setUpgrade(4);
+            Property[] property = player.propertiesWithHousesOnThem();
+            assertEquals("Rødovrevej", property[0].getName());
+            assertEquals("Hvidovrevej", property[1].getName());
+        }
 }
