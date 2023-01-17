@@ -1,4 +1,5 @@
 package ChanceCardsAndDeck;
+
 import Fields.Ferry;
 import Fields.FieldList;
 import Fields.RealEstate;
@@ -7,51 +8,52 @@ import gui_fields.GUI_Player;
 import gui_main.GUI;
 
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
 class ChanceCardsTest {
     // Testing for addition
     @Test
-        void cardActionType1() {
-            ChanceCards chanceCards = new ChanceCards();
-            Player player = new Player();
-            FieldList fieldList = new FieldList();
-            GUI gui = new GUI();
-            GUI_Player gui_player = new GUI_Player(player.getPlayerName(), player.getAccount().getAmount());
-            Player[] Participants = new Player[1];
+    void cardActionType1() {
+        ChanceCards chanceCards = new ChanceCards();
+        Player player = new Player();
+        FieldList fieldList = new FieldList();
+        GUI gui = new GUI();
+        GUI_Player gui_player = new GUI_Player(player.getPlayerName(), player.getAccount().getAmount());
+        Player[] Participants = new Player[1];
 
-            CardDeck cardDeck = new CardDeck();
-            cardDeck.setCards();
-            ChanceCards card = cardDeck.getCard(0);
+        CardDeck cardDeck = new CardDeck();
+        cardDeck.setCards();
+        ChanceCards card = cardDeck.getCard(0);
 
-            player.getAccount().setAccount(200);
-            card.cardAction(player, gui, fieldList, gui.getFields(), gui_player, Participants);
-            assertEquals(400, player.getAccount().getAmount());
+        player.getAccount().setAccount(200);
+        card.cardAction(player, gui, fieldList, gui.getFields(), gui_player, Participants);
+        assertEquals(400, player.getAccount().getAmount());
 
-        }
+    }
 
-        // Testing for moving player
-        @Test
-        void cardActionType2(){
-            ChanceCards chanceCards = new ChanceCards();
-            Player player = new Player();
-            FieldList fieldList = new FieldList();
-            GUI gui = new GUI();
-            GUI_Player gui_player = new GUI_Player(player.getPlayerName(), player.getAccount().getAmount());
-            Player[] Participants = new Player[1];
+    // Testing for moving player
+    @Test
+    void cardActionType2() {
+        ChanceCards chanceCards = new ChanceCards();
+        Player player = new Player();
+        FieldList fieldList = new FieldList();
+        GUI gui = new GUI();
+        GUI_Player gui_player = new GUI_Player(player.getPlayerName(), player.getAccount().getAmount());
+        Player[] Participants = new Player[1];
 
-            CardDeck cardDeck = new CardDeck();
-            cardDeck.setCards();
-            ChanceCards card = cardDeck.getCard(28);
+        CardDeck cardDeck = new CardDeck();
+        cardDeck.setCards();
+        ChanceCards card = cardDeck.getCard(28);
 
-            player.setPosition(10);
-            card.cardAction(player, gui, fieldList, gui.getFields(), gui_player, Participants);
-            assertEquals(0, player.getPosition());
-        }
+        player.setPosition(10);
+        card.cardAction(player, gui, fieldList, gui.getFields(), gui_player, Participants);
+        assertEquals(0, player.getPosition());
+    }
 
-   @Test
-    void cardActionType3(){
+    @Test
+    void cardActionType3() {
         int type = 3;
         ChanceCards chanceCards = new ChanceCards();
         Player player = new Player();
@@ -70,8 +72,9 @@ class ChanceCardsTest {
         card.cardAction(player, gui, fieldList, gui.getFields(), gui_player, Participants);
         assertEquals(600, player.getAccount().getAmount());
     }
+
     // Testing if moving position works
-   @Test
+    @Test
     public void testCardActionType4() {
         ChanceCards chanceCards = new ChanceCards();
         Player player = new Player();
@@ -91,7 +94,7 @@ class ChanceCardsTest {
 
     // Moves player to nearest ferry in case the position is 17
     @Test
-    void cardActionType5(){
+    void cardActionType5() {
         ChanceCards chanceCards = new ChanceCards();
         Player player = new Player();
         FieldList fieldList = new FieldList();
@@ -107,8 +110,9 @@ class ChanceCardsTest {
         card.cardAction(player, gui, fieldList, gui.getFields(), gui_player, Participants);
         assertEquals(25, player.getPosition());
     }
+
     @Test
-    void cardActionType6(){
+    void cardActionType6() {
         ChanceCards chanceCards = new ChanceCards();
         Player player = new Player();
         Player player1 = new Player();
@@ -145,7 +149,7 @@ class ChanceCardsTest {
     }
 
     @Test
-    void cardActionType7(){
+    void cardActionType7() {
         ChanceCards chanceCards = new ChanceCards();
         Player player = new Player();
         FieldList fieldList = new FieldList();
@@ -194,21 +198,21 @@ class ChanceCardsTest {
 
     // Receive 40K if player has less than 15K
     @Test
-   void cardActionType9(){
-       ChanceCards chanceCards = new ChanceCards();
-       Player player = new Player();
-       FieldList fieldList = new FieldList();
-       GUI gui = new GUI();
-       GUI_Player gui_player = new GUI_Player(player.getPlayerName(), player.getFreejail());
-       Player[] Participants = new Player[1];
+    void cardActionType9() {
+        ChanceCards chanceCards = new ChanceCards();
+        Player player = new Player();
+        FieldList fieldList = new FieldList();
+        GUI gui = new GUI();
+        GUI_Player gui_player = new GUI_Player(player.getPlayerName(), player.getFreejail());
+        Player[] Participants = new Player[1];
 
-       CardDeck cardDeck = new CardDeck();
-       cardDeck.setCards();
-       ChanceCards card = cardDeck.getCard(27);
+        CardDeck cardDeck = new CardDeck();
+        cardDeck.setCards();
+        ChanceCards card = cardDeck.getCard(27);
 
-       player.getAccount().setAccount(1000);
-       card.cardAction(player, gui, fieldList, gui.getFields(), gui_player, Participants);
-       assertEquals(41000, player.getAccount().getAmount());
+        player.getAccount().setAccount(1000);
+        card.cardAction(player, gui, fieldList, gui.getFields(), gui_player, Participants);
+        assertEquals(41000, player.getAccount().getAmount());
 
     }
 }

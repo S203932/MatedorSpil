@@ -1,4 +1,5 @@
 package SupportClasses;
+
 public class Account {
     private int amount;
 
@@ -20,7 +21,7 @@ public class Account {
 
     public void subtractionAccount(int subtractValue) {
         this.amount = amount - subtractValue;
-        if(this.amount <0) {
+        if (this.amount < 0) {
             this.amount = 0;
         }
 
@@ -28,7 +29,7 @@ public class Account {
 
     public void additionAccount(int additionValue) {
         this.amount = amount + additionValue;
-        if(this.amount <0) {
+        if (this.amount < 0) {
             this.amount = 0;
         }
 
@@ -39,7 +40,7 @@ public class Account {
     }
 
     public String toString() {
-        String value = "pengebeholdning: "+ amount;
+        String value = "pengebeholdning: " + amount;
         return value;
     }
 

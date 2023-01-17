@@ -1,4 +1,5 @@
 package Fields;
+
 import SupportClasses.DiceCup;
 import SupportClasses.Player;
 
@@ -13,16 +14,14 @@ public class Brewery extends Property {
         System.out.println("Turn name" + player.getPlayerName());
         int f = 0;
         System.out.println("Player name" + player.getPlayerName());
-        if (!((Brewery) fieldList.getFieldIndex(12)).getAvailability() &&
-                ((Brewery) fieldList.getFieldIndex(12)).getPlayer().getPlayerName() == super.getPlayer().getPlayerName()) {
+        if (!((Brewery) fieldList.getFieldIndex(12)).getAvailability() && ((Brewery) fieldList.getFieldIndex(12)).getPlayer().getPlayerName() == super.getPlayer().getPlayerName()) {
             System.out.println("Brewery 5 owned by" + ((Brewery) fieldList.getFieldIndex(12)).getPlayer().getPlayerName());
             f++;
         } else {
             System.out.println("Brewery 12 is unowned or owned someone else");
         }
 
-        if (!((Brewery) fieldList.getFieldIndex(28)).getAvailability() &&
-                ((Brewery) fieldList.getFieldIndex(28)).getPlayer().getPlayerName() == super.getPlayer().getPlayerName()) {
+        if (!((Brewery) fieldList.getFieldIndex(28)).getAvailability() && ((Brewery) fieldList.getFieldIndex(28)).getPlayer().getPlayerName() == super.getPlayer().getPlayerName()) {
             System.out.println("Brewery 15 owned by" + ((Brewery) fieldList.getFieldIndex(28)).getPlayer().getPlayerName());
             f++;
         } else {

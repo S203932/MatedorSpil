@@ -8,32 +8,31 @@ public abstract class Field {
     private Color color;
     private int type;
 
-    public Field(){
+    public Field() {
         setName("Noname");
         setPosition(-1);
         setColor(Color.black);
         setType(-1);
     }
 
-    public void setType(int type) {this.type=type;}
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getName(){
-        return name;
-    }
-
-    public void setPosition(int position) {
-        this.position = position;
+    public Color getColor() {
+        return this.color;
     }
 
     public void setColor(Color color) {
         this.color = color;
-    }
-
-    public Color getColor(){
-        return this.color;
     }
 
     public String setName() {
@@ -44,8 +43,12 @@ public abstract class Field {
         return this.position;
     }
 
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
     @Override
-    public String toString(){
+    public String toString() {
         return "This field is a : " + this.getClass().getSimpleName();
     }
 }

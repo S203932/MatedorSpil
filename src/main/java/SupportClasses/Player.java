@@ -29,16 +29,12 @@ public class Player {
 
     }
 
-    public void setForfeit(int forfeit) {
-        this.forfeit = forfeit;
-    }
-
     public int getForfeit() {
         return forfeit;
     }
 
-    public void setJail(int jail) {
-        this.jail = jail;
+    public void setForfeit(int forfeit) {
+        this.forfeit = forfeit;
     }
 
     public int getFreejail() {
@@ -53,8 +49,20 @@ public class Player {
         return jail;
     }
 
+    public void setJail(int jail) {
+        this.jail = jail;
+    }
+
     public int getPosition() {
         return position;
+    }
+
+    public void setPosition(int position) {
+        int oldPosition = this.position;
+        this.position = position;
+        if (position < oldPosition) {
+            this.account.additionAccount(4000);
+        }
     }
 
     public void diceRollPosition(int diceRoll) {
@@ -70,22 +78,9 @@ public class Player {
         }
     }
 
-    public void setPosition(int position) {
-        int oldPosition = this.position;
-        this.position = position;
-        if (position < oldPosition) {
-            this.account.additionAccount(4000);
-        }
-    }
-
-    public void setPlayerName(String navn) {
-        this.name = navn;
-    }
-
     public void startAccount() {
         this.account = new Account();
     }
-
 
     public Account getAccount() {
         return account;
@@ -93,6 +88,10 @@ public class Player {
 
     public String getPlayerName() {
         return name;
+    }
+
+    public void setPlayerName(String navn) {
+        this.name = navn;
     }
 
     public Property[] getProperty() {
@@ -113,9 +112,7 @@ public class Player {
     }
 
 
-
-
-   // Method returns an array of names on the properties that the players own and can mortgage. Last index is "Ingen af overstående"
+    // Method returns an array of names on the properties that the players own and can mortgage. Last index is "Ingen af overstående"
     public String[] getNamesOfPropertiesToMortgage() {
         int counter = 0;
         int counter3 = 0;
@@ -146,12 +143,10 @@ public class Player {
     }
 
 
-
     //Method returns a boolean that indicates wether the player can buy houses or not
     public boolean eligbleForHouse() {
         int[] colorIndex = new int[8];
-        Color[] colors = new Color[]{Color.BLUE, Color.ORANGE, Color.GREEN, Color.GRAY,
-                Color.RED, Color.WHITE, Color.YELLOW, Color.MAGENTA};
+        Color[] colors = new Color[]{Color.BLUE, Color.ORANGE, Color.GREEN, Color.GRAY, Color.RED, Color.WHITE, Color.YELLOW, Color.MAGENTA};
         int counter = 0;
         // checks to see if there is properties in array
         if (property[0] != null) {
@@ -184,24 +179,18 @@ public class Player {
                     }
                 }
             }
-            if (eligble) {
-                return true;
-            } else {
-                return false;
-            }
+            return eligble;
         } else {
             return false;
         }
     }
 
 
-
     //Method returns an array of properties the player can build houses on
     public Property[] eligbleRealEstateForHouses() {
         Property[] properties = new Property[40];
         int[] colorIndex = new int[8];
-        Color[] colors = new Color[]{Color.BLUE, Color.ORANGE, Color.GREEN, Color.GRAY,
-                Color.RED, Color.WHITE, Color.YELLOW, Color.MAGENTA};
+        Color[] colors = new Color[]{Color.BLUE, Color.ORANGE, Color.GREEN, Color.GRAY, Color.RED, Color.WHITE, Color.YELLOW, Color.MAGENTA};
         int counter = 0;
         Property[] eligibleProperties = new Property[40];
         // checks to see if there is properties in array
@@ -255,8 +244,8 @@ public class Player {
                     if (property[i] != null) {
                         if (property[i].getColor().equals(eligbleColors[colorCounter])) {
                             //if (((RealEstate) property[i]).getUpgrade() < 5) {
-                                properties[propertyCounter] = property[i];
-                                propertyCounter++;
+                            properties[propertyCounter] = property[i];
+                            propertyCounter++;
                             //}
                         }
                     }
@@ -287,9 +276,7 @@ public class Player {
                 for (int j = 0; j < properties.length; j++) {
                     if (properties[j] != null) {
                         if (properties[j].getColor().equals(eligbleColors[i])) {
-                            if (((RealEstate) properties[j]).getUpgrade() < upgrade || ((identicalUpgrade == 1) &&
-                                    (eligbleColors[i].equals(Color.BLUE) || eligbleColors[i].equals(Color.MAGENTA))) ||
-                                    (identicalUpgrade == 2)) {
+                            if (((RealEstate) properties[j]).getUpgrade() < upgrade || ((identicalUpgrade == 1) && (eligbleColors[i].equals(Color.BLUE) || eligbleColors[i].equals(Color.MAGENTA))) || (identicalUpgrade == 2)) {
                                 if (((RealEstate) properties[j]).getUpgrade() < 5) {
                                     eligibleProperties[counter] = properties[j];
                                     counter++;
@@ -410,10 +397,7 @@ public class Player {
 
     // Method to see if the player has properties
     public boolean hasProperties() {
-        boolean ownsProperty = false;
-        if (property[0] != null) {
-            ownsProperty = true;
-        }
+        boolean ownsProperty = property[0] != null;
         return ownsProperty;
     }
 
@@ -429,8 +413,7 @@ public class Player {
             string = string + name + " has no properties";
         } else {
             while (property[counter] != null) {
-                string = string + name + " has the property \" " + property[counter].getName() + "\"" +
-                        " which is at postion: " + property[counter].getPosition() + " on the board \n";
+                string = string + name + " has the property \" " + property[counter].getName() + "\"" + " which is at postion: " + property[counter].getPosition() + " on the board \n";
                 counter++;
             }
         }

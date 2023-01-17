@@ -23,8 +23,9 @@ class GoJailTest {
         goJail.GoToJail(player);
         assertEquals(0, player.getJail());
     }
+
     @Test
-    void PayOutOfJail(){
+    void PayOutOfJail() {
         GoJail goJail = new GoJail();
         Player player = new Player();
         player.setJail(1);
@@ -34,7 +35,7 @@ class GoJailTest {
     }
 
     @Test
-    void HitOutOfJail(){
+    void HitOutOfJail() {
         GoJail goJail = new GoJail();
         Player player = new Player();
         DiceCup dice = new DiceCup(2);

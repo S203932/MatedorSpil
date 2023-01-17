@@ -1,4 +1,5 @@
 package Fields;
+
 import SupportClasses.Player;
 
 public class Tax5 extends Tax {
@@ -7,24 +8,24 @@ public class Tax5 extends Tax {
         int playertotal = 0;
         int tomp;
         int counter = 0;
-        if (optionTax==2){
+        if (optionTax == 2) {
             player.getAccount().subtractionAccount(4000);
         } else if (optionTax == 1) {
 
-            while(player.getProperty()[counter]!= null){
-                if (player.getProperty()[counter].getClass().equals(RealEstate.class)){
-                    tomp = ((RealEstate)player.getProperty()[counter]).getUpgrade();
-                    playertotal += tomp*((RealEstate) player.getProperty()[counter]).getUpgradeValue();
+            while (player.getProperty()[counter] != null) {
+                if (player.getProperty()[counter].getClass().equals(RealEstate.class)) {
+                    tomp = ((RealEstate) player.getProperty()[counter]).getUpgrade();
+                    playertotal += tomp * ((RealEstate) player.getProperty()[counter]).getUpgradeValue();
                     playertotal += player.getProperty()[counter].getPrice();
                     counter++;
-                }else{
+                } else {
                     playertotal += player.getProperty()[counter].getPrice();
                 }
             }
             playertotal += player.getAccount().getAmount();
             player.getAccount().subtractionAccount(playertotal / 10);
-            }
-
         }
+
     }
+}
 

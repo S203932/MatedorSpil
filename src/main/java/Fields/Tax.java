@@ -1,4 +1,4 @@
 package Fields;
 
-public class Tax extends Field{
+public class Tax extends Field {
 }

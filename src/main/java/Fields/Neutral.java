@@ -1,39 +1,40 @@
 package Fields;
-public class Neutral extends Field{
+
+public class Neutral extends Field {
     private int position;
     private String name;
 
-    public Neutral(){
+    public Neutral() {
         initializePosition();
         initializeName();
     }
 
-    public void initializePosition(){
+    public void initializePosition() {
         this.position = -1;
     }
 
-    public void initializeName(){
+    public void initializeName() {
         this.name = "No name entered";
     }
 
-    public void setPosition(int position){
-        this.position = position;
-    }
-
-    public void setName(String name){
-        this.name = name;
-    }
-
-    public int getPosition(){
+    public int getPosition() {
         return position;
     }
 
-    public String getName(){
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public String toString() {
-        return "The name of the field is: "+this.name+" and the position is: "+this.position;
+        return "The name of the field is: " + this.name + " and the position is: " + this.position;
     }
 }

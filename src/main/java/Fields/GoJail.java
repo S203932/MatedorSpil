@@ -1,4 +1,5 @@
 package Fields;
+
 import SupportClasses.DiceCup;
 import SupportClasses.Player;
 
@@ -60,12 +61,13 @@ public class GoJail extends Field {
             player.getAccount().subtractionAccount(1000);
         }
     }
-        public void HitOutOfJail(Player player, DiceCup dice){
-            int[] dieValues = new int[2];
-            dieValues[0] = dice.getIndexDie(0);
-            dieValues[1] = dice.getIndexDie(1);
-            if (player.getJail() == 1 && dieValues[0]==dieValues[1]) {
-                        player.setJail(0);
-                    }
-            }
+
+    public void HitOutOfJail(Player player, DiceCup dice) {
+        int[] dieValues = new int[2];
+        dieValues[0] = dice.getIndexDie(0);
+        dieValues[1] = dice.getIndexDie(1);
+        if (player.getJail() == 1 && dieValues[0] == dieValues[1]) {
+            player.setJail(0);
+        }
     }
+}

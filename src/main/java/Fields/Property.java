@@ -16,44 +16,45 @@ public abstract class Property extends Field {
         setPlayer(player);
     }
 
+    public int getPrice() {
+        return this.price;
+    }
+
     public void setPrice(int price) {
         this.price = price;
     }
 
-    public void setMortgage(boolean mortgage){
-        this.mortgage=mortgage;
-    }
-
-    public void setAvailability(boolean availability) {
-        this.availability = availability;
-    }
-
-
-    public void setPlayer(Player player){
-        this.player = player;
-    }
-
-    public int getPrice() {
-        return this.price;
-    }
-    public boolean getMortgage(){
+    public boolean getMortgage() {
         return this.mortgage;
+    }
+
+    public void setMortgage(boolean mortgage) {
+        this.mortgage = mortgage;
     }
 
     public boolean getAvailability() {
         return this.availability;
     }
 
+    public void setAvailability(boolean availability) {
+        this.availability = availability;
+    }
+
     public Player getPlayer() {
         return this.player;
     }
 
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
     // Method for buying af Property such as RealEstate, Brewery or Ferry
-    public void buyProperty(Player player){
+    public void buyProperty(Player player) {
         this.availability = false;
         player.getAccount().subtractionAccount(this.price);
         this.player = player;
     }
+
     // Method for mortgage players property
     public void mortgageProperty(Player player) {
         if (!mortgage) {
@@ -62,14 +63,14 @@ public abstract class Property extends Field {
         }
     }
 
-    public void buyBackMortgage(Player player){
-        if(mortgage){
-            player.getAccount().subtractionAccount(price/2);
+    public void buyBackMortgage(Player player) {
+        if (mortgage) {
+            player.getAccount().subtractionAccount(price / 2);
             this.mortgage = false;
         }
     }
 
-    public String toString(){
-        return "Position: "+getPosition();
+    public String toString() {
+        return "Position: " + getPosition();
     }
 }

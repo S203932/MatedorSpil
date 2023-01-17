@@ -1,6 +1,7 @@
 package SupportClasses;
+
 public class DiceCup {
-    private Die[] dice;
+    private final Die[] dice;
 
     public DiceCup(int numberOfDie) {
         dice = new Die[numberOfDie];
@@ -8,6 +9,7 @@ public class DiceCup {
             dice[i] = new Die();
         }
     }
+
     public void rollDice() {
         for (Die d : dice) {
             d.roll();
@@ -15,23 +17,23 @@ public class DiceCup {
     }
 
 
-    public int getIndexDie(int index){
-        if(dice.length<=index){
+    public int getIndexDie(int index) {
+        if (dice.length <= index) {
             return 0;
-        }else{
+        } else {
             return dice[index].get();
         }
     }
 
-    public int result(){
+    public int result() {
         int sum = 0;
-        for (Die d: dice) {
+        for (Die d : dice) {
             sum += d.get();
         }
         return sum;
     }
 
-    public void setDice(int index, int setDieValue){
+    public void setDice(int index, int setDieValue) {
         this.dice[index].setValue(setDieValue);
     }
 }

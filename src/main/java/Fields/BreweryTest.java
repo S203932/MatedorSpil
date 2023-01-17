@@ -30,13 +30,13 @@ class BreweryTest {
         fieldList.setupField("Dansk.txt");
         player.setPlayerName("Peter");
         player1.setPlayerName("Thomas");
-        ((Brewery)fieldList.getFieldIndex(12)).setAvailability(false);
-        ((Brewery)fieldList.getFieldIndex(28)).setAvailability(false);
-        ((Brewery)fieldList.getFieldIndex(12)).setPlayer(player1);
-        ((Brewery)fieldList.getFieldIndex(28)).setPlayer(player1);
+        ((Brewery) fieldList.getFieldIndex(12)).setAvailability(false);
+        ((Brewery) fieldList.getFieldIndex(28)).setAvailability(false);
+        ((Brewery) fieldList.getFieldIndex(12)).setPlayer(player1);
+        ((Brewery) fieldList.getFieldIndex(28)).setPlayer(player1);
         brewery.setPlayer(player1);
         diceCup.setDice(0, 1);
-        diceCup.setDice(1,5);
+        diceCup.setDice(1, 5);
         brewery.rent(player, fieldList, diceCup);
         assertEquals(8800, player.getAccount().getAmount());
         assertEquals(11200, player1.getAccount().getAmount());

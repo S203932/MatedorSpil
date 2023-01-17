@@ -20,7 +20,7 @@ class RealEstateTest {
     }
 
     // Method for mortgage is tested:
-  @Test
+    @Test
     void mortgageEstimation() {
         RealEstate realEstate = new RealEstate();
         realEstate.setPrice(500);
@@ -46,7 +46,7 @@ class RealEstateTest {
         player2.getAccount().setAccount((5));
         realEstate.rent(player2);
 
-        assertEquals(0,player2.getAccount().getAmount());
-        assertEquals(10,player.getAccount().getAmount());
+        assertEquals(0, player2.getAccount().getAmount());
+        assertEquals(10, player.getAccount().getAmount());
     }
 }

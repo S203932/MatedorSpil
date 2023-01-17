@@ -147,6 +147,7 @@ class PlayerTest extends Property {
         assertEquals("Rødovrevej", estateNames[0]);
         assertEquals("Hvidovrevej", estateNames[1]);
     }
+
     @Test
     void getNamesOfPropertiesToBuyHouse() {
         Player player = new Player();

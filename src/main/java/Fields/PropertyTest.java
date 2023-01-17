@@ -16,10 +16,11 @@ class PropertyTest extends Property {
         property.setPrice(2500);
         property.buyProperty(player);
         assertEquals(2500, player.getAccount().getAmount());
-        assertEquals("Thomas",property.getPlayer().getPlayerName());
+        assertEquals("Thomas", property.getPlayer().getPlayerName());
 
 
     }
+
     @Test
     void mortgageProperty() {
         Player player = new Player();

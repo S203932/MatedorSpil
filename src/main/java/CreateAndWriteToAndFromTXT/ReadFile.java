@@ -8,14 +8,14 @@ import java.util.ArrayList;
 
 public class ReadFile {
 
-    public ArrayList<String> ReadFile(String fileName){
+    public ArrayList<String> ReadFile(String fileName) {
         ArrayList<String> stringArrayList = new ArrayList<>();
-        try{
+        try {
             FileReader fileReader = new FileReader(fileName);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
-            String string =bufferedReader.readLine();
+            String string = bufferedReader.readLine();
 
-            while(string != null){
+            while (string != null) {
                 System.out.println(string);
                 stringArrayList.add(string);
                 string = bufferedReader.readLine();
@@ -24,7 +24,7 @@ public class ReadFile {
             bufferedReader.close();
             fileReader.close();
             return stringArrayList;
-        }catch (IOException Error){
+        } catch (IOException Error) {
             System.out.println(Error);
             Error.printStackTrace();
             return stringArrayList;

@@ -85,8 +85,7 @@ public class Game {
         if (player.eligbleForHouse()) {
             String option = "";
             while (!option.equalsIgnoreCase("Afslut tur")) {
-                option = gui.getUserButtonPressed("Du har følgende valgmuligheder:", "Pantsæt en ejendom",
-                        "Køb tilbage pantsætning", "Køb hus", "Sælg hus", "Afslut tur");
+                option = gui.getUserButtonPressed("Du har følgende valgmuligheder:", "Pantsæt en ejendom", "Køb tilbage pantsætning", "Køb hus", "Sælg hus", "Afslut tur");
                 String option2 = "";
                 if (!option.equalsIgnoreCase("Afslut tur")) {
                     if (option.equalsIgnoreCase("Pantsæt en ejendom")) {
@@ -157,8 +156,7 @@ public class Game {
         } else if (player.hasProperties()) {
             String option = "";
             while (!option.equalsIgnoreCase("Afslut tur")) {
-                option = gui.getUserButtonPressed("Du har følgende valgmuligheder:", "Pantsæt en ejendom",
-                        "Køb tilbage pantsætning", "Afslut tur");
+                option = gui.getUserButtonPressed("Du har følgende valgmuligheder:", "Pantsæt en ejendom", "Køb tilbage pantsætning", "Afslut tur");
                 String option2 = "";
                 if (!option.equalsIgnoreCase("Afslut tur")) {
                     if (option.equalsIgnoreCase("Pantsæt en ejendom")) {

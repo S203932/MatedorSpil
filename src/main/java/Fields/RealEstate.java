@@ -23,25 +23,23 @@ public class RealEstate extends Property {
         setRent5(-1);
     }
 
+    public int getUpgrade() {
+        return this.upgrade;
+    }
+
     // Upgrade is the amount of houses you have
     public void setUpgrade(int upgrade) {
         this.upgrade = upgrade;
-    }
-
-    // How much it costs to buy house or hotel
-    public void setUpgradeValue(int upgradeValue) {
-        this.upgradeValue = upgradeValue;
-    }
-
-    public int getUpgrade() {
-        return this.upgrade;
     }
 
     public int getUpgradeValue() {
         return this.upgradeValue;
     }
 
-
+    // How much it costs to buy house or hotel
+    public void setUpgradeValue(int upgradeValue) {
+        this.upgradeValue = upgradeValue;
+    }
 
     public void buyProperty(Player player) {
         super.buyProperty(player);
@@ -102,7 +100,7 @@ public class RealEstate extends Property {
 
     //Paying and receiving rent depending on different circumstances
     public void rent(Player player) {
-        if (upgrade == 0){
+        if (upgrade == 0) {
             player.getAccount().subtractionAccount(rent0);
             super.getPlayer().getAccount().additionAccount(rent0);
         } else if (upgrade == 1) {
@@ -117,21 +115,21 @@ public class RealEstate extends Property {
         } else if (upgrade == 4) {
             player.getAccount().subtractionAccount(rent4);
             super.getPlayer().getAccount().additionAccount(rent4);
-        } else  {
+        } else {
             player.getAccount().subtractionAccount(rent5);
             super.getPlayer().getAccount().additionAccount(rent5);
         }
     }
 
-    public void upgradeProperty(Player player){
-        if(upgrade>=0 && upgrade <5){
+    public void upgradeProperty(Player player) {
+        if (upgrade >= 0 && upgrade < 5) {
             player.getAccount().subtractionAccount(upgradeValue);
             upgrade++;
         }
     }
 
-    public void downgradeProperty(Player player){
-        if(upgrade>0 && upgrade <= 5){
+    public void downgradeProperty(Player player) {
+        if (upgrade > 0 && upgrade <= 5) {
             player.getAccount().additionAccount(upgradeValue);
             upgrade--;
         }
